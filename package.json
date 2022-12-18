@@ -7,7 +7,6 @@
     "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
     "build": "webpack --config ./webpack.config.js --env mode=prod",
     "lint": "eslint . --ext .ts",
-    "lint:write": "eslint --debug src/ --fix",
     "prepare": "husky install"
   },
   "repository": {
@@ -43,12 +42,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
-  },
-  "lint-staged": {
-    "*.(ts)": [
-      "npm run lint:write",
-      "git add"
-    ]
   },
   "config": {
     "commit-message-validator": {
