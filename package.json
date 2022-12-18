@@ -52,7 +52,7 @@
   },
   "config": {
     "commit-message-validator": {
-      "pattern": "^OS-\\d{1,2}\\s(init|feat|fix|refactor|docs)\\(\\w\\):\\s\\w",
+      "pattern": "^OS-\\d{1,2}\\s(init|feat|fix|refactor|docs)\\((.+?)\\):\\s(.+?)",
       "errorMessage": "Commit doesn't match pattern"
     }
   }
