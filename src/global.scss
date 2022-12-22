@@ -11,3 +11,22 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+
+html,
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1 1 auto;
+  background-color: $gray;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

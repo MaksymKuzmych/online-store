@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  background-color: $brown-dark;
+  color: $white;
+  font-size: 1.2rem;
+
+  &__logo {
+    height: 50px;
+  }
+
+  .purchases {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+
+    &__quantity {
+      display: flex;
+      align-items: center;
+    }
+
+    &__logo {
+      height: 50px;
+    }
+  }
+}
