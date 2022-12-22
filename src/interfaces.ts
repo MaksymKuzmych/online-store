@@ -6,5 +6,4 @@ export interface IWatch {
   clockFace: 'digital' | 'pointer';
   mount: 'strap' | 'bracelet';
   description: string;
-  images: File[];
 }
