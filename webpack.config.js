@@ -3,6 +3,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
@@ -11,14 +12,14 @@ const baseConfig = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       { test: /\.ts$/i, use: 'ts-loader' },
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg|svg|webp)$/i,
-        type: 'asset/resource',
-      },
     ],
   },
   resolve: {
@@ -28,7 +29,6 @@ const baseConfig = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: 'assets/[name][ext]',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -37,6 +37,9 @@ const baseConfig = {
     }),
     new CleanWebpackPlugin(),
     new EslintPlugin({ extensions: 'ts' }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'public' }],
+    }),
   ],
 };
 

@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  align-items: center;
+  background-color: $brown-light;
+  color: $white;
+
+  .logo {
+    height: 30px;
+  }
+}

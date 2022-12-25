@@ -1,0 +1,32 @@
+@import './styles/normalize.scss';
+@import './styles/variables.scss';
+@import './components/header/header.scss';
+@import './components/footer/footer.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+  background-color: $gray;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
