@@ -9,7 +9,7 @@ export function renderHeader(): HTMLElement {
   header.innerHTML = `
   <img src="./assets/icons/Watch4You.svg" alt="Logo" class="header__logo" />
   <div class="header__purchases purchases">
-    <p class="purchases__amount">Total amount: ${purchasesAmount} $</p>
+    <p class="purchases__amount">Total amount: <span class="purchases__amount_number">${purchasesAmount}</span> $</p>
     <div class="purchases__quantity">
       <button class="purchases__btn btn">
         <img src="./assets/icons/cart.svg" alt="cart" class="purchases__logo" />

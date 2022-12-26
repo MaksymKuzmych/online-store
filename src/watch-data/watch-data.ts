@@ -174,7 +174,7 @@ export const watchData: IWatch[] = [
   {
     id: 18,
     brand: 'Seiko',
-    name: 'Seiko SPB117 Automatic Alpinist',
+    name: 'Seiko SPB117 Automatic',
     price: 1190,
     clockFace: 'pointer',
     mount: 'bracelet',
