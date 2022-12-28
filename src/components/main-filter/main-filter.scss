@@ -1,0 +1,54 @@
+@import '../../styles/variables.scss';
+
+.filters {
+  width: 25%;
+  margin: 25px;
+  padding: 10px;
+  border: 2px solid $brown-dark;
+  border-radius: 5px;
+  font-size: 1.2rem;
+
+  .search_bar {
+    display: flex;
+
+    input {
+      width: 60%;
+    }
+
+    p {
+      margin-left: auto;
+    }
+  }
+
+  .sort_bar {
+    display: flex;
+
+    .view_mode {
+      display: flex;
+      margin-left: auto;
+
+      .small_view, .big_view {
+        width: 32px;
+        height: 32px;
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        flex-wrap: wrap;
+        cursor: pointer;
+
+        .small_point, .big_point {
+          width: 6.5px;
+          height: 6.5px;
+          border-radius: 50%;
+          background-color: $brown-dark;
+        }
+
+        .big_point {
+          width: 9px;
+          height: 9px;
+        }
+      }
+    }
+  }
+}
