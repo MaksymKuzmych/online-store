@@ -1,0 +1,101 @@
+@import '../../styles/variables.scss';
+
+.description {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  font-weight: bold;
+
+  &__images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid $brown-light;
+    border-radius: 10px;
+  }
+
+  &__image {
+    height: 100px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+
+    &:hover {
+      border: 1px solid $brown-light;
+      transform: scale(1.1);
+    }
+  }
+
+  &__main-image {
+    height: 440px;
+    border-radius: 15px;
+    border: 2px solid $brown-light;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__name {
+    font-size: 27px;
+    text-align: center;
+    color: $brown-dark;
+  }
+
+  &__price {
+    text-align: end;
+    font-size: 30px;
+    color: $white;
+    padding: 5px;
+    border-bottom: 3px solid $brown-light;
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 30px;
+    color: black;
+  }
+
+  .order {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__btn {
+      border-radius: 5px;
+      padding: 5px 10px;
+      color: $gray;
+      background-color: $brown-dark;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+        color: $white;
+      }
+    }
+
+    &__quantity-wrapper {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__quantity {
+      width: 40px;
+
+      &::-webkit-inner-spin-button {
+        opacity: 1;
+      }
+
+      &::-webkit-outer-spin-button {
+        opacity: 1;
+      }
+    }
+  }
+}
