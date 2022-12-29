@@ -3,149 +3,139 @@ export function renderFilters(): HTMLElement {
 
   filters.classList.add('filters');
   filters.innerHTML = `
-  <div class="search_bar">
-  <input type="search" placeholder="Search product">
-  <p>Found: 0</p>
+  <div class="search-bar">
+  <input class="search-bar__input" type="search" placeholder="Search product">
+  <p class="search-bar__found">Found: <span class="search_bar__result">0</span></p>
 </div>
-<div class="sort_bar">
-  <select class="select_sort" name="sort" id="sort">
-    <option value="price-up">Price Up</option>
-    <option value="price-down">Price Down</option>
-    <option value="rating">Rating</option>
-    <option value="discount">Discount</option>
+<div class="sort-bar">
+  <select class="sort-bar__select" name="sort" id="sort">
+    <option class="sort-bar__select-item" value="price-up">Price Up</option>
+    <option class="sort-bar__select-item" value="price-down">Price Down</option>
+    <option class="sort-bar__select-item" value="rating">Rating</option>
+    <option class="sort-bar__select-item" value="discount">Discount</option>
   </select>
-  <div class="view_mode">
-    <div class="big_view">
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
-      <div class="big_point"></div>
+  <div class="sort-bar__view">
+    <div class="sort-bar__view-big">
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
+      <div class="sort-bar__view-big-point"></div>
     </div>
-    <div class="small_view">
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-      <div class="small_point"></div>
-    </div>
-  </div>
-</div>
-<div class="reset_total">
-  <button class="btn_reset">Reset Filters</button>
-  <button class="btn_copy">Copy Link</button>
-</div>
-<div class="filter_category">
-  <h3 class="title">Options</h3>
-  <div class="filter_list">
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="pointer" id="pointer">
-      <label class="label_checkbox" for="pointer">ClockFace: Pointer</label>
-      <span>(0)</span>
-    </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="digital" id="digital">
-      <label class="label_checkbox" for="digital">ClockFace: Digital</label>
-      <span>(0)</span>
-    </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="strap" id="strap">
-      <label class="label_checkbox" for="strap">Mount: Strap</label>
-      <span>(0)</span>
-    </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="bracelet" id="bracelet">
-      <label class="label_checkbox" for="bracelet">Mount: Bracelet</label>
-      <span>(0)</span>
+    <div class="sort-bar__view-small">
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
+      <div class="sort-bar__view-small-point"></div>
     </div>
   </div>
 </div>
-<div class="filter_brand">
-  <h3 class="title">Brand</h3>
-  <div class="filter_list">
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="Casio" id="Casio">
-      <label class="label_checkbox" for="Casio">Casio</label>
-      <span>(0)</span>
+<div class="reset-total">
+  <button class="reset-total__btn-reset">Reset Filters</button>
+  <button class="reset-total__btn-copy">Copy Link</button>
+</div>
+<div class="filter">
+  <h3 class="filter__title title">Options</h3>
+  <div class="filter__list">
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="clockface-pointer" id="clockface-pointer">
+      <label class="filter__label-checkbox" for="clockface-pointer">ClockFace: Pointer (<span class="clockface-pointer__result">0</span>)</label>
     </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="Citizen" id="Citizen">
-      <label class="label_checkbox" for="Citizen">Citizen</label>
-      <span>(0)</span>
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="clockface-digital" id="clockface-digital">
+      <label class="filter__label-checkbox" for="clockface-digital">ClockFace: Digital (<span class="clockface-digital__result">0</span>)</label>
     </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="North Edge" id="North Edge">
-      <label class="label_checkbox" for="North Edge">North Edge</label>
-      <span>(0)</span>
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="mount-strap" id="mount-strap">
+      <label class="filter__label-checkbox" for="mount-strap">Mount: Strap (<span class="mount-strap__result">0</span>)</label>
     </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="Seiko" id="Seiko">
-      <label class="label_checkbox" for="Seiko">Seiko</label>
-      <span>(0)</span>
-    </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="TAG HEUER" id="TAG HEUER">
-      <label class="label_checkbox" for="TAG HEUER">TAG HEUER</label>
-      <span>(0)</span>
-    </div>
-    <div class="checkbox">
-      <input class="input_checkbox" type="checkbox" name="Fossil" id="Fossil">
-      <label class="label_checkbox" for="Fossil">Fossil</label>
-      <span>(0)</span>
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="mount-bracelet" id="mount-bracelet">
+      <label class="filter__label-checkbox" for="mount-bracelet">Mount: Bracelet (<span class="mount-bracelet__result">0</span>)</label>
     </div>
   </div>
 </div>
-<div class="slider_price">
-  <h3 class="title">Price</h3>
-  <div class="out_data">
-    <div class="from_data">
-      <span>$</span>
-      <input type="number" value="0">
+<div class="filter">
+  <h3 class="filter__title title">Brand</h3>
+  <div class="filter__list">
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="casio" id="casio">
+      <label class="filter__label-checkbox" for="casio">Casio (<span class="casio">0</span>)</label>
     </div>
-    <div class="to_data">
-      <span>$</span>
-      <input type="number" value="1000">
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="citizen" id="citizen">
+      <label class="filter__label-checkbox" for="citizen">Citizen (<span class="citizen">0</span>)</label>
     </div>
-  </div>
-  <div class="multi_range">
-    <div class="range">
-      <button class="range_btn left price" style="left: 0%;"></button>
-      <button class="range_btn right price" style="left: 100%;"></button>
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="north-edge" id="north-edge">
+      <label class="filter__label-checkbox" for="north-edge">North Edge (<span class="north-edge">0</span>)</label>
     </div>
-  </div>
-</div>
-<div class="slider_stock">
-  <h3 class="title">Stock</h3>
-  <div class="out_data">
-    <div class="from_data">
-      <input type="number" value="0">
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="seiko" id="seiko">
+      <label class="filter__label-checkbox" for="seiko">Seiko (<span class="seiko">0</span>)</label>
     </div>
-    <div class="to_data">
-      <input type="number" value="100">
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="tag-heuer" id="tag-heuer">
+      <label class="filter__label-checkbox" for="tag-heuer">TAG HEUER (<span class="tag-heuer">0</span>)</label>
     </div>
-  </div>
-  <div class="multi_range">
-    <div class="range">
-      <button class="range_btn left stock" style="left: 0%;"></button>
-      <button class="range_btn right stock" style="left: 100%;"></button>
+    <div class="filter__checkbox">
+      <input class="filter__input-checkbox" type="checkbox" name="fossil" id="fossil">
+      <label class="filter__label-checkbox" for="fossil">Fossil (<span class="fossil">0</span>)</label>
     </div>
   </div>
 </div>
+<div class="slider">
+  <h3 class="slider__title title">Price</h3>
+  <div class="slider__out-data">
+    <div class="slider__from-data">
+      <span class="slider__usd">$</span>
+      <input class="slider__from-data__input-price input-number" type="number" value="0">
+    </div>
+    <div class="slider__to-data">
+      <span class="slider__usd">$</span>
+      <input class="slider__to-data__input-price input-number" type="number" value="1000">
+    </div>
+  </div>
+  <div class="slider__multi-range">
+    <div class="multi-range__range">
+      <button class="multi-range__btn left-price" style="left: 0%;"></button>
+      <button class="multi-range__btn right-price" style="left: 100%;"></button>
+    </div>
+  </div>
+</div>
+<div class="slider">
+  <h3 class="slider__title title">Stock</h3>
+  <div class="slider__out-data">
+    <div class="slider__from-data">
+      <input class="slider__from-data__input-stock input-number" type="number" value="0">
+    </div>
+    <div class="slider__to-data">
+      <input class="slider__to-data__input-stock input-number" type="number" value="100">
+    </div>
+  </div>
+  <div class="slider__multi-range">
+    <div class="multi-range__range">
+      <button class="multi-range__btn left-stock" style="left: 0%;"></button>
+      <button class="multi-range__btn right-stock" style="left: 100%;"></button>
+    </div>
+  </div>
+</div>  
   `;
   return filters;
 }

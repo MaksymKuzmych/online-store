@@ -8,98 +8,96 @@
   border-radius: 5px;
   font-size: 1.2rem;
 
-  .search_bar,
-  .sort_bar,
-  .reset_total {
+  .search-bar,
+  .sort-bar,
+  .reset-total {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-
-    input {
-      width: 60%;
-    }
   }
 
-  .sort_bar {
+  .search-bar__input {
+    width: 60%;
+  }
 
-    .select_sort {
-      cursor: pointer;
-    }
+  .sort-bar__select {
+    cursor: pointer;
+  }
 
-    .view_mode {
+  .sort-bar__view {
+    display: flex;
+    margin-left: auto;
+
+    .sort-bar__view-big,
+    .sort-bar__view-small {
+      width: 32px;
+      height: 32px;
+      margin: 5px;
       display: flex;
-      margin-left: auto;
+      justify-content: space-between;
+      align-items: stretch;
+      flex-wrap: wrap;
+      cursor: pointer;
 
-      .small_view,
-      .big_view {
-        width: 32px;
-        height: 32px;
-        margin: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: stretch;
-        flex-wrap: wrap;
-        cursor: pointer;
+      .sort-bar__view-big-point,
+      .sort-bar__view-small-point {
+        width: 6.5px;
+        height: 6.5px;
+        border-radius: 50%;
+        background-color: $brown-dark;
+      }
 
-        .small_point,
-        .big_point {
-          width: 6.5px;
-          height: 6.5px;
-          border-radius: 50%;
-          background-color: $brown-dark;
-        }
-
-        .big_point {
-          width: 9px;
-          height: 9px;
-        }
+      .sort-bar__view-big-point {
+        width: 9px;
+        height: 9px;
       }
     }
   }
 
-  .reset_total {
+  .reset-total {
     gap: 10%;
 
-    .btn_reset, 
-    .btn_copy {
+    .reset-total__btn-reset, 
+    .reset-total__btn-copy {
       width: 50%;
       cursor: pointer;
     }
   }
 
-  .filter_category,
-  .filter_brand,
-  .slider_price,
-  .slider_stock {
+  .filter
+  .slider {
     margin: 10px 0;
     line-height: 120%;
+  }
 
-    .title {
-      text-align: center;
-      margin-bottom: 5px;
-    }
+  .title {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .filter {
 
-    .checkbox {
+    .filter__checkbox {
       display: flex;
       align-items: center;
       
-      .input_checkbox,
-      .label_checkbox {
+      .filter__input-checkbox,
+      .filter__label-checkbox {
         cursor: pointer;
       }
-
-      .input_checkbox {
+  
+      .filter__input-checkbox {
         position: absolute;
         z-index: -1;
         opacity: 0;
-
+  
         &+label {
           display: inline-flex;
           align-items: center;
           user-select: none;
         }
-
+  
         &+label::before {
           content: '';
           display: inline-block;
@@ -114,84 +112,95 @@
           background-position: center center;
           background-size: 50% 50%;
         }
-
+  
         &:checked+label::before {
-          border-color: #0b76ef;
-          background-color: #0b76ef;
+          border-color: $brown-dark;
+          background-color: $brown-dark;
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
         }
-
+  
         &:not(:disabled):not(:checked)+label:hover::before {
-          border-color: #b3d7ff;
+          border-color: white;
         }
-
+  
         &:not(:disabled):active+label::before {
-          background-color: #b3d7ff;
-          border-color: #b3d7ff;
+          background-color: white;
+          border-color: white;
         }
-
+  
         &:focus+label::before {
-          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+          box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
         }
-
+  
         &:focus:not(:checked)+label::before {
-          border-color: #80bdff;
+          border-color: white;
         }
-
+  
         &:disabled+label::before {
-          background-color: #e9ecef;
+          background-color: white;
         }
       }
     }
+  }
 
-    .out_data {
+  .slider {
+
+    .slider__out-data {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
-      input[type="number"]::-webkit-outer-spin-button,
-      input[type="number"]::-webkit-inner-spin-button {
+      .input-number::-webkit-outer-spin-button,
+      .input-number::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
 
-      input[type="number"] {
+      .input-number {
         -moz-appearance: textfield;
       }
 
-      .from_data {
+      .slider__from-data,
+      .slider__to-data {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-
-        input {
-          width: 40%;
-        }
       }
 
-      .to_data {
-        display: flex;
+      .slider__to-data {
         justify-content: flex-end;
-        align-items: center;
+      }
 
-        input {
-          width: 40%;
-        }
+      .slider__from-data__input-price,
+      .slider__to-data__input-price,
+      .slider__from-data__input-stock,
+      .slider__to-data__input-stock {
+        width: 50%;
+      }
+
+      .slider__from-data__input-price,
+      .slider__to-data__input-price {
+        margin-left: 10px;
+      }
+
+      .slider__from-data__input-stock,
+      .slider__to-data__input-stock {
+        margin-left: 20px;
       }
     }
 
-    .multi_range {
+    .slider__multi-range {
       height: 60px;
       display: flex;
       align-items: center;
 
-      .range {
+      .multi-range__range {
         position: relative;
         width: 100%;
         height: 2px;
         background-color: $brown-dark;
 
-        .range_btn {
+        .multi-range__btn {
           position: absolute;
           width: 30px;
           height: 30px;
@@ -200,7 +209,8 @@
           transform: translateY(-50%);
           cursor: pointer;
 
-          &.right {
+          &.right-price,
+          &.right-stock {
             transform: translateY(-50%) translateX(-100%);
           }
         }
