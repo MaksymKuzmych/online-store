@@ -1,6 +1,7 @@
 import { IWatch } from '../../interfaces';
+import { addToCartListener } from './add-to-cart';
 
-class Card {
+export class Card {
   item: IWatch;
 
   constructor(item: IWatch) {
@@ -9,16 +10,12 @@ class Card {
 
   renderCard(): HTMLElement {
     const card = document.createElement('div');
-    const id = this.item.id;
-    const imageSrc = `./assets/watch-images/${this.item.id}/1.jpg`;
-    const name = this.item.name;
-    const description = this.item.description;
-    const price = this.item.price;
+    const { id, name, description, price } = this.item;
 
     card.classList.add('card');
     card.innerHTML = `
     <div class="card__img-wrapper">
-      <img src="${imageSrc}" alt="${name}" class="card__img" />
+      <img src="./assets/watch-images/${id}/1.jpg" alt="${name}" class="card__img" />
     </div>
     <div class="card__info">
       <h3 class="card__name">${name}</h3>
@@ -31,8 +28,8 @@ class Card {
     </div>
     `;
 
+    addToCartListener(card, this.item);
+
     return card;
   }
 }
-
-export default Card;

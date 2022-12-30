@@ -1,5 +1,5 @@
 import { watchData } from '../watch-data/watch-data';
-import Card from '../components/product-card/product-card';
+import { Card } from '../components/product-card/product-card';
 
 export function renderProductsPage(): void {
   const main = document.querySelector('main') as HTMLElement;
