@@ -1,6 +1,7 @@
 import { renderHeader } from './components/header/header';
 import { renderFooter } from './components/footer/footer';
 import { renderFilters } from './components/main-filter/main-filter';
+import { setMultirange } from './components/main-filter/multirange';
 
 
 import './global.scss';
@@ -16,3 +17,5 @@ main.appendChild(renderFilters());
 body.appendChild(renderHeader());
 body.appendChild(main);
 body.appendChild(renderFooter());
+
+setMultirange();

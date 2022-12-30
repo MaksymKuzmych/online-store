@@ -6,6 +6,7 @@ export const watchData: IWatch[] = [
     brand: 'Casio',
     name: 'CASIO MTG-B2000D-1AER',
     price: 1678,
+    stock: 11,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -16,6 +17,7 @@ export const watchData: IWatch[] = [
     brand: 'Casio',
     name: 'CASIO EQW-A2000HR-1AER',
     price: 968,
+    stock: 24,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -26,6 +28,7 @@ export const watchData: IWatch[] = [
     brand: 'Casio',
     name: 'CASIO Pro-Trek PRW-61Y-3ER',
     price: 669,
+    stock: 41,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -36,6 +39,7 @@ export const watchData: IWatch[] = [
     brand: 'Casio',
     name: 'CASIO G-Shock GW-9400-1ER',
     price: 511,
+    stock: 47,
     clockFace: 'digital',
     mount: 'strap',
     description:
@@ -46,6 +50,7 @@ export const watchData: IWatch[] = [
     brand: 'Casio',
     name: 'CASIO Pro Trek PRG-270-1ER',
     price: 300,
+    stock: 69,
     clockFace: 'digital',
     mount: 'strap',
     description:
@@ -56,6 +61,7 @@ export const watchData: IWatch[] = [
     brand: 'Citizen',
     name: 'Citizen BN7020-09E',
     price: 2896,
+    stock: 17,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -66,6 +72,7 @@ export const watchData: IWatch[] = [
     brand: 'Citizen',
     name: 'Citizen CC9015-54E',
     price: 2131,
+    stock: 21,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -76,6 +83,7 @@ export const watchData: IWatch[] = [
     brand: 'Citizen',
     name: 'Citizen AT8234-85A',
     price: 934,
+    stock: 47,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -86,6 +94,7 @@ export const watchData: IWatch[] = [
     brand: 'Citizen',
     name: 'Citizen CB0260-81E',
     price: 712,
+    stock: 44,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -96,6 +105,7 @@ export const watchData: IWatch[] = [
     brand: 'Citizen',
     name: 'Citizen AS2053-11A',
     price: 573,
+    stock: 55,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -106,6 +116,7 @@ export const watchData: IWatch[] = [
     brand: 'North Edge',
     name: 'North Edge Gavia 20BAR',
     price: 225,
+    stock: 72,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -116,6 +127,7 @@ export const watchData: IWatch[] = [
     brand: 'North Edge',
     name: 'North Edge Apache 5BAR',
     price: 97,
+    stock: 64,
     clockFace: 'digital',
     mount: 'strap',
     description:
@@ -126,6 +138,7 @@ export const watchData: IWatch[] = [
     brand: 'North Edge',
     name: 'North Edge Hornet',
     price: 82,
+    stock: 112,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -136,6 +149,7 @@ export const watchData: IWatch[] = [
     brand: 'North Edge',
     name: 'North Edge Laker Black 5BAR',
     price: 68,
+    stock: 93,
     clockFace: 'digital',
     mount: 'strap',
     description:
@@ -146,6 +160,7 @@ export const watchData: IWatch[] = [
     brand: 'North Edge',
     name: 'North Edge Combo 10BAR',
     price: 87,
+    stock: 89,
     clockFace: 'digital',
     mount: 'strap',
     description:
@@ -156,6 +171,7 @@ export const watchData: IWatch[] = [
     brand: 'Seiko',
     name: 'Seiko SBDC147',
     price: 1216,
+    stock: 29,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -166,6 +182,7 @@ export const watchData: IWatch[] = [
     brand: 'Seiko',
     name: 'Seiko SRPH80K1',
     price: 1195,
+    stock: 21,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -176,6 +193,7 @@ export const watchData: IWatch[] = [
     brand: 'Seiko',
     name: 'Seiko SPB117 Automatic Alpinist',
     price: 1190,
+    stock: 22,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -186,6 +204,7 @@ export const watchData: IWatch[] = [
     brand: 'Seiko',
     name: 'Seiko SARY183 SRPF43J1',
     price: 849,
+    stock: 31,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -196,6 +215,7 @@ export const watchData: IWatch[] = [
     brand: 'Seiko',
     name: 'Seiko Sportura SNDX97P1',
     price: 955,
+    stock: 44,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -206,6 +226,7 @@ export const watchData: IWatch[] = [
     brand: 'TAG HEUER',
     name: 'TAG HEUER CAR5A5Y.FC6377',
     price: 19293,
+    stock: 12,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -216,6 +237,7 @@ export const watchData: IWatch[] = [
     brand: 'TAG HEUER',
     name: 'TAG HEUER CAV5185.FT6020',
     price: 8583,
+    stock: 8,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -226,6 +248,7 @@ export const watchData: IWatch[] = [
     brand: 'TAG HEUER',
     name: 'TAG HEUER CBG2052.FT6143',
     price: 8022,
+    stock: 9,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -236,6 +259,7 @@ export const watchData: IWatch[] = [
     brand: 'TAG HEUER',
     name: 'TAG HEUER WAV5152.FC6231',
     price: 4853,
+    stock: 18,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -246,6 +270,7 @@ export const watchData: IWatch[] = [
     brand: 'TAG HEUER',
     name: 'TAG HEUER CV2A1F.BA0796',
     price: 4332,
+    stock: 15,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -256,6 +281,7 @@ export const watchData: IWatch[] = [
     brand: 'Fossil',
     name: 'Fossil FTW4024',
     price: 445,
+    stock: 21,
     clockFace: 'digital',
     mount: 'bracelet',
     description:
@@ -266,6 +292,7 @@ export const watchData: IWatch[] = [
     brand: 'Fossil',
     name: 'Fossil CH2451',
     price: 433,
+    stock: 66,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:
@@ -276,6 +303,7 @@ export const watchData: IWatch[] = [
     brand: 'Fossil',
     name: 'Fossil ME3200',
     price: 498,
+    stock: 49,
     clockFace: 'pointer',
     mount: 'strap',
     description:
@@ -286,6 +314,7 @@ export const watchData: IWatch[] = [
     brand: 'Fossil',
     name: 'Fossil Gen 6',
     price: 531,
+    stock: 61,
     clockFace: 'digital',
     mount: 'bracelet',
     description:
@@ -296,6 +325,7 @@ export const watchData: IWatch[] = [
     brand: 'Fossil',
     name: 'Fossil FS5707',
     price: 297,
+    stock: 53,
     clockFace: 'pointer',
     mount: 'bracelet',
     description:

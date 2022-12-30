@@ -19,10 +19,14 @@
 
   .search-bar__input {
     width: 60%;
+    border-radius: 5px;
+    border: 2px solid $brown-dark;
   }
 
   .sort-bar__select {
     cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid $brown-dark;
   }
 
   .sort-bar__view {
@@ -61,6 +65,7 @@
     .reset-total__btn-reset, 
     .reset-total__btn-copy {
       width: 50%;
+      border: 2px solid black;
       border-radius: 5px;
       padding: 5px 10px;
       color: $gray;
@@ -186,6 +191,8 @@
       .slider__from-data__input-stock,
       .slider__to-data__input-stock {
         width: 50%;
+        border-radius: 5px;
+        border: 2px solid $brown-dark;
       }
 
       .slider__from-data__input-price,
