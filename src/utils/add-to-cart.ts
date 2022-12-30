@@ -2,7 +2,7 @@ import { IWatch } from '../interfaces';
 import { watchData } from '../watch-data/watch-data';
 
 export function addToCartListener(): void {
-  const addToCartBtns = document.querySelectorAll('#addToCartBtn') as NodeListOf<HTMLElement>;
+  const addToCartBtns = document.querySelectorAll('.options__btn_add') as NodeListOf<HTMLElement>;
   const cartCounter = document.querySelector('.purchases__counter') as HTMLParagraphElement;
   const totalAmount = document.querySelector('.purchases__amount_number') as HTMLSpanElement;
 

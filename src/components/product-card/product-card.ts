@@ -26,8 +26,8 @@ class Card {
       <p class="card__price">${price} $</p>
     </div>
     <div class="card__options options">
-      <button class="options__btn btn" id='addToCartBtn' data-id="${id}">Add to Cart</button>
-      <button class="options__btn btn" id='detailsBtn' data-id="${id}">Details</button>
+      <button class="options__btn options__btn_add btn" data-id="${id}">Add to Cart</button>
+      <button class="options__btn options__btn_details btn" data-id="${id}">Details</button>
     </div>
     `;
 
