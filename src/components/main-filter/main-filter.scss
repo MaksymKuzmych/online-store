@@ -61,7 +61,17 @@
     .reset-total__btn-reset, 
     .reset-total__btn-copy {
       width: 50%;
+      border-radius: 5px;
+      padding: 5px 10px;
+      color: $gray;
+      background-color: $brown-dark;
+      transition: all 0.3s;
       cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+        color: $white;
+      }
     }
   }
 
