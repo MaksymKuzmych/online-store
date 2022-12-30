@@ -1,8 +1,10 @@
 import { watchData } from '../../watch-data/watch-data';
+import { imagesListener } from './change-main-image';
 
 export function renderDescription(id: number): HTMLElement {
   const item = watchData[id - 1];
   const description = document.createElement('div');
+  const { name, price } = item;
 
   //change view of item-description for this page
   const text = item.description
@@ -17,14 +19,14 @@ export function renderDescription(id: number): HTMLElement {
   description.classList.add('description');
   description.innerHTML = `
     <div class="description__images">
-      <img src="./assets/watch-images/${item.id}/1.jpg" alt="watch-image" class="description__image">
-      <img src="./assets/watch-images/${item.id}/2.jpg" alt="watch-image" class="description__image">
-      <img src="./assets/watch-images/${item.id}/3.jpg" alt="watch-image" class="description__image">
+      <img src="./assets/watch-images/${id}/1.jpg" alt="watch-image" class="description__image">
+      <img src="./assets/watch-images/${id}/2.jpg" alt="watch-image" class="description__image">
+      <img src="./assets/watch-images/${id}/3.jpg" alt="watch-image" class="description__image">
     </div>
-    <img src="./assets/watch-images/${item.id}/1.jpg" alt="watch-image" class="description__main-image">
+    <img src="./assets/watch-images/${id}/1.jpg" alt="watch-image" class="description__main-image">
     <div class="description__info">
-      <h3 class="description__name">${item.name}</h3>
-      <p class="description__price">${item.price} $</p>
+      <h3 class="description__name">${name}</h3>
+      <p class="description__price">${price} $</p>
       <p class="description__text">${text}</p>
     </div>
     <div class="description__order order">
@@ -37,16 +39,7 @@ export function renderDescription(id: number): HTMLElement {
     </div>
   `;
 
+  imagesListener(description);
+
   return description;
-}
-
-export function imagesListener(): void {
-  const smallImages = document.querySelectorAll('.description__image') as NodeListOf<HTMLImageElement>;
-  const mainImage = document.querySelector('.description__main-image') as HTMLImageElement;
-
-  smallImages.forEach((el) => {
-    el.addEventListener('click', () => {
-      mainImage.src = el.src;
-    });
-  });
 }
