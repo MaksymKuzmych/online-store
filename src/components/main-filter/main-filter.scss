@@ -224,7 +224,12 @@
           border-radius: 50%;
           border: none;
           transform: translateY(-50%);
+          background-color: $brown-dark;
           cursor: pointer;
+
+          &:hover {
+            background-color: $brown-dark;
+          }
 
           &.right-price,
           &.right-stock {

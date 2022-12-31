@@ -1,3 +1,5 @@
+import { setMultirange } from './multirange';
+
 export function renderFilters(): HTMLElement {
   const filters = document.createElement('div');
 
@@ -137,5 +139,6 @@ export function renderFilters(): HTMLElement {
   </div>
 </div>  
   `;
+  setMultirange(filters);
   return filters;
 }
