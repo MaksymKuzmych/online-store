@@ -23,60 +23,63 @@ export function setMultirange(component: HTMLElement): void {
   toStock.value = fromStock.max = toStock.max =
   `${findLimitValue(watchData, 'stock', 'max')}`;
 
-  const range = component.querySelector(".multi-range__range") as HTMLElement;
-  const rangeButtons = component.querySelectorAll(".multi-range__btn") as NodeListOf<HTMLElement>;
+  function connectButtonToInput(element: HTMLElement) {
+    if (element.className.includes('left') && element.className.includes('price')) {
+      return fromPrice;
+    }
+    if (element.className.includes('right') && element.className.includes('price')) {
+      return toPrice;
+    }
+    if (element.className.includes('left') && element.className.includes('stock')) {
+      return fromStock;
+    }
+    return toStock;
+  }
 
-  rangeButtons.forEach(button => button.addEventListener('mousedown', moveButton));
+  const range = component.querySelector(".multi-range__range") as HTMLElement;
+  const rangeButtons = [...component.querySelectorAll(".multi-range__btn") as NodeListOf<HTMLElement>];
+
+  function findOppositeButton(currentButton: HTMLElement): HTMLElement {
+    if (currentButton.className.includes('price')) {
+      return rangeButtons.find(buttonToFind => buttonToFind.className.includes('price') &&
+      buttonToFind !== currentButton) as HTMLElement;
+    } else {
+      return rangeButtons.find(buttonToFind => !buttonToFind.className.includes('price') &&
+      buttonToFind !== currentButton) as HTMLElement;
+    }
+  }
+
   function moveButton(eventDown: MouseEvent): void {
     const target = eventDown.target as HTMLElement;
     const mousePosition = eventDown.clientX;
 
     let minPosition = 0;
-    let maxPosition = 0;
+    let maxPosition = 100;
     if (target.className.includes('left')) {
-      minPosition = 0;
-      maxPosition = range.clientWidth - target.clientWidth * 2;
+      maxPosition = (range.clientWidth - target.clientWidth * 2) / range.clientWidth * 100 - 100 +
+      parseFloat(findOppositeButton(target).style.left.slice(0, -1));
     }
     if (target.className.includes('right')) {
-      minPosition = target.clientWidth * 2
-      maxPosition = range.clientWidth;
+      minPosition = target.clientWidth * 2 / range.clientWidth * 100 +
+      parseFloat(findOppositeButton(target).style.left.slice(0, -1));
     }
 
-    let buttonPosition = 0;
-    if (target.style.left === '0%') {
-      buttonPosition = 0;
-    } else if (target.style.left === '100%') {
-      buttonPosition = maxPosition;
-    } else {
-      buttonPosition = parseInt(target.style.left.slice(0, -1));
-    }
-
-    function connectButtonToInput(element: HTMLElement) {
-      if (element.className.includes('left') && element.className.includes('price')) {
-        return fromPrice;
-      }
-      if (element.className.includes('right') && element.className.includes('price')) {
-        return toPrice;
-      }
-      if (element.className.includes('left') && element.className.includes('stock')) {
-        return fromStock;
-      }
-      return toStock;
-    }
+    const buttonPosition = parseFloat(target.style.left.slice(0, -1));
     
     function onMouseMove(eventMove: MouseEvent): void {
-      const newButtonPosition = buttonPosition + eventMove.clientX - mousePosition;
-      if (newButtonPosition < minPosition) {
-        target.style.left = `${ minPosition }px`;
+      const offset = (eventMove.clientX - mousePosition) / range.clientWidth * 100;
+
+      if (buttonPosition + offset < minPosition) {
+        target.style.left = `${ minPosition }%`;
         connectButtonToInput(target).value = connectButtonToInput(target).min;
-      } else if (newButtonPosition > maxPosition) {
-        target.style.left = `${ maxPosition }px`;
+      } else if (buttonPosition + offset > maxPosition) {
+        target.style.left = `${ maxPosition }%`;
         connectButtonToInput(target).value = connectButtonToInput(target).max;
       } else {
-        target.style.left = `${ newButtonPosition }px`;
+        target.style.left = `${ buttonPosition + offset }%`;
         connectButtonToInput(target).value =
-        `${ Math.round((parseInt(connectButtonToInput(target).max) - parseInt(connectButtonToInput(target).min)) /
-        (maxPosition - minPosition) * newButtonPosition) }`;
+        `${ Math.round((parseInt(connectButtonToInput(target).max) - parseInt(connectButtonToInput(target).min)) *
+        (offset + buttonPosition) / 100) }`;
       }
     }
 
@@ -88,4 +91,5 @@ export function setMultirange(component: HTMLElement): void {
 
     document.addEventListener('mouseup', onMouseUp);
   }
+  rangeButtons.forEach(button => button.addEventListener('mousedown', moveButton));
 }
