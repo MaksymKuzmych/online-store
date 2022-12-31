@@ -1,7 +1,7 @@
-export function imagesListener(el: HTMLElement): void {
-  const mainImage = el.querySelector('.description__main-image') as HTMLImageElement;
+export function imagesListener(descriptionEl: HTMLElement): void {
+  const mainImage = descriptionEl.querySelector('.description__main-image') as HTMLImageElement;
 
-  el.addEventListener('click', (event) => {
+  descriptionEl.addEventListener('click', (event) => {
     const target = event.target as HTMLImageElement;
 
     if (target.className.split(' ').includes('description__image')) {
