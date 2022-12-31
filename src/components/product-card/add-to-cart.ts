@@ -1,10 +1,10 @@
 import { IWatch } from '../../interfaces';
 
-export function addToCartListener(el: HTMLElement, item: IWatch): void {
+export function addToCartListener(cardEl: HTMLElement, item: IWatch): void {
   const cartCounter = document.querySelector('.purchases__counter') as HTMLParagraphElement;
   const totalAmount = document.querySelector('.purchases__amount_number') as HTMLSpanElement;
 
-  el.addEventListener('click', (event): void => {
+  cardEl.addEventListener('click', (event): void => {
     const target = event.target as HTMLElement;
 
     if (target.className.split(' ').includes('options__btn_add')) {
