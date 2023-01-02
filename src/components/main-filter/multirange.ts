@@ -81,9 +81,19 @@ export function setMultirange(component: HTMLElement): void {
         connectButtonToInput(target).value = connectButtonToInput(target).max;
       } else {
         target.style.left = `${ buttonPosition + offset }%`;
-        connectButtonToInput(target).value =
-        `${ Math.round((+(connectButtonToInput(target).max) - +(connectButtonToInput(target).min)) *
-        (offset + buttonPosition) / 100) }`;
+        if (target.classList.contains('left')) {
+          connectButtonToInput(target).value =
+          `${ Math.round((+(connectButtonToInput(findOppositeButton(target)).max) -
+          +(connectButtonToInput(target).min)) *
+          (offset + buttonPosition) / ((range.clientWidth - target.clientWidth * 2) /
+          range.clientWidth * 100)) }`;
+        } else {
+          connectButtonToInput(target).value =
+          `${ Math.round((+(connectButtonToInput(target).max) -
+          +(connectButtonToInput(findOppositeButton(target)).min)) *
+          (offset + buttonPosition - (target.clientWidth * 2 / range.clientWidth * 100)) /
+          ((range.clientWidth - target.clientWidth * 2) / range.clientWidth * 100)) }`;
+        }
       }
     }
 
@@ -125,22 +135,18 @@ export function setMultirange(component: HTMLElement): void {
     const offset = (buttonInput.clientWidth * 2) / range.clientWidth;
 
     if (buttonInput.classList.contains('left')) {
-      if (+targetInput.value > +oppositeInput.value) {
-        targetInput.value = oppositeInput.value;
+      if (+targetInput.value > +oppositeInput.value || +targetInput.value < +targetInput.min) {
+        targetInput.classList.add("invalid");
+      } else {
+        targetInput.classList.remove("invalid");
+        buttonInput.style.left = `${+targetInput.value / (+oppositeInput.max - +targetInput.min) *
+        100 * (1 - offset)}%`;
       }
-      if (+targetInput.value < +targetInput.min) {
-        targetInput.value = targetInput.min;
-      }
-      buttonInput.style.left = `${(+targetInput.value - +targetInput.min) /
-      (+(oppositeInput.max) - +(targetInput.min)) * 100 * (1 - offset)}%`;
+    } else if (+targetInput.value < +oppositeInput.value || +targetInput.value > +targetInput.max) {
+      targetInput.classList.add("invalid");
     } else {
-      if (+targetInput.value < +oppositeInput.min) {
-        targetInput.value = oppositeInput.value;
-      }
-      if (+targetInput.value > +targetInput.max) {
-        targetInput.value = oppositeInput.min;
-      }
-      buttonInput.style.left = `${+targetInput.value / +targetInput.max *
+      targetInput.classList.remove("invalid");
+      buttonInput.style.left = `${+targetInput.value / (+targetInput.max - +oppositeInput.min) *
       100 * (1 - offset) + (offset * 100)}%`;
     }
   }

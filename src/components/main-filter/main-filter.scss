@@ -21,6 +21,10 @@
     width: 60%;
     border-radius: 5px;
     border: 2px solid $brown-dark;
+
+    &:focus {
+      border: 2px solid green;
+    }
   }
 
   .sort-bar__select {
@@ -195,6 +199,14 @@
         min-width: 60px;
         border-radius: 5px;
         border: 2px solid $brown-dark;
+
+        &:focus {
+          border: 2px solid green;
+        }
+      }
+
+      .invalid:focus {
+        border: 2px solid red;
       }
 
       .slider__from-data__input-price,
