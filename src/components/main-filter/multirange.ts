@@ -23,7 +23,7 @@ export function setMultirange(component: HTMLElement): void {
   toStock.value = fromStock.max = toStock.max =
   `${findLimitValue(watchData, 'stock', 'max')}`;
 
-  function connectButtonToInput(element: HTMLElement) {
+  function connectButtonToInput(element: HTMLButtonElement): HTMLInputElement {
     if (element.className.includes('left') && element.className.includes('price')) {
       return fromPrice;
     }
@@ -39,18 +39,18 @@ export function setMultirange(component: HTMLElement): void {
   const range = component.querySelector(".multi-range__range") as HTMLElement;
   const rangeButtons = [...component.querySelectorAll(".multi-range__btn") as NodeListOf<HTMLElement>];
 
-  function findOppositeButton(currentButton: HTMLElement): HTMLElement {
+  function findOppositeButton(currentButton: HTMLButtonElement): HTMLButtonElement {
     if (currentButton.className.includes('price')) {
       return rangeButtons.find(buttonToFind => buttonToFind.className.includes('price') &&
-      buttonToFind !== currentButton) as HTMLElement;
+      buttonToFind !== currentButton) as HTMLButtonElement;
     } else {
       return rangeButtons.find(buttonToFind => !buttonToFind.className.includes('price') &&
-      buttonToFind !== currentButton) as HTMLElement;
+      buttonToFind !== currentButton) as HTMLButtonElement;
     }
   }
 
   function moveButton(eventDown: MouseEvent): void {
-    const target = eventDown.target as HTMLElement;
+    const target = eventDown.target as HTMLButtonElement;
     const mousePosition = eventDown.clientX;
 
     let minPosition = 0;
