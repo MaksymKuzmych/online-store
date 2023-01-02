@@ -231,8 +231,8 @@
             background-color: $brown-dark;
           }
 
-          &.right-price,
-          &.right-stock {
+          &.right.price,
+          &.right.stock {
             transform: translateY(-50%) translateX(-100%);
           }
         }

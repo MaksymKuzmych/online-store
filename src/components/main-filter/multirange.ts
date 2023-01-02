@@ -24,13 +24,13 @@ export function setMultirange(component: HTMLElement): void {
   `${findLimitValue(watchData, 'stock', 'max')}`;
 
   function connectButtonToInput(element: HTMLButtonElement): HTMLInputElement {
-    if (element.className.includes('left') && element.className.includes('price')) {
+    if (element.classList.contains('left') && element.classList.contains('price')) {
       return fromPrice;
     }
-    if (element.className.includes('right') && element.className.includes('price')) {
+    if (element.classList.contains('right') && element.classList.contains('price')) {
       return toPrice;
     }
-    if (element.className.includes('left') && element.className.includes('stock')) {
+    if (element.classList.contains('left') && element.classList.contains('stock')) {
       return fromStock;
     }
     return toStock;
@@ -40,11 +40,11 @@ export function setMultirange(component: HTMLElement): void {
   const rangeButtons = [...component.querySelectorAll(".multi-range__btn") as NodeListOf<HTMLElement>];
 
   function findOppositeButton(currentButton: HTMLButtonElement): HTMLButtonElement {
-    if (currentButton.className.includes('price')) {
-      return rangeButtons.find(buttonToFind => buttonToFind.className.includes('price') &&
+    if (currentButton.classList.contains('price')) {
+      return rangeButtons.find(buttonToFind => buttonToFind.classList.contains('price') &&
       buttonToFind !== currentButton) as HTMLButtonElement;
     } else {
-      return rangeButtons.find(buttonToFind => !buttonToFind.className.includes('price') &&
+      return rangeButtons.find(buttonToFind => !buttonToFind.classList.contains('price') &&
       buttonToFind !== currentButton) as HTMLButtonElement;
     }
   }
@@ -55,11 +55,11 @@ export function setMultirange(component: HTMLElement): void {
 
     let minPosition = 0;
     let maxPosition = 100;
-    if (target.className.includes('left')) {
+    if (target.classList.contains('left')) {
       maxPosition = (range.clientWidth - target.clientWidth * 2) / range.clientWidth * 100 - 100 +
       parseFloat(findOppositeButton(target).style.left.slice(0, -1));
     }
-    if (target.className.includes('right')) {
+    if (target.classList.contains('right')) {
       minPosition = target.clientWidth * 2 / range.clientWidth * 100 +
       parseFloat(findOppositeButton(target).style.left.slice(0, -1));
     }
