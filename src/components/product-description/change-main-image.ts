@@ -4,7 +4,7 @@ export function imagesListener(descriptionEl: HTMLElement): void {
   descriptionEl.addEventListener('click', (event) => {
     const target = event.target as HTMLImageElement;
 
-    if (target.className.split(' ').includes('description__image')) {
+    if (target.classList.contains('description__image')) {
       mainImage.src = target.src;
     }
   });

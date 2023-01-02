@@ -30,10 +30,6 @@ export function renderDescription(id: number): HTMLElement {
       <p class="description__text">${text}</p>
     </div>
     <div class="description__order order">
-      <div class="order__quantity-wrapper">
-        <p class="order__quantity-text">Quantity: </p> 
-        <input type="number" class="order__quantity" min="1" max="99" value="1">
-      </div>
       <button class="order_add-to-cart order__btn">Add to cart</button>
       <button class="order_buy-now order__btn">Buy now</button>
     </div>

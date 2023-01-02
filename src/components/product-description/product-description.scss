@@ -80,22 +80,5 @@
         color: $white;
       }
     }
-
-    &__quantity-wrapper {
-      display: flex;
-      gap: 10px;
-    }
-
-    &__quantity {
-      width: 40px;
-
-      &::-webkit-inner-spin-button {
-        opacity: 1;
-      }
-
-      &::-webkit-outer-spin-button {
-        opacity: 1;
-      }
-    }
   }
 }
