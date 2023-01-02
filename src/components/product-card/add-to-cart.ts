@@ -7,7 +7,7 @@ export function addToCartListener(cardEl: HTMLElement, item: IWatch): void {
   cardEl.addEventListener('click', (event): void => {
     const target = event.target as HTMLElement;
 
-    if (target.className.split(' ').includes('options__btn_add')) {
+    if (target.classList.contains('options__btn_add')) {
       if (target.innerText === 'Add to Cart') {
         cartCounter.innerText = String(+cartCounter.innerText + 1);
         target.innerText = 'Remove from Cart';
