@@ -58,6 +58,8 @@ export function setMultirange(component: HTMLElement): void {
     const target = eventDown.target as HTMLButtonElement;
     const mousePosition = eventDown.clientX;
 
+    connectButtonToInput(target).classList.remove("invalid");
+
     let minPosition = 0;
     let maxPosition = 100;
     if (target.classList.contains('left')) {

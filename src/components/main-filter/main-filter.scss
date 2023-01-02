@@ -205,6 +205,10 @@
         }
       }
 
+      .invalid {
+        border: 2px solid red;
+      }
+
       .invalid:focus {
         border: 2px solid red;
       }
