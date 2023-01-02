@@ -2,6 +2,7 @@
 @import './styles/variables.scss';
 @import './components/header/header.scss';
 @import './components/footer/footer.scss';
+@import './components/order-submit/order-submit.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
@@ -18,6 +19,7 @@ html,
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
 }
 
 .main {
