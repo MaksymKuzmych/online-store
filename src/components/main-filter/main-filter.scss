@@ -177,6 +177,7 @@
 
       .slider__from-data,
       .slider__to-data {
+        width: 50%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -190,7 +191,8 @@
       .slider__to-data__input-price,
       .slider__from-data__input-stock,
       .slider__to-data__input-stock {
-        width: 50%;
+        width: 30%;
+        min-width: 60px;
         border-radius: 5px;
         border: 2px solid $brown-dark;
       }
