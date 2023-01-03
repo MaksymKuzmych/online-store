@@ -2,6 +2,7 @@
 @import './styles/variables.scss';
 @import './components/header/header.scss';
 @import './components/footer/footer.scss';
+@import './components/product-description/product-description.scss';
 @import './components/product-card/product-card.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 
@@ -24,6 +25,9 @@ html,
 .main {
   flex-grow: 1;
   background-color: $gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cards-wrapper {
