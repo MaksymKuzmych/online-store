@@ -115,7 +115,9 @@ export function renderFilters(): HTMLElement {
     </div>
   </div>
   <div class="slider__multi-range">
+    <div class="multi-range__background"></div>
     <div class="multi-range__range">
+      <div class="multi-range__background-color"></div>
       <button class="multi-range__btn left price" style="left: 0%;"></button>
       <button class="multi-range__btn right price" style="left: 100%;"></button>
     </div>
@@ -132,7 +134,9 @@ export function renderFilters(): HTMLElement {
     </div>
   </div>
   <div class="slider__multi-range">
+    <div class="multi-range__background"></div>
     <div class="multi-range__range">
+      <div class="multi-range__background-color"></div>
       <button class="multi-range__btn left stock" style="left: 0%;"></button>
       <button class="multi-range__btn right stock" style="left: 100%;"></button>
     </div>

@@ -41,6 +41,7 @@ export function setMultirange(component: HTMLElement): void {
   }
 
   const range = component.querySelector(".multi-range__range") as HTMLElement;
+  const rangeBackgrounds = [...component.querySelectorAll(".multi-range__background-color") as NodeListOf<HTMLElement>];
   const rangeButtons = [...component.querySelectorAll(".multi-range__btn") as NodeListOf<HTMLElement>];
   const rangeInputs = [fromPrice, toPrice, fromStock, toStock];
 
@@ -62,15 +63,17 @@ export function setMultirange(component: HTMLElement): void {
 
     let minPosition = 0;
     let maxPosition = 100;
-    if (target.classList.contains('left')) {
-      maxPosition = (range.clientWidth - target.clientWidth * 2) / range.clientWidth * 100 - 100 +
-      +(findOppositeButton(target).style.left.slice(0, -1));
-    } else {
-      minPosition = target.clientWidth * 2 / range.clientWidth * 100 +
-      +(findOppositeButton(target).style.left.slice(0, -1));
-    }
 
-    const buttonPosition = +(target.style.left.slice(0, -1));
+    function setLimitPosition(): void {
+      if (target.classList.contains('left')) {
+        maxPosition = +findOppositeButton(target).style.left.slice(0, -1);
+      } else {
+        minPosition = +findOppositeButton(target).style.left.slice(0, -1);
+      }
+    }
+    setLimitPosition();
+
+    const buttonPosition = +target.style.left.slice(0, -1);
     
     function onMouseMove(eventMove: MouseEvent): void {
       const offset = (eventMove.clientX - mousePosition) / range.clientWidth * 100;
@@ -78,24 +81,75 @@ export function setMultirange(component: HTMLElement): void {
       if (buttonPosition + offset < minPosition) {
         target.style.left = `${ minPosition }%`;
         connectButtonToInput(target).value = connectButtonToInput(target).min;
+        if (target.classList.contains('price')) {
+          rangeBackgrounds[0].style.marginLeft = `${ minPosition }%`;
+          if (target.classList.contains('left')) {
+            rangeBackgrounds[0].style.width = `${ maxPosition - minPosition }%`;
+          } else {
+            rangeBackgrounds[0].style.width = `0%`;
+          }
+        } else {
+          rangeBackgrounds[1].style.marginLeft = `${ minPosition }%`;
+          if (target.classList.contains('left')) {
+            rangeBackgrounds[1].style.width = `${ maxPosition - minPosition }%`;
+          } else {
+            rangeBackgrounds[1].style.width = `0%`;
+          }
+        }
       } else if (buttonPosition + offset > maxPosition) {
         target.style.left = `${ maxPosition }%`;
         connectButtonToInput(target).value = connectButtonToInput(target).max;
+        if (target.classList.contains('price')) {
+          if (target.classList.contains('left')) {
+            rangeBackgrounds[0].style.marginLeft = `${ maxPosition }%`;
+            rangeBackgrounds[0].style.width = `0%`;
+          } else {
+            rangeBackgrounds[0].style.marginLeft = `${ minPosition }%`;
+            rangeBackgrounds[0].style.width = `${ maxPosition - minPosition }%`;
+          }
+        } else {
+          if (target.classList.contains('left')) {
+            rangeBackgrounds[1].style.marginLeft = `${ maxPosition }%`;
+            rangeBackgrounds[1].style.width = `0%`;
+          } else {
+            rangeBackgrounds[1].style.marginLeft = `${ minPosition }%`;
+            rangeBackgrounds[1].style.width = `${ maxPosition - minPosition }%`;
+          }
+        }
       } else {
         target.style.left = `${ buttonPosition + offset }%`;
         if (target.classList.contains('left')) {
           connectButtonToInput(target).value =
-          `${ Math.round((+(connectButtonToInput(findOppositeButton(target)).max) -
-          +(connectButtonToInput(target).min)) *
-          (offset + buttonPosition) / ((range.clientWidth - target.clientWidth * 2) /
-          range.clientWidth * 100)) }`;
+          `${ Math.round((+connectButtonToInput(findOppositeButton(target)).max -
+          +connectButtonToInput(target).min) * (offset + buttonPosition) / 100 +
+          +connectButtonToInput(target).min) }`;
+          if (target.classList.contains('price')) {
+            rangeBackgrounds[0].style.width = `${ maxPosition - buttonPosition - offset }%`;
+            rangeBackgrounds[0].style.marginLeft = `${ buttonPosition + offset }%`
+          } else {
+            rangeBackgrounds[1].style.width = `${ maxPosition - buttonPosition - offset }%`;
+            rangeBackgrounds[1].style.marginLeft = `${ buttonPosition + offset }%`
+          }
         } else {
           connectButtonToInput(target).value =
-          `${ Math.round((+(connectButtonToInput(target).max) -
-          +(connectButtonToInput(findOppositeButton(target)).min)) *
-          (offset + buttonPosition - (target.clientWidth * 2 / range.clientWidth * 100)) /
-          ((range.clientWidth - target.clientWidth * 2) / range.clientWidth * 100)) }`;
+          `${ Math.round((+connectButtonToInput(target).max -
+          +connectButtonToInput(findOppositeButton(target)).min) * (offset + buttonPosition) /
+          100 + +connectButtonToInput(findOppositeButton(target)).min) }`;
+          if (target.classList.contains('price')) {
+            rangeBackgrounds[0].style.width = `${ buttonPosition + offset - minPosition }%`;
+            rangeBackgrounds[0].style.marginLeft = `${ minPosition }%`
+          } else {
+            rangeBackgrounds[1].style.width = `${ buttonPosition + offset - minPosition }%`;
+            rangeBackgrounds[1].style.marginLeft = `${ minPosition }%`
+          }
         }
+      }
+      if (+connectButtonToInput(findOppositeButton(target)).value >=
+      +connectButtonToInput(findOppositeButton(target)).min &&
+      +connectButtonToInput(findOppositeButton(target)).value <=
+      +connectButtonToInput(findOppositeButton(target)).max) {
+        setLimitPosition();
+        changeRange(connectButtonToInput(findOppositeButton(target)));
       }
     }
 
@@ -130,27 +184,65 @@ export function setMultirange(component: HTMLElement): void {
     buttonToFind.classList.contains('right')) as HTMLButtonElement;
   }
 
-  function changeInput(eventChange: Event): void {
-    const targetInput = eventChange.target as HTMLInputElement;
+  function changeRange(targetInput: HTMLInputElement): void {
     const buttonInput = connectInputToButton(targetInput);
     const oppositeInput = connectButtonToInput(findOppositeButton(buttonInput));
-    const offset = (buttonInput.clientWidth * 2) / range.clientWidth;
 
     if (buttonInput.classList.contains('left')) {
       if (+targetInput.value > +oppositeInput.value || +targetInput.value < +targetInput.min) {
         targetInput.classList.add("invalid");
       } else {
         targetInput.classList.remove("invalid");
-        buttonInput.style.left = `${+targetInput.value / (+oppositeInput.max - +targetInput.min) *
-        100 * (1 - offset)}%`;
+        buttonInput.style.left = `${ (+targetInput.value - +targetInput.min) /
+        (+oppositeInput.max - +targetInput.min) * 100 }%`;
+        if (buttonInput.classList.contains('price')) {
+          rangeBackgrounds[0].style.width = `${ (+oppositeInput.value - +targetInput.value) /
+          (+oppositeInput.max - +targetInput.min) * 100 }%`;
+          rangeBackgrounds[0].style.marginLeft = `${ (+targetInput.value - +targetInput.min) /
+          (+oppositeInput.max - +targetInput.min) * 100 }%`;
+        } else {
+          rangeBackgrounds[1].style.width = `${ (+oppositeInput.value - +targetInput.value) /
+          (+oppositeInput.max - +targetInput.min) * 100 }%`;
+          rangeBackgrounds[1].style.marginLeft = `${ (+targetInput.value - +targetInput.min) /
+          (+oppositeInput.max - +targetInput.min) * 100 }%`;
+        }
+        const invalid: HTMLInputElement | null = component.querySelector(".invalid");
+        if (invalid) {
+          if (+invalid.value >= +targetInput.value) {
+            changeRange(oppositeInput);
+          }
+        }
       }
+
     } else if (+targetInput.value < +oppositeInput.value || +targetInput.value > +targetInput.max) {
       targetInput.classList.add("invalid");
     } else {
       targetInput.classList.remove("invalid");
-      buttonInput.style.left = `${+targetInput.value / (+targetInput.max - +oppositeInput.min) *
-      100 * (1 - offset) + (offset * 100)}%`;
+      buttonInput.style.left = `${ (+targetInput.value - +oppositeInput.min) / (+targetInput.max - +oppositeInput.min) *
+      100 }%`;
+      if (buttonInput.classList.contains('price')) {
+        rangeBackgrounds[0].style.width = `${ (+targetInput.value - +oppositeInput.value) /
+        (+targetInput.max - +oppositeInput.min) * 100 }%`;
+        rangeBackgrounds[0].style.marginLeft = `${ (+oppositeInput.value - +oppositeInput.min) /
+        (+targetInput.max - +oppositeInput.min) * 100 }%`;
+      } else {
+        rangeBackgrounds[1].style.width = `${ (+targetInput.value - +oppositeInput.value) /
+        (+targetInput.max - +oppositeInput.min) * 100 }%`;
+        rangeBackgrounds[1].style.marginLeft = `${ (+oppositeInput.value - +oppositeInput.min) /
+        (+targetInput.max - +oppositeInput.min) * 100 }%`;
+      }
+      const invalid: HTMLInputElement | null = component.querySelector(".invalid");
+      if (invalid) {
+        if (+invalid.value <= +targetInput.value) {
+          changeRange(oppositeInput);
+        }
+      }
     }
+  }
+
+  function changeInput(eventChange: Event): void {
+    const targetInput = eventChange.target as HTMLInputElement;
+    changeRange(targetInput);
   }
   rangeInputs.forEach(input => input.addEventListener('input', changeInput));
 }

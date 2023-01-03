@@ -225,15 +225,32 @@
     }
 
     .slider__multi-range {
+      position: relative;
       height: 60px;
       display: flex;
+      justify-content: center;
       align-items: center;
 
-      .multi-range__range {
-        position: relative;
+      .multi-range__background {
+        position: absolute;
         width: 100%;
         height: 2px;
         background-color: $brown-dark;
+      }
+
+      .multi-range__range {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 2px;
+        margin: 0 30px;
+
+        .multi-range__background-color {
+          width: 100%;
+          height: 100%;
+          background-color: green;
+        }
 
         .multi-range__btn {
           position: absolute;
@@ -241,7 +258,7 @@
           height: 30px;
           border-radius: 50%;
           border: none;
-          transform: translateY(-50%);
+          transform: translateX(-100%);
           background-color: $brown-dark;
           cursor: pointer;
 
@@ -251,7 +268,7 @@
 
           &.right.price,
           &.right.stock {
-            transform: translateY(-50%) translateX(-100%);
+            transform: translateX(0%);
           }
         }
       }
