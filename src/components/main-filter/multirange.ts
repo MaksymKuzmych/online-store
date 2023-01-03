@@ -144,12 +144,13 @@ export function setMultirange(component: HTMLElement): void {
           }
         }
       }
-      if (+connectButtonToInput(findOppositeButton(target)).value >=
-      +connectButtonToInput(findOppositeButton(target)).min &&
-      +connectButtonToInput(findOppositeButton(target)).value <=
-      +connectButtonToInput(findOppositeButton(target)).max) {
-        setLimitPosition();
+      if (connectButtonToInput(findOppositeButton(target)).classList.contains('invalid') &&
+          +connectButtonToInput(findOppositeButton(target)).value >=
+          +connectButtonToInput(findOppositeButton(target)).min &&
+          +connectButtonToInput(findOppositeButton(target)).value <=
+          +connectButtonToInput(findOppositeButton(target)).max) {
         changeRange(connectButtonToInput(findOppositeButton(target)));
+        setLimitPosition();
       }
     }
 
@@ -206,18 +207,16 @@ export function setMultirange(component: HTMLElement): void {
           rangeBackgrounds[1].style.marginLeft = `${ (+targetInput.value - +targetInput.min) /
           (+oppositeInput.max - +targetInput.min) * 100 }%`;
         }
-        const invalid: HTMLInputElement | null = component.querySelector(".invalid");
-        if (invalid) {
-          if (+invalid.value >= +targetInput.value) {
-            changeRange(oppositeInput);
-          }
-        }
+        if (oppositeInput.classList.contains('invalid') &&
+            +oppositeInput.value >= +targetInput.value) {
+          changeRange(oppositeInput);
+      }
       }
 
     } else if (+targetInput.value < +oppositeInput.value || +targetInput.value > +targetInput.max) {
-      targetInput.classList.add("invalid");
+      targetInput.classList.add('invalid');
     } else {
-      targetInput.classList.remove("invalid");
+      targetInput.classList.remove('invalid');
       buttonInput.style.left = `${ (+targetInput.value - +oppositeInput.min) / (+targetInput.max - +oppositeInput.min) *
       100 }%`;
       if (buttonInput.classList.contains('price')) {
@@ -231,11 +230,9 @@ export function setMultirange(component: HTMLElement): void {
         rangeBackgrounds[1].style.marginLeft = `${ (+oppositeInput.value - +oppositeInput.min) /
         (+targetInput.max - +oppositeInput.min) * 100 }%`;
       }
-      const invalid: HTMLInputElement | null = component.querySelector(".invalid");
-      if (invalid) {
-        if (+invalid.value <= +targetInput.value) {
+      if (oppositeInput.classList.contains('invalid') &&
+          +oppositeInput.value <= +targetInput.value) {
           changeRange(oppositeInput);
-        }
       }
     }
   }
