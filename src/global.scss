@@ -3,14 +3,15 @@
 @import './components/header/header.scss';
 @import './components/footer/footer.scss';
 @import './components/product-description/product-description.scss';
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import './components/product-card/product-card.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   outline: none;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 html,
@@ -27,6 +28,14 @@ html,
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cards-wrapper {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(auto-fill, 250px);
+  justify-content: space-around;
+  grid-gap: 10px;
 }
 
 .btn {
