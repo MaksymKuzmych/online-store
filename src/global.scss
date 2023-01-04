@@ -5,6 +5,7 @@
 @import './components/main-filter/main-filter.scss';
 @import './components/product-description/product-description.scss';
 @import './components/product-card/product-card.scss';
+@import './components/cart/cart.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 
 * {
@@ -28,8 +29,6 @@ html,
   flex-grow: 1;
   background-color: $gray;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .cards-wrapper {
@@ -38,6 +37,8 @@ html,
   grid-template-columns: repeat(auto-fill, 250px);
   justify-content: space-around;
   grid-gap: 10px;
+  flex: 1 1 auto;
+  align-self: flex-start;
 }
 
 .btn {

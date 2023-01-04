@@ -1,3 +1,4 @@
+import { renderCart } from '../cart/cart';
 export function renderHeader(): HTMLElement {
   const header = document.createElement('header');
 
@@ -18,5 +19,8 @@ export function renderHeader(): HTMLElement {
     </div>
   </div>
   `;
+
+  const cartButton = header.querySelector(".purchases__btn") as HTMLButtonElement;
+  cartButton.addEventListener('click', renderCart);
   return header;
 }

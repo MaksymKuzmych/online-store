@@ -1,0 +1,125 @@
+@import '../../styles/variables.scss';
+
+.cart {
+  width: 100%;
+  display: flex;
+  align-self: flex-start;
+
+  &__products {
+    width: 70%;
+    border: 2px solid $brown-dark;
+    border-radius: 5px;
+    margin: 25px;
+
+    &__title-and-page-control {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__page-control {
+      display: flex;
+    }
+
+    &__limit {
+      display: flex;
+    }
+
+    &__pages {
+      display: flex;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid $brown-dark;
+
+    &__index {
+      width: 20px;
+      text-align: center;
+      font-size: 22px;
+      margin: 10px;
+    }
+
+    &__info {
+      display: flex;
+      align-items: center;
+    }
+
+    &__img {
+      width: 100px;
+      border: 1px solid $brown-dark;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    &__name {
+      margin: 20px;
+      font-size: 24px;
+    }
+
+    &__number {
+      display: flex;
+      margin-left: auto;
+      margin-right: 10px;
+    }
+
+    &__number__controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px;
+
+      .cart__item__inc-dec {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .cart__item__button {
+          width: 30px;
+          height: 30px;
+          border: 2px solid black;
+          border-radius: 5px;
+          color: $gray;
+          font-size: 22px;
+          background-color: $brown-dark;
+          transition: all 0.3s;
+          cursor: pointer;
+    
+          &:hover {
+            transform: scale(1.05);
+            color: $white;
+          }
+        }
+
+        .cart__item__quantity {
+          width: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 24px;
+          margin: 10px;
+        }
+      }
+    }
+
+    &__stock-text {
+      font-size: 18px;
+    }
+
+    &__amount-text {
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+    }
+  }
+
+  &__total {
+    width: 20%;
+    border: 2px solid $brown-dark;
+    border-radius: 5px;
+    margin: 25px;
+  }
+}
