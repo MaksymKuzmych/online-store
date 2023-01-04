@@ -13,20 +13,18 @@ export function addToCartListener(cardEl: HTMLElement, item: IWatch): void {
 
     if (target.classList.contains('options__btn_add')) {
       if (target.innerText === 'Add to Cart') {
-        cartCounter.innerText = `${ local.localCounter + 1 }`;
         local.localCounter += 1;
-        totalAmount.innerText = `${ local.localAmount + item.price }`;
         local.localAmount += item.price;
         local.localCart.push({id: item.id, quantity: 1});
         target.innerText = 'Remove from Cart';
       } else {
-        cartCounter.innerText = `${ local.localCounter - 1 }`;
         local.localCounter -= 1;
-        totalAmount.innerText = `${ local.localAmount - item.price }`;
         local.localAmount -= item.price;
         local.localCart = local.localCart.filter(element => element.id !== item.id);
         target.innerText = 'Add to Cart';
       }
+      cartCounter.innerText = `${ local.localCounter }`;
+      totalAmount.innerText = `${ local.localAmount }`;
       setLocalData(local);
     }
   });

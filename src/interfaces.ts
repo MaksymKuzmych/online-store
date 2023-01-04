@@ -18,4 +18,6 @@ export interface ILocalData {
   localCart: ICart[];
   localCounter: number;
   localAmount: number;
+  localLimit: number;
+  localPage: number;
 }

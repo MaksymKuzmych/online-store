@@ -1,6 +1,6 @@
 import { IWatch, ICart } from '../../interfaces';
 import { watchData } from '../../watch-data/watch-data';
-import { addChangeQuantityListener } from './change-quantity';
+import { changeQuantity } from './change-quantity';
 
 export class CartItem {
   item: ICart;
@@ -35,7 +35,7 @@ export class CartItem {
     </div>
     `;
 
-    addChangeQuantityListener(cartItem, watch);
+    changeQuantity(cartItem, watch);
 
     return cartItem;
   }

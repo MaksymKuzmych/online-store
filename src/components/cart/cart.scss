@@ -42,6 +42,7 @@
         font-size: 24px;
         text-align: center;
         margin: 10px;
+        border-radius: 5px;
       }
     }
 
@@ -163,9 +164,58 @@
   }
 
   &__total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
     width: 20%;
     border: 2px solid $brown-dark;
     border-radius: 5px;
     margin: 25px;
+    overflow: hidden;
+
+    &__title {
+      width: 100%;
+      text-align: center;
+      font-size: 28px;
+      padding: 10px;
+      background-color: $brown-light;
+      border-bottom: 1px solid $brown-dark;
+    }
+
+    &__products,
+    &__total {
+      text-align: center;
+      font-size: 28px;
+      margin-top: 20px;
+    }
+
+    &__promo {
+      width: 70%;
+      text-align: center;
+      font-size: 22px;
+      border: 1px solid $brown-dark;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 20px;
+    }
+
+    &__buy-btn {
+      width: 60%;
+      border: 2px solid black;
+      border-radius: 5px;
+      color: $gray;
+      font-size: 24px;
+      background-color: $brown-dark;
+      padding: 10px;
+      margin: 20px;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+        color: $white;
+      }
+    }
   }
 }
