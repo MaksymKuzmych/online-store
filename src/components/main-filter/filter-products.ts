@@ -130,15 +130,13 @@ export function filterProductsListener(filtersEl: HTMLElement) {
   // for custom range
   multiRangeBtns.forEach((el) => {
     el.addEventListener('mousedown', () => {
-      let isMouseUp = false;
-      filtersEl.addEventListener('mouseup', () => {
-        isMouseUp = true;
-        if (isMouseUp) {
-          filterOptions(filtersEl);
-          filterRanges(filtersEl);
-          filterBrands(filtersEl);
-          sortProducts(filtersEl);
-        }
+      document.addEventListener('mouseup', function applyFilters() {
+        filterOptions(filtersEl);
+        filterRanges(filtersEl);
+        filterBrands(filtersEl);
+        sortProducts(filtersEl);
+
+        document.removeEventListener('mouseup', applyFilters);
       });
     });
   });
