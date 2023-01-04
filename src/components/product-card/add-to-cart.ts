@@ -1,4 +1,6 @@
 import { IWatch } from '../../interfaces';
+import { getLocalData } from '../../utils/get-local-data';
+import { setLocalData } from '../../utils/set-local-data';
 
 export function addToCartListener(cardEl: HTMLElement, item: IWatch): void {
   const cartCounter = document.querySelector('.purchases__counter') as HTMLParagraphElement;
@@ -6,25 +8,26 @@ export function addToCartListener(cardEl: HTMLElement, item: IWatch): void {
   
   cardEl.addEventListener('click', (event): void => {
     const target = event.target as HTMLElement;
-    let cartArray: number[] = [];
+    const local = getLocalData();
 
-    if (localStorage.getItem('cart')) {
-      localStorage.getItem('cart')?.split(',').forEach(id => cartArray.push(+id));
-    }
 
     if (target.classList.contains('options__btn_add')) {
       if (target.innerText === 'Add to Cart') {
-        cartCounter.innerText = String(+cartCounter.innerText + 1);
+        cartCounter.innerText = `${ local.localCounter + 1 }`;
+        local.localCounter += 1;
+        totalAmount.innerText = `${ local.localAmount + item.price }`;
+        local.localAmount += item.price;
+        local.localCart.push({id: item.id, quantity: 1});
         target.innerText = 'Remove from Cart';
-        totalAmount.innerText = String(+totalAmount.innerText + item.price);
-        cartArray.push(item.id);
       } else {
-        cartCounter.innerText = String(+cartCounter.innerText - 1);
+        cartCounter.innerText = `${ local.localCounter - 1 }`;
+        local.localCounter -= 1;
+        totalAmount.innerText = `${ local.localAmount - item.price }`;
+        local.localAmount -= item.price;
+        local.localCart = local.localCart.filter(element => element.id !== item.id);
         target.innerText = 'Add to Cart';
-        totalAmount.innerText = String(+totalAmount.innerText - item.price);
-        cartArray = cartArray.filter(element => element !== item.id);
       }
-      localStorage.setItem('cart', cartArray.toString());
+      setLocalData(local);
     }
   });
 }

@@ -10,22 +10,68 @@
     border: 2px solid $brown-dark;
     border-radius: 5px;
     margin: 25px;
+    overflow: hidden;
 
     &__title-and-page-control {
       display: flex;
       justify-content: space-between;
+      background-color: $brown-light;
+    }
+
+    &__title {
+      font-size: 28px;
+      margin: 10px;
     }
 
     &__page-control {
       display: flex;
+      align-items: center;
+
+      .limit__text,
+      .pages__text {
+        font-size: 22px;
+      }
     }
 
     &__limit {
       display: flex;
+      align-items: center;
+
+      .cart__products__limit-input {
+        width: 80px;
+        font-size: 24px;
+        text-align: center;
+        margin: 10px;
+      }
     }
 
     &__pages {
       display: flex;
+      align-items: center;
+      margin-left: 40px;
+
+      .page__number {
+        font-size: 24px;
+        margin: 10px;
+      }
+
+      .pages-button {
+        width: 30px;
+        height: 30px;
+        border: 2px solid black;
+        border-radius: 5px;
+        color: $gray;
+        font-size: 22px;
+        background-color: $brown-dark;
+        margin: 10px;
+        transition: all 0.3s;
+        cursor: pointer;
+  
+        &:hover {
+          transform: scale(1.05);
+          color: $white;
+        }
+      }
     }
   }
 
