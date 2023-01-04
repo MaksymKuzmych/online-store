@@ -1,12 +1,15 @@
 @import '../../styles/variables.scss';
 
 .filters {
-  width: 25%;
-  margin: 25px;
-  padding: 20px;
+  width: 320px;
+  margin: 10px;
+  padding: 10px;
   border: 2px solid $brown-dark;
   border-radius: 5px;
-  font-size: 1.2rem;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
   .search-bar,
   .sort-bar,
@@ -21,6 +24,8 @@
     width: 60%;
     border-radius: 5px;
     border: 2px solid $brown-dark;
+    padding: 3px;
+    text-align: center;
 
     &:focus {
       border: 2px solid green;
@@ -66,7 +71,7 @@
   .reset-total {
     gap: 10%;
 
-    .reset-total__btn-reset, 
+    .reset-total__btn-reset,
     .reset-total__btn-copy {
       width: 50%;
       border: 2px solid black;
@@ -84,8 +89,7 @@
     }
   }
 
-  .filter
-  .slider {
+  .filter .slider {
     margin: 10px 0;
     line-height: 120%;
   }
@@ -94,30 +98,29 @@
     text-align: center;
     margin-bottom: 5px;
   }
-  
-  .filter {
 
+  .filter {
     .filter__checkbox {
       display: flex;
       align-items: center;
-      
+
       .filter__input-checkbox,
       .filter__label-checkbox {
         cursor: pointer;
       }
-  
+
       .filter__input-checkbox {
         position: absolute;
         z-index: -1;
         opacity: 0;
-  
-        &+label {
+
+        & + label {
           display: inline-flex;
           align-items: center;
           user-select: none;
         }
-  
-        &+label::before {
+
+        & + label::before {
           content: '';
           display: inline-block;
           width: 1em;
@@ -131,31 +134,31 @@
           background-position: center center;
           background-size: 50% 50%;
         }
-  
-        &:checked+label::before {
+
+        &:checked + label::before {
           border-color: $brown-dark;
           background-color: $brown-dark;
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
         }
-  
-        &:not(:disabled):not(:checked)+label:hover::before {
+
+        &:not(:disabled):not(:checked) + label:hover::before {
           border-color: white;
         }
-  
-        &:not(:disabled):active+label::before {
+
+        &:not(:disabled):active + label::before {
           background-color: white;
           border-color: white;
         }
-  
-        &:focus+label::before {
+
+        &:focus + label::before {
           box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
         }
-  
-        &:focus:not(:checked)+label::before {
+
+        &:focus:not(:checked) + label::before {
           border-color: white;
         }
-  
-        &:disabled+label::before {
+
+        &:disabled + label::before {
           background-color: white;
         }
       }
@@ -163,7 +166,6 @@
   }
 
   .slider {
-
     .slider__out-data {
       display: flex;
       justify-content: space-between;

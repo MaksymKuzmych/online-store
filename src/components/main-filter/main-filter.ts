@@ -1,4 +1,7 @@
+import { fillQuantity } from './fill-quantity';
+import { filteredArray, filterProductsListener } from './filter-products';
 import { setMultirange } from './multirange';
+import { sortProductsListener } from './sort-products';
 
 export function renderFilters(): HTMLElement {
   const filters = document.createElement('div');
@@ -10,11 +13,12 @@ export function renderFilters(): HTMLElement {
   <p class="search-bar__found">Found: <span class="search_bar__result">0</span></p>
 </div>
 <div class="sort-bar">
-  <select class="sort-bar__select" name="sort" id="sort">
-    <option class="sort-bar__select-item" value="price-up">Price Up</option>
-    <option class="sort-bar__select-item" value="price-down">Price Down</option>
-    <option class="sort-bar__select-item" value="rating">Rating</option>
-    <option class="sort-bar__select-item" value="discount">Discount</option>
+  <select class="sort-bar__select" name="sort" id="sort" placeholder="hah">
+    <option class="sort-bar__select-item" disabled selected hidden>Choose sort option</option>
+    <option class="sort-bar__select-item" value="price-up">Price 🡅</option>
+    <option class="sort-bar__select-item" value="price-down">Price 🡇</option>
+    <option class="sort-bar__select-item" value="availability-up">Stock Availability 🡅</option>
+    <option class="sort-bar__select-item" value="availability-down">Stock Availability 🡇</option>
   </select>
   <div class="sort-bar__view">
     <div class="sort-bar__view-big">
@@ -77,27 +81,27 @@ export function renderFilters(): HTMLElement {
   <h3 class="filter__title title">Brand</h3>
   <div class="filter__list">
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="casio" id="casio">
+      <input class="filter__input-checkbox" type="checkbox" name="casio" id="casio" data-brand="Casio">
       <label class="filter__label-checkbox" for="casio">Casio (<span class="casio">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="citizen" id="citizen">
+      <input class="filter__input-checkbox" type="checkbox" name="citizen" id="citizen" data-brand="Citizen">
       <label class="filter__label-checkbox" for="citizen">Citizen (<span class="citizen">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="north-edge" id="north-edge">
+      <input class="filter__input-checkbox" type="checkbox" name="north-edge" id="north-edge" data-brand="North Edge">
       <label class="filter__label-checkbox" for="north-edge">North Edge (<span class="north-edge">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="seiko" id="seiko">
+      <input class="filter__input-checkbox" type="checkbox" name="seiko" id="seiko" data-brand="Seiko">
       <label class="filter__label-checkbox" for="seiko">Seiko (<span class="seiko">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="tag-heuer" id="tag-heuer">
+      <input class="filter__input-checkbox" type="checkbox" name="tag-heuer" id="tag-heuer" data-brand="TAG HEUER">
       <label class="filter__label-checkbox" for="tag-heuer">TAG HEUER (<span class="tag-heuer">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="fossil" id="fossil">
+      <input class="filter__input-checkbox" type="checkbox" name="fossil" id="fossil" data-brand="Fossil">
       <label class="filter__label-checkbox" for="fossil">Fossil (<span class="fossil">0</span>)</label>
     </div>
   </div>
@@ -143,6 +147,11 @@ export function renderFilters(): HTMLElement {
   </div>
 </div>  
   `;
+
   setMultirange(filters);
+  fillQuantity(filters, filteredArray);
+  sortProductsListener(filters);
+  filterProductsListener(filters);
+
   return filters;
 }

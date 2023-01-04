@@ -225,7 +225,7 @@ export const watchData: IWatch[] = [
     id: 21,
     brand: 'TAG HEUER',
     name: 'TAG HEUER CAR5A5Y.FC6377',
-    price: 19293,
+    price: 9293,
     stock: 12,
     clockFace: 'pointer',
     mount: 'strap',
