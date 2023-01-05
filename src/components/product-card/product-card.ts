@@ -1,5 +1,6 @@
 import { IWatch } from '../../interfaces';
 import { addToCartListener } from './add-to-cart';
+import { getLocalData } from '../../utils/get-local-data';
 
 export class Card {
   item: IWatch;
@@ -10,7 +11,10 @@ export class Card {
 
   renderCard(): HTMLElement {
     const card = document.createElement('div');
+
     const { id, name, description, price, stock } = this.item;
+    const local = getLocalData();
+    const buttonText = local.localCart.some(element => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
 
     card.classList.add('card');
     card.innerHTML = `
@@ -24,7 +28,7 @@ export class Card {
       <p class="card__stock">Stock: ${stock}</p>
     </div>
     <div class="card__options options">
-      <button class="options__btn options__btn_add btn" data-id="${id}">Add to Cart</button>
+      <button class="options__btn options__btn_add btn" data-id="${id}">${ buttonText }</button>
       <button class="options__btn options__btn_details btn" data-id="${id}">Details</button>
     </div>
     `;

@@ -8,3 +8,16 @@ export interface IWatch {
   mount: 'strap' | 'bracelet';
   description: string;
 }
+
+export interface ICart {
+  id: number;
+  quantity: number;
+}
+
+export interface ILocalData {
+  localCart: ICart[];
+  localCounter: number;
+  localAmount: number;
+  localLimit: number;
+  localPage: number;
+}
