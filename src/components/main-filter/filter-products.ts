@@ -5,7 +5,7 @@ import { renderProductsPage } from '../../templates/render-products-page';
 import { sortProducts } from './sort-products';
 
 export let filteredArray = watchData;
-export let chosenBrands: Array<IWatch> | [] = [];
+export let chosenBrands: IWatch[] | [] = [];
 
 function filterOptions(filtersEl: HTMLElement) {
   const pointerOption = filtersEl.querySelector('#clockface-pointer') as HTMLInputElement;
@@ -15,43 +15,37 @@ function filterOptions(filtersEl: HTMLElement) {
 
   filteredArray = watchData;
 
-  //check if at least one is checked in options
-  if (pointerOption.checked || digitalOption.checked || strapOption.checked || braceletOption.checked) {
-    if (pointerOption.checked && !digitalOption.checked) {
-      filteredArray = filteredArray.filter((el) => el.clockFace === 'pointer');
-      renderProductsPage(filteredArray);
-      fillQuantity(filtersEl, filteredArray);
-    }
-    if (!pointerOption.checked && digitalOption.checked) {
-      filteredArray = filteredArray.filter((el) => el.clockFace === 'digital');
-      renderProductsPage(filteredArray);
-      fillQuantity(filtersEl, filteredArray);
-    }
-    if (digitalOption.checked && pointerOption.checked) {
-      filteredArray = filteredArray.filter((el) => el.clockFace === 'digital' || el.clockFace === 'pointer');
-      renderProductsPage(filteredArray);
-      fillQuantity(filtersEl, filteredArray);
-    }
-    if (strapOption.checked && !braceletOption.checked) {
-      filteredArray = filteredArray.filter((el) => el.mount === 'strap');
-      renderProductsPage(filteredArray);
-      fillQuantity(filtersEl, filteredArray);
-    }
-    if (!strapOption.checked && braceletOption.checked) {
-      filteredArray = filteredArray.filter((el) => el.mount === 'bracelet');
-      renderProductsPage(filteredArray);
-      fillQuantity(filtersEl, filteredArray);
-    }
-    if (strapOption.checked && braceletOption.checked) {
-      filteredArray = filteredArray.filter((el) => el.mount === 'strap' || el.mount === 'bracelet');
-      renderProductsPage(filteredArray);
-      fillQuantity(filtersEl, filteredArray);
-    }
-  } else {
-    // if no checks at all in options
+  if (!(pointerOption.checked || digitalOption.checked || strapOption.checked || braceletOption.checked)) {
+    renderAndFill(filtersEl);
+  }
+
+  if (digitalOption.checked && pointerOption.checked) {
+    filteredArray = filteredArray.filter((el) => el.clockFace === 'digital' || el.clockFace === 'pointer');
+    renderAndFill(filtersEl);
+  } else if (pointerOption.checked) {
+    filteredArray = filteredArray.filter((el) => el.clockFace === 'pointer');
+    renderAndFill(filtersEl);
+  } else if (digitalOption.checked) {
+    filteredArray = filteredArray.filter((el) => el.clockFace === 'digital');
+    renderAndFill(filtersEl);
+  }
+
+  if (strapOption.checked && braceletOption.checked) {
+    filteredArray = filteredArray.filter((el) => el.mount === 'strap' || el.mount === 'bracelet');
+    renderAndFill(filtersEl);
+  } else if (strapOption.checked) {
+    filteredArray = filteredArray.filter((el) => el.mount === 'strap');
+    renderAndFill(filtersEl);
+  } else if (braceletOption.checked) {
+    filteredArray = filteredArray.filter((el) => el.mount === 'bracelet');
     renderProductsPage(filteredArray);
     fillQuantity(filtersEl, filteredArray);
   }
+}
+
+function renderAndFill(filtersEl: HTMLElement) {
+  renderProductsPage(filteredArray);
+  fillQuantity(filtersEl, filteredArray);
 }
 
 function filterBrands(filtersEl: HTMLElement) {
@@ -70,16 +64,18 @@ function filterBrands(filtersEl: HTMLElement) {
     fossilCheckbox,
   ];
 
-  //check if at least one is checked in brands
+  let atLeastOneChecked = false;
+
   chosenBrands = [];
 
   brandsCheckbox.forEach((el) => {
     if (el.checked) {
       chosenBrands = [...chosenBrands, ...filteredArray.filter((item) => item.brand === el.dataset.brand)];
+      atLeastOneChecked = true;
     }
   });
 
-  if (chosenBrands.length > 0) {
+  if (atLeastOneChecked) {
     renderProductsPage(chosenBrands);
     fillQuantity(filtersEl, chosenBrands);
   }
@@ -103,41 +99,29 @@ function filterRanges(filtersEl: HTMLElement) {
   fillQuantity(filtersEl, filteredArray);
 }
 
+function applyAllFilters(filtersEl: HTMLElement) {
+  filterOptions(filtersEl);
+  filterRanges(filtersEl);
+  filterBrands(filtersEl);
+  sortProducts(filtersEl);
+}
+
 export function filterProductsListener(filtersEl: HTMLElement) {
   const allInputs = filtersEl.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
-  const multiRangeBtns = filtersEl.querySelectorAll('.multi-range__btn') as NodeListOf<HTMLButtonElement>;
 
-  //for type checkboxes
   allInputs.forEach((el) => {
-    el.addEventListener('change', () => {
-      filterOptions(filtersEl);
-      filterRanges(filtersEl);
-      filterBrands(filtersEl);
-      sortProducts(filtersEl);
+    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', () => {
+      applyAllFilters(filtersEl);
     });
   });
 
-  //for type text or number
-  allInputs.forEach((el) => {
-    el.addEventListener('input', () => {
-      filterOptions(filtersEl);
-      filterRanges(filtersEl);
-      filterBrands(filtersEl);
-      sortProducts(filtersEl);
-    });
-  });
-
-  // for custom range
-  multiRangeBtns.forEach((el) => {
-    el.addEventListener('mousedown', () => {
-      document.addEventListener('mouseup', function applyFilters() {
-        filterOptions(filtersEl);
-        filterRanges(filtersEl);
-        filterBrands(filtersEl);
-        sortProducts(filtersEl);
-
-        document.removeEventListener('mouseup', applyFilters);
+  filtersEl.addEventListener('mousedown', (event) => {
+    const target = event.target as HTMLElement;
+    if (target.classList.contains('multi-range__btn')) {
+      document.addEventListener('mouseup', function applyFiltersListener() {
+        applyAllFilters(filtersEl);
+        document.removeEventListener('mouseup', applyFiltersListener);
       });
-    });
+    }
   });
 }

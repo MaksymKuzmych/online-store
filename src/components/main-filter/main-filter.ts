@@ -118,7 +118,7 @@ export function renderFilters(): HTMLElement {
       <input class="slider__to-data__input-price input-number" type="number" value="1000">
     </div>
   </div>
-  <div class="slider__multi-range">
+  <div class="slider__multi-range multi-range">
     <div class="multi-range__background"></div>
     <div class="multi-range__range">
       <div class="multi-range__background-color"></div>
@@ -137,7 +137,7 @@ export function renderFilters(): HTMLElement {
       <input class="slider__to-data__input-stock input-number" type="number" value="100">
     </div>
   </div>
-  <div class="slider__multi-range">
+  <div class="slider__multi-range multi-range">
     <div class="multi-range__background"></div>
     <div class="multi-range__range">
       <div class="multi-range__background-color"></div>

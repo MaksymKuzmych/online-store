@@ -1,4 +1,3 @@
-import { IWatch } from '../../interfaces';
 import { filteredArray, chosenBrands } from './filter-products';
 import { renderProductsPage } from '../../templates/render-products-page';
 
@@ -13,18 +12,18 @@ export function sortProductsListener(filtersEl: HTMLElement) {
 export function sortProducts(filtersEl: HTMLElement) {
   const sortSelect = filtersEl.querySelector('#sort') as HTMLSelectElement;
 
-  const itemsArray = chosenBrands.length > 0 ? chosenBrands : filteredArray;
+  const itemsArray = chosenBrands.length ? chosenBrands : filteredArray;
 
   if (sortSelect.value === 'price-up') {
-    renderProductsPage(itemsArray.sort((a: IWatch, b: IWatch) => a.price - b.price));
+    renderProductsPage(itemsArray.sort((a, b) => a.price - b.price));
   }
   if (sortSelect.value === 'price-down') {
-    renderProductsPage(itemsArray.sort((a: IWatch, b: IWatch) => b.price - a.price));
+    renderProductsPage(itemsArray.sort((a, b) => b.price - a.price));
   }
   if (sortSelect.value === 'availability-up') {
-    renderProductsPage(itemsArray.sort((a: IWatch, b: IWatch) => a.stock - b.stock));
+    renderProductsPage(itemsArray.sort((a, b) => a.stock - b.stock));
   }
   if (sortSelect.value === 'availability-down') {
-    renderProductsPage(itemsArray.sort((a: IWatch, b: IWatch) => b.stock - a.stock));
+    renderProductsPage(itemsArray.sort((a, b) => b.stock - a.stock));
   }
 }

@@ -1,12 +1,13 @@
 import { Card } from '../components/product-card/product-card';
 import { IWatch } from '../interfaces';
 
-export function renderProductsPage(items: Array<IWatch>): void {
+export function renderProductsPage(items: IWatch[]): void {
   const main = document.querySelector('main') as HTMLElement;
   const cardsWrapper = document.createElement('div');
+  const cardsWrapperEl: HTMLElement | null = document.querySelector('.cards-wrapper');
 
-  if (document.querySelector('.cards-wrapper')) {
-    main.removeChild(document.querySelector('.cards-wrapper') as HTMLElement);
+  if (cardsWrapperEl) {
+    main.removeChild(cardsWrapperEl);
   }
 
   cardsWrapper.classList.add('cards-wrapper');
