@@ -7,9 +7,9 @@ export function changePage(cart: HTMLDivElement): void {
   const pageDown = cart.querySelector('.decrese') as HTMLButtonElement;
   const pageUp = cart.querySelector('.increse') as HTMLButtonElement;
   const limitInput = cart.querySelector('.cart__products__limit-input') as HTMLInputElement;
-  const local = getLocalData();
 
   pageDown.addEventListener('click', () => {
+    const local = getLocalData();
     if (local.localPage !== 1) {
       local.localPage -= 1;
       setLocalData(local);
@@ -18,6 +18,7 @@ export function changePage(cart: HTMLDivElement): void {
   });
 
   pageUp.addEventListener('click', () => {
+    const local = getLocalData();
     if (local.localCart.length > local.localLimit * local.localPage) {
       local.localPage += 1;
       setLocalData(local);
@@ -26,6 +27,7 @@ export function changePage(cart: HTMLDivElement): void {
   });
 
   limitInput.addEventListener('input', () => {
+    const local = getLocalData();
     if (+limitInput.value > 0 && +limitInput.value <= local.localCart.length && !isNaN(+limitInput.value)) {
       if (+limitInput.value * local.localPage > local.localCart.length) {
         local.localPage = Math.ceil(local.localCart.length / +limitInput.value);
