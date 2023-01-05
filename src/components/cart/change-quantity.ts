@@ -10,11 +10,20 @@ export function changeQuantity(item: HTMLDivElement, watch: IWatch): void {
     const quantity = item.querySelector('.cart__item__quantity') as HTMLParagraphElement;
     const headerCounter = document.querySelector('.purchases__counter') as HTMLParagraphElement;
     const headerAmount = document.querySelector('.purchases__amount_number') as HTMLSpanElement;
+    const summaryCounter = document.querySelector('.cart__items-counter') as HTMLSpanElement;
+    const summaryAmount = document.querySelector('.cart__items-total') as HTMLSpanElement;
     const local = getLocalData();
     let localItem = local.localCart.find(element => element.id === watch.id);
-
-    if (!localItem) {
-      localItem = {id: 0, quantity: 0};
+    const setInnerText = () => {
+      if (!localItem) {
+        localItem = {id: 0, quantity: 0};
+      }
+      amount.innerText = `${ localItem.quantity * watch.price }`;
+      quantity.innerText = `${ localItem.quantity }`;
+      headerCounter.innerText = `${ local.localCounter }`;
+      summaryCounter.innerText = `${ local.localCounter }`;
+      headerAmount.innerText = `${ local.localAmount }`;
+      summaryAmount.innerText = `${ local.localAmount }`;
     }
 
     if (target.classList.contains('decrease')) {
@@ -22,10 +31,7 @@ export function changeQuantity(item: HTMLDivElement, watch: IWatch): void {
         local.localCart.splice(local.localCart.findIndex(element => element.id === watch.id), 1);
         local.localCounter -= 1;
         local.localAmount -= watch.price;
-        amount.innerText = `${ localItem.quantity * watch.price }`;
-        quantity.innerText = `${ localItem.quantity }`;
-        headerCounter.innerText = `${ local.localCounter }`;
-        headerAmount.innerText = `${ local.localAmount }`;
+        setInnerText();
         setLocalData(local);
         renderCart();
       } else {
@@ -40,10 +46,7 @@ export function changeQuantity(item: HTMLDivElement, watch: IWatch): void {
         local.localAmount += watch.price;
       }
     }
-    amount.innerText = `${ localItem.quantity * watch.price }`;
-    quantity.innerText = `${ localItem.quantity }`;
-    headerCounter.innerText = `${ local.localCounter }`;
-    headerAmount.innerText = `${ local.localAmount }`;
+    setInnerText();
     setLocalData(local);
   })
 }

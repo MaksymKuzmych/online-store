@@ -44,8 +44,6 @@ export function renderCart(): void {
   </div>
   `;
 
-  changePage(cart);
-
   const cartProducts = cart.querySelector('.cart__products__items') as HTMLDivElement;
 
   local.localCart.forEach((watchItem, index) => {
@@ -57,6 +55,8 @@ export function renderCart(): void {
       }
     }
   });
+
+  changePage(cart);
 
   if (local.localCart.length === 0) {
     cart.innerHTML = '';
