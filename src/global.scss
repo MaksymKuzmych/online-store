@@ -28,8 +28,6 @@ html,
   flex-grow: 1;
   background-color: $gray;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .cards-wrapper {
@@ -38,6 +36,8 @@ html,
   grid-template-columns: repeat(auto-fill, 250px);
   justify-content: space-around;
   grid-gap: 10px;
+  flex: 1 1 auto;
+  align-self: flex-start;
 }
 
 .btn {

@@ -10,7 +10,7 @@ export class Card {
 
   renderCard(): HTMLElement {
     const card = document.createElement('div');
-    const { id, name, description, price } = this.item;
+    const { id, name, description, price, stock } = this.item;
 
     card.classList.add('card');
     card.innerHTML = `
@@ -21,6 +21,7 @@ export class Card {
       <h3 class="card__name">${name}</h3>
       <p class="card__description"> ${description}</p>
       <p class="card__price">${price} $</p>
+      <p class="card__stock">Stock: ${stock}</p>
     </div>
     <div class="card__options options">
       <button class="options__btn options__btn_add btn" data-id="${id}">Add to Cart</button>
