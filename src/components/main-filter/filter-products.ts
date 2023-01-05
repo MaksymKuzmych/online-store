@@ -4,7 +4,7 @@ import { fillQuantity } from './fill-quantity';
 import { renderProductsPage } from '../../templates/render-products-page';
 import { sortProducts } from './sort-products';
 
-export let filteredArray = watchData;
+export let filteredArray = [...watchData];
 export let chosenBrands: IWatch[] | [] = [];
 
 function filterOptions(filtersEl: HTMLElement) {
@@ -13,7 +13,7 @@ function filterOptions(filtersEl: HTMLElement) {
   const strapOption = filtersEl.querySelector('#mount-strap') as HTMLInputElement;
   const braceletOption = filtersEl.querySelector('#mount-bracelet') as HTMLInputElement;
 
-  filteredArray = watchData;
+  filteredArray = [...watchData];
 
   if (!(pointerOption.checked || digitalOption.checked || strapOption.checked || braceletOption.checked)) {
     renderAndFill(filtersEl);
