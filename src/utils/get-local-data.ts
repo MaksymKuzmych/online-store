@@ -6,29 +6,34 @@ export function getLocalData(): ILocalData {
   const localCounter = localStorage.getItem('counter-os');
   const localLimit = localStorage.getItem('limit-os');
   const localPage = localStorage.getItem('page-os');
-  const result: ILocalData = {
+  const localPromo = localStorage.getItem('promo-os');
+  const localStorageData: ILocalData = {
     localAmount: 0,
     localCart: [],
     localCounter: 0,
     localLimit: 5,
     localPage: 1,
+    localPromo: [],
   };
 
   if (localAmount) {
-    result.localAmount = JSON.parse(localAmount);
+    localStorageData.localAmount = JSON.parse(localAmount);
   }
   if (localCart) {
-    result.localCart = JSON.parse(localCart);
+    localStorageData.localCart = JSON.parse(localCart);
   }
   if (localCounter) {
-    result.localCounter = JSON.parse(localCounter);
+    localStorageData.localCounter = JSON.parse(localCounter);
   }
   if (localLimit) {
-    result.localLimit = JSON.parse(localLimit);
+    localStorageData.localLimit = JSON.parse(localLimit);
   }
   if (localPage) {
-    result.localPage = JSON.parse(localPage);
+    localStorageData.localPage = JSON.parse(localPage);
+  }
+  if (localPromo) {
+    localStorageData.localPromo = JSON.parse(localPromo);
   }
 
-  return result;
+  return localStorageData;
 }

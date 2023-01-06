@@ -3,7 +3,7 @@
 .cart {
   width: 100%;
   display: flex;
-  align-self: flex-start;
+  align-items: flex-start;
 
   &__products {
     width: 70%;
@@ -67,7 +67,7 @@
         margin: 10px;
         transition: all 0.3s;
         cursor: pointer;
-  
+
         &:hover {
           transform: scale(1.05);
           color: $white;
@@ -132,7 +132,7 @@
           background-color: $brown-dark;
           transition: all 0.3s;
           cursor: pointer;
-    
+
           &:hover {
             transform: scale(1.05);
             color: $white;
@@ -188,9 +188,57 @@
       text-align: center;
       font-size: 28px;
       margin-top: 20px;
+
+      &.discount {
+        text-decoration: line-through;
+      }
     }
 
-    &__promo {
+    &__applied-codes {
+      border: 1px solid $brown-dark;
+      border-radius: 5px;
+      margin-top: 20px;
+
+      &.hide {
+        display: none;
+      }
+
+      &__title {
+        text-align: center;
+        font-size: 24px;
+        background-color: $brown-light;
+        padding: 5px;
+      }
+    }
+
+    &__promocode {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      border-top: 1px solid $brown-dark;
+      padding: 5px;
+
+      &__name {
+        font-size: 20px;
+      }
+
+      &__drop-btn {
+        border: 1px solid black;
+        border-radius: 5px;
+        color: $gray;
+        font-size: 18px;
+        background-color: $brown-dark;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.05);
+          color: $white;
+        }
+      }
+    }
+
+    &__promo-input {
       width: 70%;
       text-align: center;
       font-size: 22px;
@@ -198,6 +246,34 @@
       border-radius: 5px;
       padding: 5px;
       margin: 20px;
+    }
+
+    &__found-code {
+      display: flex;
+      gap: 15px;
+    }
+
+    &__found-code-text {
+      font-size: 20px;
+    }
+
+    .promo__text {
+      margin-top: 20px;
+    }
+
+    &__found-code-button {
+      border: 1px solid black;
+      border-radius: 5px;
+      color: $gray;
+      font-size: 18px;
+      background-color: $brown-dark;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+        color: $white;
+      }
     }
 
     &__buy-btn {
