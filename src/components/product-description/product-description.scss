@@ -65,7 +65,7 @@
   .order {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     min-width: 160px;
 
     &__btn {
@@ -80,6 +80,18 @@
         transform: scale(1.05);
         color: $white;
       }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .description {
+    flex-direction: column;
+    margin: 5px;
+    gap: 10px;
+
+    &__images {
+      flex-direction: row;
     }
   }
 }

@@ -5,9 +5,11 @@ import { renderProductsPage } from '../../templates/render-products-page';
 import { sortProducts } from './sort-products';
 import { setLocalData } from '../../utils/set-local-data';
 import { getLocalData } from '../../utils/get-local-data';
+import { findLimitValue } from './multirange';
 
 export let filteredArray = [...watchData];
 export let chosenBrands: IWatch[] = [];
+export let nazaraData: IWatch[] = [];
 export let isBrandChecked = false;
 
 function filterOptions(filtersEl: HTMLElement): void {
@@ -36,31 +38,20 @@ function filterOptions(filtersEl: HTMLElement): void {
 
   local.localFilters.search = searchInput.value;
 
-  if (!(pointerOption.checked || digitalOption.checked || strapOption.checked || braceletOption.checked)) {
-    renderAndFill(filtersEl);
-  }
-
   if (digitalOption.checked && pointerOption.checked) {
     filteredArray = filteredArray.filter((el) => el.clockFace === 'digital' || el.clockFace === 'pointer');
-    renderAndFill(filtersEl);
   } else if (pointerOption.checked) {
     filteredArray = filteredArray.filter((el) => el.clockFace === 'pointer');
-    renderAndFill(filtersEl);
   } else if (digitalOption.checked) {
     filteredArray = filteredArray.filter((el) => el.clockFace === 'digital');
-    renderAndFill(filtersEl);
   }
 
   if (strapOption.checked && braceletOption.checked) {
     filteredArray = filteredArray.filter((el) => el.mount === 'strap' || el.mount === 'bracelet');
-    renderAndFill(filtersEl);
   } else if (strapOption.checked) {
     filteredArray = filteredArray.filter((el) => el.mount === 'strap');
-    renderAndFill(filtersEl);
   } else if (braceletOption.checked) {
     filteredArray = filteredArray.filter((el) => el.mount === 'bracelet');
-    renderProductsPage(filteredArray);
-    fillQuantity(filtersEl, filteredArray);
   }
 
   local.localFilters.optionsPointer = pointerOption.checked;
@@ -68,11 +59,6 @@ function filterOptions(filtersEl: HTMLElement): void {
   local.localFilters.optionsStrap = strapOption.checked;
   local.localFilters.optionsBracelet = braceletOption.checked;
   setLocalData(local);
-}
-
-function renderAndFill(filtersEl: HTMLElement): void {
-  renderProductsPage(filteredArray);
-  fillQuantity(filtersEl, filteredArray);
 }
 
 function filterBrands(filtersEl: HTMLElement): void {
@@ -103,11 +89,6 @@ function filterBrands(filtersEl: HTMLElement): void {
     }
   });
 
-  if (isBrandChecked) {
-    renderProductsPage(chosenBrands);
-    fillQuantity(filtersEl, chosenBrands);
-  }
-
   local.localFilters.brandCasio = casioCheckbox.checked;
   local.localFilters.brandCitizen = citizenCheckbox.checked;
   local.localFilters.brandNorthEdge = northEdgeCheckbox.checked;
@@ -133,21 +114,30 @@ function filterRanges(filtersEl: HTMLElement): void {
     );
   });
 
-  renderProductsPage(filteredArray);
-  fillQuantity(filtersEl, filteredArray);
-
   local.localFilters.priceFrom = +priceFrom.value;
   local.localFilters.priceTo = +priceTo.value;
   local.localFilters.stockFrom = +stockFrom.value;
   local.localFilters.stockTo = +stockTo.value;
+  local.localFilters.priceMin = findLimitValue(nazaraData, 'price', 'min');
+  local.localFilters.priceMax = findLimitValue(nazaraData, 'price', 'max');
+  local.localFilters.stockMin = findLimitValue(nazaraData, 'stock', 'min');
+  local.localFilters.stockMax = findLimitValue(nazaraData, 'stock', 'max');
   setLocalData(local);
 }
 
 export function applyAllFilters(filtersEl: HTMLElement): void {
   filterOptions(filtersEl);
-  filterRanges(filtersEl);
   filterBrands(filtersEl);
+
+  nazaraData = isBrandChecked ? chosenBrands : filteredArray;
+
+  filterRanges(filtersEl);
   sortProducts(filtersEl);
+
+  const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
+
+  renderProductsPage(itemsArray);
+  fillQuantity(filtersEl, itemsArray);
 }
 
 export function filterProductsListener(filtersEl: HTMLElement): void {
