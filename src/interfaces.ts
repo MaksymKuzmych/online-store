@@ -14,10 +14,17 @@ export interface ICart {
   quantity: number;
 }
 
+export interface IPromocode {
+  code: string;
+  name: string;
+  discount: number;
+}
+
 export interface ILocalData {
   localCart: ICart[];
   localCounter: number;
   localAmount: number;
   localLimit: number;
   localPage: number;
+  localPromo: IPromocode[];
 }

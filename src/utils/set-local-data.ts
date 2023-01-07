@@ -16,4 +16,7 @@ export function setLocalData(data: ILocalData) {
   if (data.localPage) {
     localStorage.setItem('page-os', JSON.stringify(data.localPage));
   }
+  if (data.localPromo) {
+    localStorage.setItem('promo-os', JSON.stringify(data.localPromo));
+  }
 }

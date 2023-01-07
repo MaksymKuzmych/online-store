@@ -1,5 +1,6 @@
 import { CartItem } from './cart-item';
 import { changePage } from './change-page';
+import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
 
 function renderEmptyCart(): HTMLElement {
@@ -22,12 +23,12 @@ export function renderCart(): void {
     <div class="cart__products__page-control">
       <div class="cart__products__limit">
         <p class="limit__text">LIMIT:</p>
-        <input class="cart__products__limit-input" type="number" name="limit" id="limit" min="1" value="${ local.localLimit }">
+        <input class="cart__products__limit-input" type="number" name="limit" id="limit" min="1" value="${local.localLimit}">
       </div>
       <div class="cart__products__pages">
         <p class="pages__text">PAGE:</p>
         <button class="decrese pages-button"><</button>
-        <p class="page__number">${ local.localPage }</p>
+        <p class="page__number">${local.localPage}</p>
         <button class="increse pages-button">></button>
       </div>
     </div>
@@ -38,8 +39,11 @@ export function renderCart(): void {
   <h2 class="cart__total__title">Summary</h2>
   <p class="cart__total__products">Products: <span class="cart__items-counter">${local.localCounter}</span></p>
   <p class="cart__total__total">Total: $<span class="cart__items-total">${local.localAmount}</span>.00</p>
-  <input class="cart__total__promo" type="text" placeholder="Enter promo code">
-  <p class="promo__text">Promo for test: 'STORE-RS'</p>
+  <p class="cart__total__total total__promo"></p>
+  <div class="cart__total__applied-codes hide"></div>
+  <input class="cart__total__promo-input" type="text" placeholder="Enter promo code">
+  <div class="cart__total__found-code"></div>
+  <p class="promo__text">Promo for test: 'STORE-RS', 'WATCH4YOU'</p>
   <button class="cart__total__buy-btn">CHECK OUT</button>
   </div>
   `;
@@ -48,8 +52,7 @@ export function renderCart(): void {
 
   local.localCart.forEach((watchItem, index) => {
     if (watchItem) {
-      if (index + 1 > (local.localPage - 1) * local.localLimit &&
-          index + 1 <= local.localPage * local.localLimit) {
+      if (index + 1 > (local.localPage - 1) * local.localLimit && index + 1 <= local.localPage * local.localLimit) {
         const itemElement = new CartItem(watchItem, index);
         cartProducts.appendChild(itemElement.renderCartItem());
       }
@@ -57,6 +60,7 @@ export function renderCart(): void {
   });
 
   changePage(cart);
+  addPromo(cart);
 
   if (local.localCart.length === 0) {
     cart.innerHTML = '';
