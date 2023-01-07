@@ -13,7 +13,7 @@ export function renderOrderForm(): HTMLElement {
     <form action="#" method="post" class="order__form" novalidate>
       <h2 class="order__title">Personal details</h2>
       <div class="order__field">
-        <label class="order__label" for="name">Name:</label>
+        <label class="order__label" for="name">First and last name:</label>
         <input id="name" type="text" name="name" class="order__input" pattern="[a-zA-Z]{3,}(\\s[a-zA-Z]{3,})+" />
         <div class="order__field-message">Invalid name</div>
       </div>

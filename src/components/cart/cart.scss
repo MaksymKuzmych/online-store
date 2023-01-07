@@ -40,6 +40,7 @@
     &__limit {
       display: flex;
       align-items: center;
+      margin-left: 3px;
 
       .cart__products__limit-input {
         width: 80px;
@@ -84,6 +85,17 @@
     display: flex;
     align-items: center;
     border-top: 1px solid $brown-dark;
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    &__description-text {
+      text-align: center;
+      font-size: 16px;
+    }
 
     &__index {
       width: 20px;
@@ -176,7 +188,7 @@
     min-width: 350px;
     border: 2px solid $brown-dark;
     border-radius: 5px;
-    margin: 25px;
+    margin: 5px;
     overflow: hidden;
 
     &__title {
@@ -296,6 +308,40 @@
       &:hover {
         transform: scale(1.05);
         color: $white;
+      }
+    }
+  }
+}
+
+@media (max-width: 1090px) {
+  .cart {
+    flex-direction: column;
+    align-items: center;
+
+    &__products {
+      width: 97%;
+    }
+
+    &__total {
+      width: 97%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 610px) {
+  .cart {
+    &__products__title {
+      display: none;
+    }
+
+    &__item {
+      &__img {
+        display: none;
+      }
+
+      &__description {
+        display: none;
       }
     }
   }

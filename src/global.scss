@@ -51,3 +51,28 @@ html,
   border: none;
   cursor: pointer;
 }
+
+@media (max-width: 890px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .filters {
+    width: 95%;
+    max-width: 750px;
+    margin: 5px auto;
+  }
+
+  .cards-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .cards-wrapper {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+  .cards-wrapper-small {
+    grid-template-columns: repeat(auto-fill, 170px);
+  }
+}
