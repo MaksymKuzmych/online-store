@@ -2,6 +2,7 @@ import { CartItem } from './cart-item';
 import { changePage } from './change-page';
 import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
+import { openSumbitFormListener } from './checkout';
 
 function renderEmptyCart(): HTMLElement {
   const empty = document.createElement('h1');
@@ -60,7 +61,9 @@ export function renderCart(): void {
   });
 
   changePage(cart);
+  openSumbitFormListener(cart);
   addPromo(cart);
+
 
   if (local.localCart.length === 0) {
     cart.innerHTML = '';

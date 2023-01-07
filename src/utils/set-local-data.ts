@@ -1,6 +1,6 @@
 import { ILocalData } from '../interfaces';
 
-export function setLocalData(data: ILocalData) {
+export function setLocalData(data: ILocalData): void {
   if (data.localAmount || data.localAmount === 0) {
     localStorage.setItem('amount-os', JSON.stringify(data.localAmount));
   }
@@ -15,6 +15,9 @@ export function setLocalData(data: ILocalData) {
   }
   if (data.localPage) {
     localStorage.setItem('page-os', JSON.stringify(data.localPage));
+  }
+  if (data.localFilters) {
+    localStorage.setItem('filters-os', JSON.stringify(data.localFilters));
   }
   if (data.localPromo) {
     localStorage.setItem('promo-os', JSON.stringify(data.localPromo));

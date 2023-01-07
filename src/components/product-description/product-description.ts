@@ -1,10 +1,15 @@
 import { watchData } from '../../watch-data/watch-data';
 import { imagesListener } from './change-main-image';
+import { getLocalData } from '../../utils/get-local-data';
+import { addToCartListener } from '../product-card/add-to-cart';
+import { buyNowListener } from './buy-now';
 
 export function renderDescription(id: number): HTMLElement {
   const item = watchData[id - 1];
   const description = document.createElement('div');
   const { name, price } = item;
+  const local = getLocalData();
+  const buttonText = local.localCart.some((element) => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
 
   //change view of item-description for this page
   const text = item.description
@@ -30,12 +35,14 @@ export function renderDescription(id: number): HTMLElement {
       <p class="description__text">${text}</p>
     </div>
     <div class="description__order order">
-      <button class="order_add-to-cart order__btn">Add to cart</button>
+      <button class="order_add-to-cart order__btn options__btn_add">${buttonText}</button>
       <button class="order_buy-now order__btn">Buy now</button>
     </div>
   `;
 
   imagesListener(description);
+  addToCartListener(description, item);
+  buyNowListener(description, item);
 
   return description;
 }

@@ -52,6 +52,11 @@
       align-items: stretch;
       flex-wrap: wrap;
       cursor: pointer;
+      transition: 0.3s all;
+
+      &:hover {
+        transform: scale(1.05);
+      }
 
       .sort-bar__view-big-point,
       .sort-bar__view-small-point {

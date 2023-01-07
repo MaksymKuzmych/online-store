@@ -1,4 +1,5 @@
 import { checkPayment } from './check-payment';
+import { closeFormListener } from './close-form';
 import { fillCardView } from './fill-card-view';
 import { orderValidation } from './order-vaildation';
 
@@ -6,6 +7,7 @@ export function renderOrderForm(): HTMLElement {
   const orderBackground = document.createElement('div');
 
   orderBackground.classList.add('order-background');
+  orderBackground.classList.add('hide');
   orderBackground.innerHTML = `
   <div class="order">
     <form action="#" method="post" class="order__form" novalidate>
@@ -70,7 +72,7 @@ export function renderOrderForm(): HTMLElement {
               name="valid-date"
               class="order__input order__input_card"
               size="5"
-              pattern="[0-9]{2}/[0-9]{2}"
+              pattern="^(0[1-9]|1[0-2])/([0-9]{2})$"
               placeholder="xx/xx"
             />
             <div class="order__field-message">Invalid date</div>
@@ -91,6 +93,7 @@ export function renderOrderForm(): HTMLElement {
         </div>
       </div>
       <button class="order__submit btn">Submit</button>
+      <p class="order__processed-message hide">ORDER IS PROCESSED</p>
     </form>
   </div>
   `;
@@ -98,6 +101,7 @@ export function renderOrderForm(): HTMLElement {
   orderValidation(orderBackground);
   checkPayment(orderBackground);
   fillCardView(orderBackground);
+  closeFormListener(orderBackground);
 
   return orderBackground;
 }

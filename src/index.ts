@@ -1,8 +1,9 @@
-import { watchData } from './watch-data/watch-data';
 import { renderHeader } from './components/header/header';
 import { renderFooter } from './components/footer/footer';
 import { renderFilters } from './components/main-filter/main-filter';
 import { renderProductsPage } from './templates/render-products-page';
+import { renderOrderForm } from './components/order-submit/order-submit';
+import { filteredArray, chosenBrands, isBrandChecked } from './components/main-filter/filter-products';
 
 import './global.scss';
 
@@ -15,6 +16,10 @@ main.classList.add('main');
 body.appendChild(renderHeader());
 body.appendChild(main);
 body.appendChild(renderFooter());
+body.appendChild(renderOrderForm());
 
 main.appendChild(renderFilters());
-renderProductsPage(watchData);
+
+const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
+
+renderProductsPage(itemsArray);

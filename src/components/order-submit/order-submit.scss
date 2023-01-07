@@ -71,6 +71,12 @@
     &__card-title {
       text-align: center;
     }
+
+    &__processed-message {
+      margin: 0 auto;
+      font-size: 20px;
+      color: $white;
+    }
   }
 
   .card-details {
@@ -92,4 +98,8 @@
       justify-content: space-between;
     }
   }
+}
+
+.hide {
+  display: none;
 }

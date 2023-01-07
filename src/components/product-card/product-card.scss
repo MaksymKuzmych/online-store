@@ -5,6 +5,7 @@
   flex-direction: column;
   border: 1px solid $brown-dark;
   justify-content: space-between;
+  background-color: $brown-light;
 
   &__img-wrapper {
     height: 250px;
@@ -81,5 +82,29 @@
         color: $white;
       }
     }
+  }
+}
+
+.card-small {
+  .card__img-wrapper {
+    height: 100px;
+    padding: 1px 0;
+  }
+
+  .card__name {
+    font-size: 14px;
+  }
+
+  .card__description {
+    display: none;
+  }
+
+  .card__price {
+    font-size: 16px;
+  }
+
+  .card__options {
+    flex-direction: column;
+    gap: 3px;
   }
 }
