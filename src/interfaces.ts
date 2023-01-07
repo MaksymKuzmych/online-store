@@ -14,6 +14,12 @@ export interface ICart {
   quantity: number;
 }
 
+export interface IPromocode {
+  code: string;
+  name: string;
+  discount: number;
+}
+
 export interface ILocalData {
   localCart: ICart[];
   localCounter: number;
@@ -21,6 +27,7 @@ export interface ILocalData {
   localLimit: number;
   localPage: number;
   localFilters: ILocalFilters;
+  localPromo: IPromocode[];
 }
 
 export interface ILocalFilters {

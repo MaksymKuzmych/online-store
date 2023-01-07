@@ -1,5 +1,6 @@
 import { CartItem } from './cart-item';
 import { changePage } from './change-page';
+import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
 import { openSumbitFormListener } from './checkout';
 
@@ -39,8 +40,11 @@ export function renderCart(): void {
   <h2 class="cart__total__title">Summary</h2>
   <p class="cart__total__products">Products: <span class="cart__items-counter">${local.localCounter}</span></p>
   <p class="cart__total__total">Total: $<span class="cart__items-total">${local.localAmount}</span>.00</p>
-  <input class="cart__total__promo" type="text" placeholder="Enter promo code">
-  <p class="promo__text">Promo for test: 'STORE-RS'</p>
+  <p class="cart__total__total total__promo"></p>
+  <div class="cart__total__applied-codes hide"></div>
+  <input class="cart__total__promo-input" type="text" placeholder="Enter promo code">
+  <div class="cart__total__found-code"></div>
+  <p class="promo__text">Promo for test: 'STORE-RS', 'WATCH4YOU'</p>
   <button class="cart__total__buy-btn">CHECK OUT</button>
   </div>
   `;
@@ -58,6 +62,8 @@ export function renderCart(): void {
 
   changePage(cart);
   openSumbitFormListener(cart);
+  addPromo(cart);
+
 
   if (local.localCart.length === 0) {
     cart.innerHTML = '';

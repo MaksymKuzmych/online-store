@@ -9,12 +9,14 @@ export function getLocalData(): ILocalData {
   const localLimit = localStorage.getItem('limit-os');
   const localPage = localStorage.getItem('page-os');
   const localFilters = localStorage.getItem('filters-os');
+  const localPromo = localStorage.getItem('promo-os');
   const localStorageData: ILocalData = {
     localAmount: 0,
     localCart: [],
     localCounter: 0,
     localLimit: 5,
     localPage: 1,
+    localPromo: [],
     localFilters: {
       search: '',
       sort: 'choose',
@@ -57,6 +59,9 @@ export function getLocalData(): ILocalData {
   }
   if (localFilters) {
     localStorageData.localFilters = JSON.parse(localFilters);
+    }
+  if (localPromo) {
+    localStorageData.localPromo = JSON.parse(localPromo);
   }
 
   return localStorageData;

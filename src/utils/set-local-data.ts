@@ -19,4 +19,7 @@ export function setLocalData(data: ILocalData): void {
   if (data.localFilters) {
     localStorage.setItem('filters-os', JSON.stringify(data.localFilters));
   }
+  if (data.localPromo) {
+    localStorage.setItem('promo-os', JSON.stringify(data.localPromo));
+  }
 }
