@@ -1,10 +1,14 @@
+import { changeViewListener } from './change-view';
+import { checkInputs } from './check-inputs';
 import { fillQuantity } from './fill-quantity';
-import { filteredArray, filterProductsListener } from './filter-products';
+import { applyAllFilters, filteredArray, chosenBrands, filterProductsListener } from './filter-products';
 import { setMultirange } from './multirange';
+import { resetFiltersListener } from './reset-filters';
 import { sortProductsListener } from './sort-products';
 
 export function renderFilters(): HTMLElement {
   const filters = document.createElement('div');
+  const itemsArray = chosenBrands.length ? chosenBrands : filteredArray;
 
   filters.classList.add('filters');
   filters.innerHTML = `
@@ -14,7 +18,7 @@ export function renderFilters(): HTMLElement {
 </div>
 <div class="sort-bar">
   <select class="sort-bar__select" name="sort" id="sort" placeholder="hah">
-    <option class="sort-bar__select-item" disabled selected hidden>Choose sort option</option>
+    <option class="sort-bar__select-item" value="choose" disabled selected hidden>Choose sort option</option>
     <option class="sort-bar__select-item" value="price-up">Price 🡅</option>
     <option class="sort-bar__select-item" value="price-down">Price 🡇</option>
     <option class="sort-bar__select-item" value="availability-up">Stock Availability 🡅</option>
@@ -149,9 +153,13 @@ export function renderFilters(): HTMLElement {
   `;
 
   setMultirange(filters);
-  fillQuantity(filters, filteredArray);
+  fillQuantity(filters, itemsArray);
   sortProductsListener(filters);
   filterProductsListener(filters);
+  changeViewListener(filters);
+  checkInputs(filters);
+  applyAllFilters(filters);
+  resetFiltersListener(filters);
 
   return filters;
 }

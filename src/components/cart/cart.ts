@@ -1,6 +1,7 @@
 import { CartItem } from './cart-item';
 import { changePage } from './change-page';
 import { getLocalData } from '../../utils/get-local-data';
+import { openSumbitFormListener } from './checkout';
 
 function renderEmptyCart(): HTMLElement {
   const empty = document.createElement('h1');
@@ -22,12 +23,12 @@ export function renderCart(): void {
     <div class="cart__products__page-control">
       <div class="cart__products__limit">
         <p class="limit__text">LIMIT:</p>
-        <input class="cart__products__limit-input" type="number" name="limit" id="limit" min="1" value="${ local.localLimit }">
+        <input class="cart__products__limit-input" type="number" name="limit" id="limit" min="1" value="${local.localLimit}">
       </div>
       <div class="cart__products__pages">
         <p class="pages__text">PAGE:</p>
         <button class="decrese pages-button"><</button>
-        <p class="page__number">${ local.localPage }</p>
+        <p class="page__number">${local.localPage}</p>
         <button class="increse pages-button">></button>
       </div>
     </div>
@@ -48,8 +49,7 @@ export function renderCart(): void {
 
   local.localCart.forEach((watchItem, index) => {
     if (watchItem) {
-      if (index + 1 > (local.localPage - 1) * local.localLimit &&
-          index + 1 <= local.localPage * local.localLimit) {
+      if (index + 1 > (local.localPage - 1) * local.localLimit && index + 1 <= local.localPage * local.localLimit) {
         const itemElement = new CartItem(watchItem, index);
         cartProducts.appendChild(itemElement.renderCartItem());
       }
@@ -57,6 +57,7 @@ export function renderCart(): void {
   });
 
   changePage(cart);
+  openSumbitFormListener(cart);
 
   if (local.localCart.length === 0) {
     cart.innerHTML = '';

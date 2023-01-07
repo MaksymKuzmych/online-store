@@ -3,7 +3,11 @@
 .cart {
   width: 100%;
   display: flex;
-  align-self: flex-start;
+  align-items: flex-start;
+
+  .title-empty {
+    margin: 10px auto;
+  }
 
   &__products {
     width: 70%;
@@ -67,7 +71,7 @@
         margin: 10px;
         transition: all 0.3s;
         cursor: pointer;
-  
+
         &:hover {
           transform: scale(1.05);
           color: $white;
@@ -132,7 +136,7 @@
           background-color: $brown-dark;
           transition: all 0.3s;
           cursor: pointer;
-    
+
           &:hover {
             transform: scale(1.05);
             color: $white;

@@ -6,29 +6,56 @@ export function getLocalData(): ILocalData {
   const localCounter = localStorage.getItem('counter-os');
   const localLimit = localStorage.getItem('limit-os');
   const localPage = localStorage.getItem('page-os');
-  const result: ILocalData = {
+  const localFilters = localStorage.getItem('filters-os');
+  const localStorageData: ILocalData = {
     localAmount: 0,
     localCart: [],
     localCounter: 0,
     localLimit: 5,
     localPage: 1,
+    localFilters: {
+      search: '',
+      sort: 'choose',
+      view: 'big',
+      optionsPointer: false,
+      optionsDigital: false,
+      optionsStrap: false,
+      optionsBracelet: false,
+      brandCasio: false,
+      brandCitizen: false,
+      brandNorthEdge: false,
+      brandSeiko: false,
+      brandTagHeuer: false,
+      brandFossil: false,
+      priceFrom: 68,
+      priceMin: 68,
+      priceTo: 9293,
+      priceMax: 9293,
+      stockFrom: 8,
+      stockMin: 8,
+      stockTo: 112,
+      stockMax: 112,
+    },
   };
 
   if (localAmount) {
-    result.localAmount = JSON.parse(localAmount);
+    localStorageData.localAmount = JSON.parse(localAmount);
   }
   if (localCart) {
-    result.localCart = JSON.parse(localCart);
+    localStorageData.localCart = JSON.parse(localCart);
   }
   if (localCounter) {
-    result.localCounter = JSON.parse(localCounter);
+    localStorageData.localCounter = JSON.parse(localCounter);
   }
   if (localLimit) {
-    result.localLimit = JSON.parse(localLimit);
+    localStorageData.localLimit = JSON.parse(localLimit);
   }
   if (localPage) {
-    result.localPage = JSON.parse(localPage);
+    localStorageData.localPage = JSON.parse(localPage);
+  }
+  if (localFilters) {
+    localStorageData.localFilters = JSON.parse(localFilters);
   }
 
-  return result;
+  return localStorageData;
 }

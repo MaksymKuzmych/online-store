@@ -20,4 +20,29 @@ export interface ILocalData {
   localAmount: number;
   localLimit: number;
   localPage: number;
+  localFilters: ILocalFilters;
+}
+
+export interface ILocalFilters {
+  search: string;
+  sort: string;
+  view: 'big' | 'small';
+  optionsPointer: boolean;
+  optionsDigital: boolean;
+  optionsStrap: boolean;
+  optionsBracelet: boolean;
+  brandCasio: boolean;
+  brandCitizen: boolean;
+  brandNorthEdge: boolean;
+  brandSeiko: boolean;
+  brandTagHeuer: boolean;
+  brandFossil: boolean;
+  priceFrom: number;
+  priceMin: number;
+  priceTo: number;
+  priceMax: number;
+  stockFrom: number;
+  stockMin: number;
+  stockTo: number;
+  stockMax: number;
 }
