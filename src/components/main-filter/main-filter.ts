@@ -1,14 +1,20 @@
 import { changeViewListener } from './change-view';
 import { checkInputs } from './check-inputs';
 import { fillQuantity } from './fill-quantity';
-import { applyAllFilters, filteredArray, chosenBrands, filterProductsListener } from './filter-products';
+import {
+  applyAllFilters,
+  filteredArray,
+  chosenBrands,
+  filterProductsListener,
+  isBrandChecked,
+} from './filter-products';
 import { setMultirange } from './multirange';
 import { resetFiltersListener } from './reset-filters';
 import { sortProductsListener } from './sort-products';
 
 export function renderFilters(): HTMLElement {
   const filters = document.createElement('div');
-  const itemsArray = chosenBrands.length ? chosenBrands : filteredArray;
+  const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
 
   filters.classList.add('filters');
   filters.innerHTML = `

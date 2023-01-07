@@ -1,4 +1,6 @@
+import { findLimitValue } from '../components/main-filter/multirange';
 import { ILocalData } from '../interfaces';
+import { watchData } from '../watch-data/watch-data';
 
 export function getLocalData(): ILocalData {
   const localAmount = localStorage.getItem('amount-os');
@@ -27,14 +29,14 @@ export function getLocalData(): ILocalData {
       brandSeiko: false,
       brandTagHeuer: false,
       brandFossil: false,
-      priceFrom: 68,
-      priceMin: 68,
-      priceTo: 9293,
-      priceMax: 9293,
-      stockFrom: 8,
-      stockMin: 8,
-      stockTo: 112,
-      stockMax: 112,
+      priceFrom: findLimitValue(watchData, 'price', 'min'),
+      priceMin: findLimitValue(watchData, 'price', 'min'),
+      priceTo: findLimitValue(watchData, 'price', 'max'),
+      priceMax: findLimitValue(watchData, 'price', 'max'),
+      stockFrom: findLimitValue(watchData, 'stock', 'min'),
+      stockMin: findLimitValue(watchData, 'stock', 'min'),
+      stockTo: findLimitValue(watchData, 'stock', 'max'),
+      stockMax: findLimitValue(watchData, 'stock', 'max'),
     },
   };
 

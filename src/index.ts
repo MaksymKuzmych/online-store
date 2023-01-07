@@ -3,7 +3,7 @@ import { renderFooter } from './components/footer/footer';
 import { renderFilters } from './components/main-filter/main-filter';
 import { renderProductsPage } from './templates/render-products-page';
 import { renderOrderForm } from './components/order-submit/order-submit';
-import { filteredArray, chosenBrands } from './components/main-filter/filter-products';
+import { filteredArray, chosenBrands, isBrandChecked } from './components/main-filter/filter-products';
 
 import './global.scss';
 
@@ -20,6 +20,6 @@ body.appendChild(renderOrderForm());
 
 main.appendChild(renderFilters());
 
-const itemsArray = chosenBrands.length ? chosenBrands : filteredArray;
+const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
 
 renderProductsPage(itemsArray);

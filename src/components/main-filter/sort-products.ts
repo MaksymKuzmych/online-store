@@ -1,4 +1,4 @@
-import { filteredArray, chosenBrands } from './filter-products';
+import { filteredArray, chosenBrands, isBrandChecked } from './filter-products';
 import { renderProductsPage } from '../../templates/render-products-page';
 import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
@@ -18,7 +18,7 @@ export function sortProductsListener(filtersEl: HTMLElement): void {
 export function sortProducts(filtersEl: HTMLElement): void {
   const local = getLocalData();
   const sortSelect = filtersEl.querySelector('#sort') as HTMLSelectElement;
-  const itemsArray = chosenBrands.length ? chosenBrands : filteredArray;
+  const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
 
   local.localFilters.sort = sortSelect.value;
   setLocalData(local);

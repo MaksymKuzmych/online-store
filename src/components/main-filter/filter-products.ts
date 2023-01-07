@@ -8,6 +8,7 @@ import { getLocalData } from '../../utils/get-local-data';
 
 export let filteredArray = [...watchData];
 export let chosenBrands: IWatch[] = [];
+export let isBrandChecked = false;
 
 function filterOptions(filtersEl: HTMLElement): void {
   const local = getLocalData();
@@ -90,18 +91,19 @@ function filterBrands(filtersEl: HTMLElement): void {
     tagHeuerCheckbox,
     fossilCheckbox,
   ];
-  let atLeastOneChecked = false;
+
+  isBrandChecked = false;
 
   chosenBrands = [];
 
   brandsCheckbox.forEach((el) => {
     if (el.checked) {
       chosenBrands = [...chosenBrands, ...filteredArray.filter((item) => item.brand === el.dataset.brand)];
-      atLeastOneChecked = true;
+      isBrandChecked = true;
     }
   });
 
-  if (atLeastOneChecked) {
+  if (isBrandChecked) {
     renderProductsPage(chosenBrands);
     fillQuantity(filtersEl, chosenBrands);
   }

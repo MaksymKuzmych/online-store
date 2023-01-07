@@ -3,6 +3,7 @@ import { getLocalData } from '../../utils/get-local-data';
 import { renderFilters } from './main-filter';
 import { renderProductsPage } from '../../templates/render-products-page';
 import { watchData } from '../../watch-data/watch-data';
+import { findLimitValue } from './multirange';
 
 export function resetFiltersListener(filtersEl: HTMLElement): void {
   filtersEl.addEventListener('click', (event) => {
@@ -32,14 +33,14 @@ export function resetFilters(): void {
     brandSeiko: false,
     brandTagHeuer: false,
     brandFossil: false,
-    priceFrom: 68,
-    priceMin: 68,
-    priceTo: 9293,
-    priceMax: 9293,
-    stockFrom: 8,
-    stockMin: 8,
-    stockTo: 112,
-    stockMax: 112,
+    priceFrom: findLimitValue(watchData, 'price', 'min'),
+    priceMin: findLimitValue(watchData, 'price', 'min'),
+    priceTo: findLimitValue(watchData, 'price', 'max'),
+    priceMax: findLimitValue(watchData, 'price', 'max'),
+    stockFrom: findLimitValue(watchData, 'stock', 'min'),
+    stockMin: findLimitValue(watchData, 'stock', 'min'),
+    stockTo: findLimitValue(watchData, 'stock', 'max'),
+    stockMax: findLimitValue(watchData, 'stock', 'max'),
   };
 
   setLocalData(local);

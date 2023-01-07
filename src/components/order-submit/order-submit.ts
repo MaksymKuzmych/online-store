@@ -72,7 +72,7 @@ export function renderOrderForm(): HTMLElement {
               name="valid-date"
               class="order__input order__input_card"
               size="5"
-              pattern="[0-9]{2}/[0-9]{2}"
+              pattern="^(0[1-9]|1[0-2])/([0-9]{2})$"
               placeholder="xx/xx"
             />
             <div class="order__field-message">Invalid date</div>
