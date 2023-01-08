@@ -66,52 +66,52 @@ export function renderFilters(): HTMLElement {
   <button class="reset-total__btn-reset">Reset Filters</button>
   <button class="reset-total__btn-copy">Copy Link</button>
 </div>
-<div class="filter">
+<div class="filter options">
   <h3 class="filter__title title">Options</h3>
   <div class="filter__list">
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="clockface-pointer" id="clockface-pointer">
+      <input class="filter__input-checkbox clockface" type="checkbox" name="pointer" id="clockface-pointer">
       <label class="filter__label-checkbox" for="clockface-pointer">ClockFace: Pointer (<span class="clockface-pointer__result">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="clockface-digital" id="clockface-digital">
+      <input class="filter__input-checkbox clockface" type="checkbox" name="digital" id="clockface-digital">
       <label class="filter__label-checkbox" for="clockface-digital">ClockFace: Digital (<span class="clockface-digital__result">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="mount-strap" id="mount-strap">
+      <input class="filter__input-checkbox mount" type="checkbox" name="strap" id="mount-strap">
       <label class="filter__label-checkbox" for="mount-strap">Mount: Strap (<span class="mount-strap__result">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="mount-bracelet" id="mount-bracelet">
+      <input class="filter__input-checkbox mount" type="checkbox" name="bracelet" id="mount-bracelet">
       <label class="filter__label-checkbox" for="mount-bracelet">Mount: Bracelet (<span class="mount-bracelet__result">0</span>)</label>
     </div>
   </div>
 </div>
-<div class="filter">
+<div class="filter brand">
   <h3 class="filter__title title">Brand</h3>
   <div class="filter__list">
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="casio" id="casio" data-brand="Casio">
+      <input class="filter__input-checkbox" type="checkbox" name="Casio" id="casio" data-brand="Casio">
       <label class="filter__label-checkbox" for="casio">Casio (<span class="casio">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="citizen" id="citizen" data-brand="Citizen">
+      <input class="filter__input-checkbox" type="checkbox" name="Citizen" id="citizen" data-brand="Citizen">
       <label class="filter__label-checkbox" for="citizen">Citizen (<span class="citizen">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="north-edge" id="north-edge" data-brand="North Edge">
+      <input class="filter__input-checkbox" type="checkbox" name="North Edge" id="north-edge" data-brand="North Edge">
       <label class="filter__label-checkbox" for="north-edge">North Edge (<span class="north-edge">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="seiko" id="seiko" data-brand="Seiko">
+      <input class="filter__input-checkbox" type="checkbox" name="Seiko" id="seiko" data-brand="Seiko">
       <label class="filter__label-checkbox" for="seiko">Seiko (<span class="seiko">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="tag-heuer" id="tag-heuer" data-brand="TAG HEUER">
+      <input class="filter__input-checkbox" type="checkbox" name="TAG HEUER" id="tag-heuer" data-brand="TAG HEUER">
       <label class="filter__label-checkbox" for="tag-heuer">TAG HEUER (<span class="tag-heuer">0</span>)</label>
     </div>
     <div class="filter__checkbox">
-      <input class="filter__input-checkbox" type="checkbox" name="fossil" id="fossil" data-brand="Fossil">
+      <input class="filter__input-checkbox" type="checkbox" name="Fossil" id="fossil" data-brand="Fossil">
       <label class="filter__label-checkbox" for="fossil">Fossil (<span class="fossil">0</span>)</label>
     </div>
   </div>

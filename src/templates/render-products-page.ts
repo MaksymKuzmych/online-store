@@ -1,7 +1,6 @@
 import { Card } from '../components/product-card/product-card';
 import { IWatch } from '../interfaces';
 import { getLocalData } from '../utils/get-local-data';
-import { setLocalData } from '../utils/set-local-data';
 
 export function renderProductsPage(items: IWatch[]): void {
   const local = getLocalData();

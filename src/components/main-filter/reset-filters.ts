@@ -3,7 +3,7 @@ import { getLocalData } from '../../utils/get-local-data';
 import { renderFilters } from './main-filter';
 import { renderProductsPage } from '../../templates/render-products-page';
 import { watchData } from '../../watch-data/watch-data';
-import { findLimitValue } from './multirange';
+import { findLimitValue } from '../../utils/find-limit-value';
 
 export function resetFiltersListener(filtersEl: HTMLElement): void {
   filtersEl.addEventListener('click', (event) => {
