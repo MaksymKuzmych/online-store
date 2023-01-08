@@ -7,7 +7,7 @@ import { buyNowListener } from './buy-now';
 export function renderDescription(id: number): HTMLElement {
   const item = watchData[id - 1];
   const description = document.createElement('div');
-  const { name, price } = item;
+  const { name, price, brand } = item;
   const local = getLocalData();
   const buttonText = local.localCart.some((element) => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
 
@@ -43,6 +43,7 @@ export function renderDescription(id: number): HTMLElement {
   imagesListener(description);
   addToCartListener(description, item);
   buyNowListener(description, item);
+  location.hash = `products/${brand.toLowerCase()}/${id}`;
 
   return description;
 }

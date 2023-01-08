@@ -48,4 +48,5 @@ export function resetFilters(): void {
   main.innerHTML = '';
   main.appendChild(renderFilters());
   renderProductsPage(watchData);
+  location.hash = '';
 }

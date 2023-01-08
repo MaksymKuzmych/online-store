@@ -152,6 +152,7 @@ export function setMultirange(component: HTMLElement): void {
 
     function onMouseUp() {
       document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
     }
 
     document.addEventListener('mouseup', onMouseUp);

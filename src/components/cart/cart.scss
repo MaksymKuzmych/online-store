@@ -114,11 +114,17 @@
       border: 1px solid $brown-dark;
       border-radius: 5px;
       margin: 10px 0;
+      cursor: pointer;
     }
 
     &__name {
       margin: 20px;
       font-size: 24px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &__number {

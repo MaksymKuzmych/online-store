@@ -4,7 +4,7 @@ import { renderFilters } from './components/main-filter/main-filter';
 import { renderProductsPage } from './templates/render-products-page';
 import { renderOrderForm } from './components/order-submit/order-submit';
 import { filteredArray, chosenBrands, isBrandChecked } from './components/main-filter/filter-products';
-import { getRouting } from './components/routing/routing';
+import { getRouting, getRoutingListener } from './utils/routing';
 
 import './global.scss';
 
@@ -26,3 +26,4 @@ const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
 renderProductsPage(itemsArray);
 
 getRouting();
+getRoutingListener();
