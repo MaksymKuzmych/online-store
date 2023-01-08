@@ -7,6 +7,7 @@ import { setLocalData } from '../../utils/set-local-data';
 import { getLocalData } from '../../utils/get-local-data';
 import { findLimitValue } from '../../utils/find-limit-value';
 import { setMultirange } from './multirange';
+import { setRouting } from '../../utils/set-routing';
 
 export let filteredArray = [...watchData];
 export let chosenBrands: IWatch[] = [];
@@ -161,6 +162,7 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
         applyAllFilters(filtersEl);
         setInputValues(filtersEl);
       }
+      setRouting();
     });
   });
 
@@ -174,5 +176,6 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
         document.removeEventListener('mouseup', applyFiltersListener);
       });
     }
+    setRouting();
   });
 }

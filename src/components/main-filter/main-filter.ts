@@ -1,5 +1,6 @@
 import { changeViewListener } from './change-view';
 import { checkInputs } from './check-inputs';
+import { CopyLinkListener } from './copy-link';
 import { fillQuantity } from './fill-quantity';
 import {
   applyAllFilters,
@@ -163,6 +164,7 @@ export function renderFilters(): HTMLElement {
   sortProductsListener(filters);
   filterProductsListener(filters);
   changeViewListener(filters);
+  CopyLinkListener(filters);
   checkInputs(filters);
   applyAllFilters(filters);
   resetFiltersListener(filters);
