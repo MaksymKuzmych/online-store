@@ -64,7 +64,6 @@ export function renderCart(): void {
   openSumbitFormListener(cart);
   addPromo(cart);
 
-
   if (local.localCart.length === 0) {
     cart.innerHTML = '';
     cart.appendChild(renderEmptyCart());
@@ -72,4 +71,5 @@ export function renderCart(): void {
 
   main.innerHTML = '';
   main.appendChild(cart);
+  location.hash = 'cart';
 }
