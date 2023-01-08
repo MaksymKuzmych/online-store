@@ -157,12 +157,13 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
       if (target.classList.contains('input-number')) {
         isMultirange = true;
         applyAllFilters(filtersEl);
+        setRouting(false, target);
       } else {
         isMultirange = false;
         applyAllFilters(filtersEl);
         setInputValues(filtersEl);
+        setRouting();
       }
-      setRouting();
     });
   });
 
@@ -173,9 +174,9 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
       document.addEventListener('mouseup', function applyFiltersListener() {
         isMultirange = true;
         applyAllFilters(filtersEl);
+        setRouting(false, target);
         document.removeEventListener('mouseup', applyFiltersListener);
       });
     }
-    setRouting();
   });
 }

@@ -7,6 +7,7 @@ import { filteredArray, chosenBrands, isBrandChecked } from './components/main-f
 import { getRouting, getRoutingListener } from './utils/get-routing';
 
 import './global.scss';
+import { resetFilters } from './components/main-filter/reset-filters';
 
 const body = document.querySelector('.body') as HTMLBodyElement;
 const main = document.createElement('main');
@@ -19,11 +20,16 @@ body.appendChild(main);
 body.appendChild(renderFooter());
 body.appendChild(renderOrderForm());
 
-main.appendChild(renderFilters());
+if (location.hash) {
+  getRouting();
+  getRoutingListener();
 
-const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
+  main.innerHTML = '';
+  main.appendChild(renderFilters());
 
-renderProductsPage(itemsArray);
+  const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
 
-getRouting();
-getRoutingListener();
+  renderProductsPage(itemsArray);
+} else {
+  resetFilters(true);
+}

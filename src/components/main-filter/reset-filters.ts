@@ -15,7 +15,7 @@ export function resetFiltersListener(filtersEl: HTMLElement): void {
   });
 }
 
-export function resetFilters(): void {
+export function resetFilters(firstLoad?: boolean): void {
   const main = document.querySelector('.main') as HTMLElement;
   const local = getLocalData();
 
@@ -48,5 +48,7 @@ export function resetFilters(): void {
   main.innerHTML = '';
   main.appendChild(renderFilters());
   renderProductsPage(watchData);
-  location.hash = '';
+  if (!firstLoad) {
+    location.hash = '';
+  }
 }
