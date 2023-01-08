@@ -58,9 +58,16 @@ export function setRouting(view?: boolean, target?: HTMLElement) {
     hash.push(`brands=${brands.join(',')}`);
   }
 
-  // if (target) {
-  //   hash.push(`price${1}`)
-  // }
+  if (target?.classList.contains('price')) {
+    hash.push(
+      `price=${local.localFilters.priceMin},${local.localFilters.priceFrom},${local.localFilters.priceTo},${local.localFilters.priceMax}`,
+    );
+  }
+  if (target?.classList.contains('stock')) {
+    hash.push(
+      `stock=${local.localFilters.stockMin},${local.localFilters.stockFrom},${local.localFilters.stockTo},${local.localFilters.stockMax}`,
+    );
+  }
 
   location.hash = hash.join('&');
 }

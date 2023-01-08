@@ -5,10 +5,14 @@ import { getLocalData } from '../../utils/get-local-data';
 import { openSumbitFormListener } from './checkout';
 
 function renderEmptyCart(): HTMLElement {
-  const empty = document.createElement('h1');
-  empty.classList.add('title-empty');
-  empty.innerText = 'Cart is Empty';
-  return empty;
+  const emptyContainer = document.createElement('div');
+  emptyContainer.classList.add('empty');
+
+  emptyContainer.innerHTML = `
+  <h1 class="title-empty">Cart is Empty</h1>
+  <img src="./assets/icons/empty-cart.jpg" alt="empty-cart">
+  `;
+  return emptyContainer;
 }
 
 export function renderCart(): void {

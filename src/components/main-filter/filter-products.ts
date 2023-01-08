@@ -12,7 +12,7 @@ import { setRouting } from '../../utils/set-routing';
 export let filteredArray = [...watchData];
 export let chosenBrands: IWatch[] = [];
 export let isBrandChecked = false;
-export let isMultirange = false;
+export let isMultirange = true;
 export let finalArray: IWatch[] = [];
 
 function filterOptions(filtersEl: HTMLElement): void {
@@ -157,14 +157,25 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
       if (target.classList.contains('input-number')) {
         isMultirange = true;
         applyAllFilters(filtersEl);
-        setRouting(false, target);
       } else {
         isMultirange = false;
         applyAllFilters(filtersEl);
         setInputValues(filtersEl);
-        setRouting();
+        if (el.type === 'checkbox') {
+          setRouting();
+        }
       }
     });
+
+    if (el.type === 'search') {
+      el.addEventListener('change', () => setRouting());
+    }
+    if (el.type === 'number') {
+      el.addEventListener('change', (event) => {
+        const target = event.target as HTMLElement;
+        setRouting(false, target);
+      });
+    }
   });
 
   filtersEl.addEventListener('mousedown', (event) => {

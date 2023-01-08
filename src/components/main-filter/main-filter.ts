@@ -122,11 +122,11 @@ export function renderFilters(): HTMLElement {
   <div class="slider__out-data">
     <div class="slider__from-data">
       <span class="slider__usd">$</span>
-      <input class="slider__from-data__input-price input-number" type="number" value="0">
+      <input class="slider__from-data__input-price price input-number" type="number" value="0">
     </div>
     <div class="slider__to-data">
       <span class="slider__usd">$</span>
-      <input class="slider__to-data__input-price input-number" type="number" value="1000">
+      <input class="slider__to-data__input-price price input-number" type="number" value="1000">
     </div>
   </div>
   <div class="slider__multi-range multi-range">
@@ -142,10 +142,10 @@ export function renderFilters(): HTMLElement {
   <h3 class="slider__title title">Stock</h3>
   <div class="slider__out-data">
     <div class="slider__from-data">
-      <input class="slider__from-data__input-stock input-number" type="number" value="0">
+      <input class="slider__from-data__input-stock stock input-number" type="number" value="0">
     </div>
     <div class="slider__to-data">
-      <input class="slider__to-data__input-stock input-number" type="number" value="100">
+      <input class="slider__to-data__input-stock stock input-number" type="number" value="100">
     </div>
   </div>
   <div class="slider__multi-range multi-range">
