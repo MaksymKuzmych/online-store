@@ -4,7 +4,7 @@ import { setLocalData } from './set-local-data';
 export function hashToLocalData() {
   const local = getLocalData();
   const hash = location.hash
-    .slice(2)
+    .slice(1)
     .split('&')
     .map((key) => key.split('='));
   const search = hash.find((filter) => filter[0] === 'search');
