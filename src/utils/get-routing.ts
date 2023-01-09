@@ -13,6 +13,8 @@ export function getRoutingListener() {
 }
 
 export function getRouting() {
+  const main = document.querySelector('.main') as HTMLElement;
+
   if (location.hash === '') {
     resetFilters();
   }
@@ -20,7 +22,6 @@ export function getRouting() {
     renderCart();
   }
   if (location.hash.includes('products')) {
-    const main = document.querySelector('.main') as HTMLElement;
     const id = location.hash.split('/').reverse()[0];
     main.innerHTML = '';
     main.appendChild(renderDescription(+id));
@@ -34,7 +35,6 @@ export function getRouting() {
     location.hash.includes('price=') ||
     location.hash.includes('brands=')
   ) {
-    const main = document.querySelector('.main') as HTMLElement;
     hashToLocalData();
     main.innerHTML = '';
     main.appendChild(renderFilters());

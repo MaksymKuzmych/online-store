@@ -21,8 +21,8 @@ export function hashToLocalData() {
   if (sort) {
     local.localFilters.sort = sort[1];
   }
-  if (view) {
-    local.localFilters.sort = view[1];
+  if (view && (view[1] === 'big' || view[1] === 'small')) {
+    local.localFilters.view = view[1];
   }
   if (options) {
     const pointer = options[1].split(',').find((option) => option === 'pointer');
