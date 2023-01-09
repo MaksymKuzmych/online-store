@@ -17,6 +17,8 @@ export function getRouting() {
 
   if (location.hash === '') {
     resetFilters();
+  } else if (location.hash === '#?') {
+    location.hash = '';
   } else if (location.hash.slice(0, 5) === '#cart') {
     renderCart();
   } else if (location.hash.slice(0, 9) === '#products') {
