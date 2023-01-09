@@ -29,7 +29,7 @@ export function renderOrderForm(): HTMLElement {
           type="text"
           name="address"
           class="order__input"
-          pattern="[a-zA-Z0-9]{5,}\\s[a-zA-Z0-9]{5,}(\\s[a-zA-Z]{5,})+"
+          pattern="[a-zA-Z0-9]{5,}\\s[a-zA-Z0-9]{5,}(\\s[a-zA-Z0-9]{5,})+"
         />
         <div class="order__field-message">Invalid address</div>
       </div>
