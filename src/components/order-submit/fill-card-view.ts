@@ -1,4 +1,4 @@
-export function fillCardView(orderBackgroundDiv: HTMLElement) {
+export function fillCardView(orderBackgroundDiv: HTMLElement): void {
   const cardNumberField = orderBackgroundDiv.querySelector('#card-number') as HTMLInputElement;
   const cardDateField = orderBackgroundDiv.querySelector('#valid-date') as HTMLInputElement;
   const cardCVVField = orderBackgroundDiv.querySelector('#cvv') as HTMLInputElement;
