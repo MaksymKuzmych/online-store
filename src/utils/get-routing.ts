@@ -33,7 +33,7 @@ export function getRouting() {
     location.hash.includes('options=') ||
     location.hash.includes('brands=') ||
     location.hash.includes('price=') ||
-    location.hash.includes('brands=')
+    location.hash.includes('stock=')
   ) {
     hashToLocalData();
     main.innerHTML = '';
