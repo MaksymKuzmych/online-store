@@ -85,5 +85,5 @@ export function setRouting(view?: boolean, target?: HTMLElement): void {
     );
   }
 
-  location.hash = hash.join('&');
+  location.hash = `?${hash.join('&')}`;
 }
