@@ -1,7 +1,7 @@
 import { getLocalData } from './get-local-data';
 import { FlatArray } from '../interfaces';
 
-export function setRouting(view?: boolean, target?: HTMLElement) {
+export function setRouting(view?: boolean, target?: HTMLElement): void {
   const oldHash = location.hash;
   const local = getLocalData();
   const hash: FlatArray<string> = [];
@@ -69,5 +69,5 @@ export function setRouting(view?: boolean, target?: HTMLElement) {
     );
   }
 
-  location.hash = hash.join('&');
+  location.hash = `?${hash.join('&')}`;
 }

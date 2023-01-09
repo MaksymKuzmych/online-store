@@ -34,7 +34,7 @@ export function changeQuantity(item: HTMLDivElement, watch: IWatch): void {
         );
         local.localCounter -= 1;
         local.localAmount -= watch.price;
-        if (local.localCart.length / local.localLimit < local.localPage) {
+        if (Math.ceil(local.localCart.length / local.localLimit) < local.localPage) {
           local.localPage -= 1;
         }
         setInnerText();

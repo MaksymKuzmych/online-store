@@ -18,10 +18,10 @@ export function getRouting() {
   if (location.hash === '') {
     resetFilters();
   }
-  if (location.hash === '#cart') {
+  if (location.hash.slice(0, 5) === '#cart') {
     renderCart();
   }
-  if (location.hash.includes('products')) {
+  if (location.hash.slice(0, 9) === '#products') {
     const id = location.hash.split('/').reverse()[0];
     main.innerHTML = '';
     main.appendChild(renderDescription(+id));
