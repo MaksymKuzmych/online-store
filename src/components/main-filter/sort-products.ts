@@ -2,6 +2,7 @@ import { filteredArray, chosenBrands, isBrandChecked } from './filter-products';
 import { renderProductsPage } from '../../templates/render-products-page';
 import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
+import { setRouting } from '../../utils/set-routing';
 
 export function sortProductsListener(filtersEl: HTMLElement): void {
   const sortSelect = filtersEl.querySelector('#sort') as HTMLSelectElement;
@@ -12,6 +13,7 @@ export function sortProductsListener(filtersEl: HTMLElement): void {
 
   sortSelect.addEventListener('change', () => {
     sortProducts(filtersEl);
+    setRouting();
   });
 }
 

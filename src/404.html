@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="https://maksymkuzmych.github.io/online-store/assets/icons/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
+    <title>Page not found</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        box-sizing: border-box;
+        font-family: 'Roboto Slab', serif;
+      }
+
+      a {
+        display: inline-block;
+      }
+
+      html,
+      .body__not-found {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .not-found__header {
+        padding: 5px 20px;
+        background-color: #463f3a;
+      }
+
+      .logo {
+        height: 30px;
+        height: 30px;
+        transition: all 0.3s;
+      }
+
+      .not-found__main {
+        flex-grow: 1;
+        background-color: #bcb8b1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .not-found__title {
+        font-size: 45px;
+        font-weight: 700;
+      }
+
+      .logo:hover {
+        transform: scale(1.1);
+      }
+
+      .not-found__logo {
+        height: 50px;
+      }
+
+      .not-found__footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 20px;
+        align-items: center;
+        background-color: #8a817c;
+        color: #f4f3ee;
+      }
+    </style>
+  </head>
+  <body class="body__not-found not-found">
+    <header class="not-found__header">
+      <a href="https://maksymkuzmych.github.io/online-store/" class="not-found__back">
+        <img
+          src="https://maksymkuzmych.github.io/online-store/assets/icons/Watch4You.svg"
+          alt="Logo"
+          class="not-found__logo logo"
+        />
+      </a>
+    </header>
+    <main class="not-found__main">
+      <h1 class="not-found__title">PAGE NOT FOUND</h1>
+    </main>
+    <footer class="not-found__footer">
+      <div class="footer__github">
+        <a href="https://github.com/MaksymKuzmych" class="footer__btn-github btn">
+          <img
+            src="https://maksymkuzmych.github.io/online-store/assets/icons/github.svg"
+            alt="github"
+            class="footer__github-logo logo"
+          />
+        </a>
+        <a href="https://github.com/vladyka-nazarii" class="footer__btn-github btn">
+          <img
+            src="https://maksymkuzmych.github.io/online-store/assets/icons/github.svg"
+            alt="github"
+            class="footer__github-logo logo"
+          />
+        </a>
+      </div>
+      <a href="https://rs.school/js/" class="footer__btn-rsschool btn">
+        <img
+          src="https://maksymkuzmych.github.io/online-store/assets/icons/rs_school_js.svg"
+          alt="rsschool"
+          class="footer__rsschool-logo logo"
+        />
+      </a>
+    </footer>
+  </body>
+</html>

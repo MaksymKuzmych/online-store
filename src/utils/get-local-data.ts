@@ -1,4 +1,4 @@
-import { findLimitValue } from '../components/main-filter/multirange';
+import { findLimitValue } from './find-limit-value';
 import { ILocalData } from '../interfaces';
 import { watchData } from '../watch-data/watch-data';
 
@@ -59,7 +59,7 @@ export function getLocalData(): ILocalData {
   }
   if (localFilters) {
     localStorageData.localFilters = JSON.parse(localFilters);
-    }
+  }
   if (localPromo) {
     localStorageData.localPromo = JSON.parse(localPromo);
   }

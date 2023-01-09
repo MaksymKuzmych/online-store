@@ -3,7 +3,7 @@ import { getLocalData } from '../../utils/get-local-data';
 import { renderFilters } from './main-filter';
 import { renderProductsPage } from '../../templates/render-products-page';
 import { watchData } from '../../watch-data/watch-data';
-import { findLimitValue } from './multirange';
+import { findLimitValue } from '../../utils/find-limit-value';
 
 export function resetFiltersListener(filtersEl: HTMLElement): void {
   filtersEl.addEventListener('click', (event) => {
@@ -15,7 +15,7 @@ export function resetFiltersListener(filtersEl: HTMLElement): void {
   });
 }
 
-export function resetFilters(): void {
+export function resetFilters(firstLoad?: boolean): void {
   const main = document.querySelector('.main') as HTMLElement;
   const local = getLocalData();
 
@@ -48,4 +48,7 @@ export function resetFilters(): void {
   main.innerHTML = '';
   main.appendChild(renderFilters());
   renderProductsPage(watchData);
+  if (!firstLoad) {
+    location.hash = '';
+  }
 }

@@ -4,11 +4,15 @@ import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
 import { openSumbitFormListener } from './checkout';
 
-export function renderEmptyCart(): HTMLElement {
-  const empty = document.createElement('h1');
-  empty.classList.add('title-empty');
-  empty.innerText = 'Cart is Empty';
-  return empty;
+function renderEmptyCart(): HTMLElement {
+  const emptyContainer = document.createElement('div');
+  emptyContainer.classList.add('empty');
+
+  emptyContainer.innerHTML = `
+  <h1 class="title-empty">Cart is Empty</h1>
+  <img src="./assets/icons/empty-cart.jpg" alt="empty-cart">
+  `;
+  return emptyContainer;
 }
 
 export function renderCart(): void {
@@ -71,4 +75,5 @@ export function renderCart(): void {
 
   main.innerHTML = '';
   main.appendChild(cart);
+  location.hash = 'cart';
 }

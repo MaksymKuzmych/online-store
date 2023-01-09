@@ -1,5 +1,6 @@
 import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
+import { setRouting } from '../../utils/set-routing';
 
 export function changeViewListener(filtersEl: HTMLElement): void {
   filtersEl.addEventListener('click', (event) => {
@@ -17,6 +18,7 @@ export function changeViewListener(filtersEl: HTMLElement): void {
 
       local.localFilters.view = 'big';
       setLocalData(local);
+      setRouting(true);
     }
 
     if (target.classList.contains('sort-bar__view-small') || target.classList.contains('sort-bar__view-small-point')) {
@@ -28,6 +30,7 @@ export function changeViewListener(filtersEl: HTMLElement): void {
 
       local.localFilters.view = 'small';
       setLocalData(local);
+      setRouting(true);
     }
   });
 }

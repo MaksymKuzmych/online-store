@@ -5,12 +5,15 @@ import { renderProductsPage } from '../../templates/render-products-page';
 import { sortProducts } from './sort-products';
 import { setLocalData } from '../../utils/set-local-data';
 import { getLocalData } from '../../utils/get-local-data';
-import { findLimitValue } from './multirange';
+import { findLimitValue } from '../../utils/find-limit-value';
+import { setMultirange } from './multirange';
+import { setRouting } from '../../utils/set-routing';
 
 export let filteredArray = [...watchData];
 export let chosenBrands: IWatch[] = [];
-export let nazaraData: IWatch[] = [];
 export let isBrandChecked = false;
+export let isMultirange = true;
+export let finalArray: IWatch[] = [];
 
 function filterOptions(filtersEl: HTMLElement): void {
   const local = getLocalData();
@@ -104,49 +107,75 @@ function filterRanges(filtersEl: HTMLElement): void {
   const priceTo = filtersEl.querySelector('.slider__to-data__input-price') as HTMLInputElement;
   const stockFrom = filtersEl.querySelector('.slider__from-data__input-stock') as HTMLInputElement;
   const stockTo = filtersEl.querySelector('.slider__to-data__input-stock') as HTMLInputElement;
-
-  filteredArray = filteredArray.filter((el) => {
-    return (
-      el.price >= +priceFrom.value &&
-      el.price <= +priceTo.value &&
-      el.stock >= +stockFrom.value &&
-      el.stock <= +stockTo.value
-    );
-  });
+  if (isMultirange) {
+    filteredArray = filteredArray.filter((el) => {
+      return (
+        el.price >= +priceFrom.value &&
+        el.price <= +priceTo.value &&
+        el.stock >= +stockFrom.value &&
+        el.stock <= +stockTo.value
+      );
+    });
+  }
 
   local.localFilters.priceFrom = +priceFrom.value;
   local.localFilters.priceTo = +priceTo.value;
   local.localFilters.stockFrom = +stockFrom.value;
   local.localFilters.stockTo = +stockTo.value;
-  local.localFilters.priceMin = findLimitValue(nazaraData, 'price', 'min');
-  local.localFilters.priceMax = findLimitValue(nazaraData, 'price', 'max');
-  local.localFilters.stockMin = findLimitValue(nazaraData, 'stock', 'min');
-  local.localFilters.stockMax = findLimitValue(nazaraData, 'stock', 'max');
   setLocalData(local);
 }
 
 export function applyAllFilters(filtersEl: HTMLElement): void {
   filterOptions(filtersEl);
-  filterBrands(filtersEl);
-
-  nazaraData = isBrandChecked ? chosenBrands : filteredArray;
-
   filterRanges(filtersEl);
+  filterBrands(filtersEl);
   sortProducts(filtersEl);
 
   const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
+  finalArray = [...itemsArray];
 
   renderProductsPage(itemsArray);
   fillQuantity(filtersEl, itemsArray);
+}
+
+export function setInputValues(filtersEl: HTMLElement): void {
+  const local = getLocalData();
+  local.localFilters.priceMin = local.localFilters.priceFrom = findLimitValue(finalArray, 'price', 'min');
+  local.localFilters.priceMax = local.localFilters.priceTo = findLimitValue(finalArray, 'price', 'max');
+  local.localFilters.stockMin = local.localFilters.stockFrom = findLimitValue(finalArray, 'stock', 'min');
+  local.localFilters.stockMax = local.localFilters.stockTo = findLimitValue(finalArray, 'stock', 'max');
+  setLocalData(local);
+  setMultirange(filtersEl);
 }
 
 export function filterProductsListener(filtersEl: HTMLElement): void {
   const allInputs = filtersEl.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
 
   allInputs.forEach((el) => {
-    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', () => {
-      applyAllFilters(filtersEl);
+    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', (event) => {
+      const target = event.target as HTMLElement;
+      if (target.classList.contains('input-number')) {
+        isMultirange = true;
+        applyAllFilters(filtersEl);
+      } else {
+        isMultirange = false;
+        applyAllFilters(filtersEl);
+        setInputValues(filtersEl);
+        if (el.type === 'checkbox') {
+          setRouting();
+        }
+      }
     });
+
+    if (el.type === 'search') {
+      el.addEventListener('change', () => setRouting());
+    }
+    if (el.type === 'number') {
+      el.addEventListener('change', (event) => {
+        const target = event.target as HTMLElement;
+        setRouting(false, target);
+      });
+    }
   });
 
   filtersEl.addEventListener('mousedown', (event) => {
@@ -154,7 +183,9 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
 
     if (target.classList.contains('multi-range__btn')) {
       document.addEventListener('mouseup', function applyFiltersListener() {
+        isMultirange = true;
         applyAllFilters(filtersEl);
+        setRouting(false, target);
         document.removeEventListener('mouseup', applyFiltersListener);
       });
     }
