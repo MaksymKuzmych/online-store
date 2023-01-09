@@ -62,12 +62,28 @@ export function setRouting(view?: boolean, target?: HTMLElement): void {
     hash.push(
       `price=${local.localFilters.priceMin},${local.localFilters.priceFrom},${local.localFilters.priceTo},${local.localFilters.priceMax}`,
     );
+    if (
+      local.localFilters.stockFrom !== local.localFilters.stockMin ||
+      local.localFilters.stockTo !== local.localFilters.stockMax
+    ) {
+      hash.push(
+        `stock=${local.localFilters.stockMin},${local.localFilters.stockFrom},${local.localFilters.stockTo},${local.localFilters.stockMax}`,
+      );
+    }
   }
   if (target?.classList.contains('stock')) {
+    if (
+      local.localFilters.priceFrom !== local.localFilters.priceMin ||
+      local.localFilters.priceTo !== local.localFilters.priceMax
+    ) {
+      hash.push(
+        `price=${local.localFilters.priceMin},${local.localFilters.priceFrom},${local.localFilters.priceTo},${local.localFilters.priceMax}`,
+      );
+    }
     hash.push(
       `stock=${local.localFilters.stockMin},${local.localFilters.stockFrom},${local.localFilters.stockTo},${local.localFilters.stockMax}`,
     );
   }
 
-  location.hash = `?${hash.join('&')}`;
+  location.hash = hash.join('&');
 }

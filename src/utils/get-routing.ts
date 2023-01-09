@@ -17,16 +17,13 @@ export function getRouting() {
 
   if (location.hash === '') {
     resetFilters();
-  }
-  if (location.hash.slice(0, 5) === '#cart') {
+  } else if (location.hash.slice(0, 5) === '#cart') {
     renderCart();
-  }
-  if (location.hash.slice(0, 9) === '#products') {
+  } else if (location.hash.slice(0, 9) === '#products') {
     const id = location.hash.split('/').reverse()[0];
     main.innerHTML = '';
     main.appendChild(renderDescription(+id));
-  }
-  if (
+  } else if (
     location.hash.includes('search=') ||
     location.hash.includes('sort=') ||
     location.hash.includes('view=') ||
@@ -36,6 +33,11 @@ export function getRouting() {
     location.hash.includes('stock=')
   ) {
     hashToLocalData();
+    main.innerHTML = '';
+    main.appendChild(renderFilters());
+    const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
+    renderProductsPage(itemsArray);
+  } else {
     main.innerHTML = '';
     main.appendChild(renderFilters());
     const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
