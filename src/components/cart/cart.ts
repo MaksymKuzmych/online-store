@@ -4,7 +4,7 @@ import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
 import { openSumbitFormListener } from './checkout';
 
-function renderEmptyCart(): HTMLElement {
+export function renderEmptyCart(): HTMLElement {
   const emptyContainer = document.createElement('div');
   emptyContainer.classList.add('empty');
 

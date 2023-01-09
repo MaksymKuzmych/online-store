@@ -1,4 +1,4 @@
-import { findLimitValue } from '../components/main-filter/multirange';
+import { findLimitValue } from '../utils/find-limit-value';
 import { watchData } from '../watch-data/watch-data';
 
 describe('Find limit value:', () => {
