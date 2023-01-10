@@ -17,9 +17,9 @@ body.appendChild(main);
 body.appendChild(renderFooter());
 body.appendChild(renderOrderForm());
 
+getRoutingListener();
 if (location.hash) {
   getRouting();
-  getRoutingListener();
 } else {
   resetFilters(true);
 }
