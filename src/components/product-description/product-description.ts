@@ -23,6 +23,8 @@ export function renderDescription(id: number): HTMLElement {
 
   description.classList.add('description');
   description.innerHTML = `
+  <p class="description__crumbs">STORE > PRODUCTS > ${brand.toUpperCase()} > ${name.toUpperCase()}</p>
+  <div class="description__wrapper">
     <div class="description__images">
       <img src="./assets/watch-images/${id}/1.jpg" alt="watch-image" class="description__image">
       <img src="./assets/watch-images/${id}/2.jpg" alt="watch-image" class="description__image">
@@ -38,6 +40,7 @@ export function renderDescription(id: number): HTMLElement {
       <button class="order_add-to-cart order__btn options__btn_add">${buttonText}</button>
       <button class="order_buy-now order__btn">Buy now</button>
     </div>
+  </div>
   `;
 
   imagesListener(description);
