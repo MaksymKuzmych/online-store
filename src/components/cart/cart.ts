@@ -4,7 +4,7 @@ import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
 import { openSumbitFormListener } from './checkout';
 
-export function renderEmptyCart(): HTMLElement {
+export function renderEmptyCart(): HTMLDivElement {
   const emptyContainer = document.createElement('div');
   emptyContainer.classList.add('empty');
 
@@ -17,7 +17,7 @@ export function renderEmptyCart(): HTMLElement {
 
 export function renderCart(): void {
   const main = document.querySelector('.main') as HTMLElement;
-  const local = getLocalData();
+  const { localLimit, localPage, localCounter, localAmount, localCart } = getLocalData();
 
   const cart = document.createElement('div');
   cart.classList.add('cart');
@@ -28,12 +28,12 @@ export function renderCart(): void {
     <div class="cart__products__page-control">
       <div class="cart__products__limit">
         <p class="limit__text">LIMIT:</p>
-        <input class="cart__products__limit-input" type="number" name="limit" id="limit" min="1" value="${local.localLimit}">
+        <input class="cart__products__limit-input" type="number" name="limit" id="limit" min="1" value="${localLimit}">
       </div>
       <div class="cart__products__pages">
         <p class="pages__text">PAGE:</p>
         <button class="decrese pages-button"><</button>
-        <p class="page__number">${local.localPage}</p>
+        <p class="page__number">${localPage}</p>
         <button class="increse pages-button">></button>
       </div>
     </div>
@@ -42,8 +42,8 @@ export function renderCart(): void {
   </div>
   <div class="cart__total">
   <h2 class="cart__total__title">Summary</h2>
-  <p class="cart__total__products">Products: <span class="cart__items-counter">${local.localCounter}</span></p>
-  <p class="cart__total__total">Total: $<span class="cart__items-total">${local.localAmount}</span>.00</p>
+  <p class="cart__total__products">Products: <span class="cart__items-counter">${localCounter}</span></p>
+  <p class="cart__total__total">Total: $<span class="cart__items-total">${localAmount}</span>.00</p>
   <p class="cart__total__total total__promo"></p>
   <div class="cart__total__applied-codes hide"></div>
   <input class="cart__total__promo-input" type="text" placeholder="Enter promo code">
@@ -55,9 +55,9 @@ export function renderCart(): void {
 
   const cartProducts = cart.querySelector('.cart__products__items') as HTMLDivElement;
 
-  local.localCart.forEach((watchItem, index) => {
+  localCart.forEach((watchItem, index) => {
     if (watchItem) {
-      if (index + 1 > (local.localPage - 1) * local.localLimit && index + 1 <= local.localPage * local.localLimit) {
+      if (index + 1 > (localPage - 1) * localLimit && index + 1 <= localPage * localLimit) {
         const itemElement = new CartItem(watchItem, index);
         cartProducts.appendChild(itemElement.renderCartItem());
       }
@@ -68,7 +68,7 @@ export function renderCart(): void {
   openSumbitFormListener(cart);
   addPromo(cart);
 
-  if (local.localCart.length === 0) {
+  if (localCart.length === 0) {
     cart.innerHTML = '';
     cart.appendChild(renderEmptyCart());
   }

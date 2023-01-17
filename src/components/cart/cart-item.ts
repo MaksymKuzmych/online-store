@@ -14,7 +14,7 @@ export class CartItem {
 
   renderCartItem(): HTMLDivElement {
     const cartItem = document.createElement('div');
-    const watch = watchData.find((element) => element.id === this.item.id) as IWatch;
+    const watch = watchData.find((watch) => watch.id === this.item.id) as IWatch;
     const { id, name, clockFace, mount, stock, price } = watch;
 
     cartItem.classList.add('cart__item');
