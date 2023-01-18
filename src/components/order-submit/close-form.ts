@@ -1,4 +1,4 @@
-export function closeFormListener(orderBackground: HTMLElement): void {
+export function closeFormListener(orderBackground: HTMLDivElement): void {
   orderBackground.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
 

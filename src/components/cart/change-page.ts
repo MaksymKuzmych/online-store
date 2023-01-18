@@ -27,7 +27,7 @@ export function changePage(cart: HTMLDivElement): void {
 
   limitInput.addEventListener('input', () => {
     const local = getLocalData();
-    if (+limitInput.value > 0 && +limitInput.value <= local.localCart.length && !isNaN(+limitInput.value)) {
+    if (+limitInput.value > 0 && +limitInput.value <= local.localCart.length) {
       if (+limitInput.value * local.localPage > local.localCart.length) {
         local.localPage = Math.ceil(local.localCart.length / +limitInput.value);
       }

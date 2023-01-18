@@ -2,55 +2,55 @@ import { getLocalData } from './get-local-data';
 
 export function setRouting(view?: boolean, target?: HTMLElement): void {
   const oldHash = location.hash;
-  const local = getLocalData();
+  const { localFilters } = getLocalData();
   const hash: string[] = [];
   const options: string[] = [];
   const brands: string[] = [];
 
-  if (local.localFilters.search) {
-    hash.push(`search=${local.localFilters.search}`);
+  if (localFilters.search) {
+    hash.push(`search=${localFilters.search}`);
   }
 
-  if (local.localFilters.sort !== 'choose') {
-    hash.push(`sort=${local.localFilters.sort}`);
+  if (localFilters.sort !== 'choose') {
+    hash.push(`sort=${localFilters.sort}`);
   }
 
   if (view || oldHash.includes('view=')) {
-    hash.push(`view=${local.localFilters.view}`);
+    hash.push(`view=${localFilters.view}`);
   }
 
-  if (local.localFilters.optionsPointer) {
+  if (localFilters.optionsPointer) {
     options.push('pointer');
   }
-  if (local.localFilters.optionsDigital) {
+  if (localFilters.optionsDigital) {
     options.push('digital');
   }
-  if (local.localFilters.optionsStrap) {
+  if (localFilters.optionsStrap) {
     options.push('strap');
   }
-  if (local.localFilters.optionsBracelet) {
+  if (localFilters.optionsBracelet) {
     options.push('bracelet');
   }
   if (options.length) {
     hash.push(`options=${options.join(',')}`);
   }
 
-  if (local.localFilters.brandCasio) {
+  if (localFilters.brandCasio) {
     brands.push('casio');
   }
-  if (local.localFilters.brandCitizen) {
+  if (localFilters.brandCitizen) {
     brands.push('citizen');
   }
-  if (local.localFilters.brandNorthEdge) {
+  if (localFilters.brandNorthEdge) {
     brands.push('north-edge');
   }
-  if (local.localFilters.brandSeiko) {
+  if (localFilters.brandSeiko) {
     brands.push('seiko');
   }
-  if (local.localFilters.brandTagHeuer) {
+  if (localFilters.brandTagHeuer) {
     brands.push('tag-heuer');
   }
-  if (local.localFilters.brandFossil) {
+  if (localFilters.brandFossil) {
     brands.push('fossil');
   }
   if (brands.length) {
@@ -59,28 +59,22 @@ export function setRouting(view?: boolean, target?: HTMLElement): void {
 
   if (target?.classList.contains('price')) {
     hash.push(
-      `price=${local.localFilters.priceMin},${local.localFilters.priceFrom},${local.localFilters.priceTo},${local.localFilters.priceMax}`,
+      `price=${localFilters.priceMin},${localFilters.priceFrom},${localFilters.priceTo},${localFilters.priceMax}`,
     );
-    if (
-      local.localFilters.stockFrom !== local.localFilters.stockMin ||
-      local.localFilters.stockTo !== local.localFilters.stockMax
-    ) {
+    if (localFilters.stockFrom !== localFilters.stockMin || localFilters.stockTo !== localFilters.stockMax) {
       hash.push(
-        `stock=${local.localFilters.stockMin},${local.localFilters.stockFrom},${local.localFilters.stockTo},${local.localFilters.stockMax}`,
+        `stock=${localFilters.stockMin},${localFilters.stockFrom},${localFilters.stockTo},${localFilters.stockMax}`,
       );
     }
   }
   if (target?.classList.contains('stock')) {
-    if (
-      local.localFilters.priceFrom !== local.localFilters.priceMin ||
-      local.localFilters.priceTo !== local.localFilters.priceMax
-    ) {
+    if (localFilters.priceFrom !== localFilters.priceMin || localFilters.priceTo !== localFilters.priceMax) {
       hash.push(
-        `price=${local.localFilters.priceMin},${local.localFilters.priceFrom},${local.localFilters.priceTo},${local.localFilters.priceMax}`,
+        `price=${localFilters.priceMin},${localFilters.priceFrom},${localFilters.priceTo},${localFilters.priceMax}`,
       );
     }
     hash.push(
-      `stock=${local.localFilters.stockMin},${local.localFilters.stockFrom},${local.localFilters.stockTo},${local.localFilters.stockMax}`,
+      `stock=${localFilters.stockMin},${localFilters.stockFrom},${localFilters.stockTo},${localFilters.stockMax}`,
     );
   }
 
