@@ -3,6 +3,8 @@ import { changePage } from './change-page';
 import { addPromo } from './add-promo';
 import { getLocalData } from '../../utils/get-local-data';
 import { openSumbitFormListener } from './checkout';
+import { watchData } from '../../watch-data/watch-data';
+import { IWatch } from '../../interfaces';
 
 export function renderEmptyCart(): HTMLDivElement {
   const emptyContainer = document.createElement('div');
@@ -58,7 +60,8 @@ export function renderCart(): void {
   localCart.forEach((watchItem, index) => {
     if (watchItem) {
       if (index + 1 > (localPage - 1) * localLimit && index + 1 <= localPage * localLimit) {
-        const itemElement = new CartItem(watchItem, index);
+        const watch = watchData.find((watch) => watch.id === watchItem.id) as IWatch;
+        const itemElement = new CartItem(watch, watchItem.quantity, index);
         cartProducts.appendChild(itemElement.renderCartItem());
       }
     }
