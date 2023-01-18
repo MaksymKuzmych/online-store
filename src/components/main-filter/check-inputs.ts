@@ -1,6 +1,6 @@
 import { getLocalData } from '../../utils/get-local-data';
 
-export function checkInputs(filtersEl: HTMLElement): void {
+export function checkInputs(filtersEl: HTMLDivElement): void {
   const { localFilters } = getLocalData();
 
   const {

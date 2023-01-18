@@ -1,4 +1,4 @@
-export function imagesListener(descriptionEl: HTMLElement): void {
+export function imagesListener(descriptionEl: HTMLDivElement): void {
   const mainImage = descriptionEl.querySelector('.description__main-image') as HTMLImageElement;
 
   descriptionEl.addEventListener('click', (event) => {

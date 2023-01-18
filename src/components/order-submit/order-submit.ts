@@ -1,9 +1,9 @@
-import { checkPayment } from './check-payment';
+import { checkPaymentListener } from './check-payment';
 import { closeFormListener } from './close-form';
-import { fillCardView } from './fill-card-view';
+import { fillCardViewListener } from './fill-card-view';
 import { orderValidation } from './order-vaildation';
 
-export function renderOrderForm(): HTMLElement {
+export function renderOrderForm(): HTMLDivElement {
   const orderBackground = document.createElement('div');
 
   orderBackground.classList.add('order-background');
@@ -99,8 +99,8 @@ export function renderOrderForm(): HTMLElement {
   `;
 
   orderValidation(orderBackground);
-  checkPayment(orderBackground);
-  fillCardView(orderBackground);
+  checkPaymentListener(orderBackground);
+  fillCardViewListener(orderBackground);
   closeFormListener(orderBackground);
 
   return orderBackground;

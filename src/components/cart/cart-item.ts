@@ -4,17 +4,17 @@ import { changeQuantity } from './change-quantity';
 import { setItemListener } from './set-item-listener';
 
 export class CartItem {
-  item: ICart;
+  cartItem: ICart;
   index: number;
 
-  constructor(item: ICart, index: number) {
-    this.item = item;
+  constructor(cartItem: ICart, index: number) {
+    this.cartItem = cartItem;
     this.index = index;
   }
 
   renderCartItem(): HTMLDivElement {
     const cartItem = document.createElement('div');
-    const watch = watchData.find((element) => element.id === this.item.id) as IWatch;
+    const watch = watchData.find((element) => element.id === this.cartItem.id) as IWatch;
     const { id, name, clockFace, mount, stock, price } = watch;
 
     cartItem.classList.add('cart__item');
@@ -32,12 +32,14 @@ export class CartItem {
       <div class="cart__item__number__controls">
         <div class="cart__item__inc-dec">
           <button class="cart__item__button decrease" data-id="${id}">-</button>
-          <p class="cart__item__quantity">${this.item.quantity}</p>
+          <p class="cart__item__quantity">${this.cartItem.quantity}</p>
           <button class="cart__item__button increase" data-id="${id}">+</button>
         </div>
         <p class="cart__item__stock-text">Stock: <span class="cart__item__stock">${stock}</span></p>
       </div>
-      <p class="cart__item__amount-text">$<span class="cart__item__amount">${price * this.item.quantity}</span>.00</p>
+      <p class="cart__item__amount-text">$<span class="cart__item__amount">${
+        price * this.cartItem.quantity
+      }</span>.00</p>
     </div>
     `;
 

@@ -5,13 +5,11 @@ import { renderProductsPage } from '../../templates/render-products-page';
 import { watchData } from '../../watch-data/watch-data';
 import { findLimitValue } from '../../utils/find-limit-value';
 
-export function resetFiltersListener(filtersEl: HTMLElement): void {
-  filtersEl.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
+export function resetFiltersListener(filtersEl: HTMLDivElement): void {
+  const resetBtn = filtersEl.querySelector('.reset-total__btn-reset') as HTMLButtonElement;
 
-    if (target.classList.contains('reset-total__btn-reset')) {
-      resetFilters();
-    }
+  resetBtn.addEventListener('click', () => {
+    resetFilters();
   });
 }
 
@@ -47,7 +45,9 @@ export function resetFilters(firstLoad?: boolean): void {
 
   main.innerHTML = '';
   main.appendChild(renderFilters());
+
   renderProductsPage(watchData);
+
   if (!firstLoad) {
     location.hash = '';
   }

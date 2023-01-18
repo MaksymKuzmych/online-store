@@ -3,30 +3,30 @@ import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
 import { renderCart } from '../cart/cart';
 
-export function buyNowListener(descriptionEl: HTMLElement, item: IWatch): void {
+export function buyNowListener(descriptionEl: HTMLDivElement, watch: IWatch): void {
   const cartCounter = document.querySelector('.purchases__counter') as HTMLParagraphElement;
   const totalAmount = document.querySelector('.purchases__amount_number') as HTMLSpanElement;
+  const buyNowBtn = descriptionEl.querySelector('.order_buy-now') as HTMLButtonElement;
 
-  descriptionEl.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    const orderForm = document.querySelector('.order-background') as HTMLElement;
-    const addButtonText = descriptionEl.querySelector('.order_add-to-cart') as HTMLElement;
+  buyNowBtn.addEventListener('click', () => {
+    const orderForm = document.querySelector('.order-background') as HTMLDivElement;
+    const addBtn = descriptionEl.querySelector('.order_add-to-cart') as HTMLButtonElement;
     const local = getLocalData();
 
-    if (target.classList.contains('order_buy-now')) {
-      if (addButtonText.innerText === 'Add to Cart') {
-        local.localCounter += 1;
-        local.localAmount += item.price;
-        local.localCart.push({ id: item.id, quantity: 1 });
-        addButtonText.innerText = 'Remove from Cart';
-      }
+    if (addBtn.innerText === 'Add to Cart') {
+      local.localCounter += 1;
+      local.localAmount += watch.price;
+      local.localCart.push({ id: watch.id, quantity: 1 });
 
-      cartCounter.innerText = `${local.localCounter}`;
-      totalAmount.innerText = `${local.localAmount}`;
-
-      setLocalData(local);
-      renderCart();
-      orderForm.classList.remove('hide');
+      addBtn.innerText = 'Remove from Cart';
     }
+
+    cartCounter.innerText = `${local.localCounter}`;
+    totalAmount.innerText = `${local.localAmount}`;
+
+    setLocalData(local);
+    renderCart();
+
+    orderForm.classList.remove('hide');
   });
 }

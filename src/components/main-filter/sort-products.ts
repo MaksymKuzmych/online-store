@@ -4,11 +4,11 @@ import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
 import { setRouting } from '../../utils/set-routing';
 
-export function sortProductsListener(filtersEl: HTMLElement): void {
+export function sortProductsListener(filtersEl: HTMLDivElement): void {
   const sortSelect = filtersEl.querySelector('#sort') as HTMLSelectElement;
-  const local = getLocalData();
+  const { localFilters } = getLocalData();
 
-  sortSelect.value = local.localFilters.sort;
+  sortSelect.value = localFilters.sort;
   sortProducts(filtersEl);
 
   sortSelect.addEventListener('change', () => {
@@ -17,7 +17,7 @@ export function sortProductsListener(filtersEl: HTMLElement): void {
   });
 }
 
-export function sortProducts(filtersEl: HTMLElement): void {
+export function sortProducts(filtersEl: HTMLDivElement): void {
   const local = getLocalData();
   const sortSelect = filtersEl.querySelector('#sort') as HTMLSelectElement;
   const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
@@ -25,15 +25,20 @@ export function sortProducts(filtersEl: HTMLElement): void {
   local.localFilters.sort = sortSelect.value;
   setLocalData(local);
 
-  if (sortSelect.value === 'price-up') {
-    renderProductsPage(itemsArray.sort((a, b) => a.price - b.price));
-  } else if (sortSelect.value === 'price-down') {
-    renderProductsPage(itemsArray.sort((a, b) => b.price - a.price));
-  } else if (sortSelect.value === 'availability-up') {
-    renderProductsPage(itemsArray.sort((a, b) => a.stock - b.stock));
-  } else if (sortSelect.value === 'availability-down') {
-    renderProductsPage(itemsArray.sort((a, b) => b.stock - a.stock));
-  } else {
-    renderProductsPage(itemsArray);
+  switch (sortSelect.value) {
+    case 'price-up':
+      renderProductsPage(itemsArray.sort((a, b) => a.price - b.price));
+      break;
+    case 'price-down':
+      renderProductsPage(itemsArray.sort((a, b) => b.price - a.price));
+      break;
+    case 'availability-up':
+      renderProductsPage(itemsArray.sort((a, b) => a.stock - b.stock));
+      break;
+    case 'availability-down':
+      renderProductsPage(itemsArray.sort((a, b) => b.stock - a.stock));
+      break;
+    default:
+      renderProductsPage(itemsArray);
   }
 }

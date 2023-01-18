@@ -13,7 +13,18 @@ describe('Check empty cart:', () => {
     expect(renderEmptyCart()).toBeInstanceOf(HTMLElement);
   });
 
-  test('should contain class title-empty', () => {
-    expect(renderEmptyCart().classList.contains('title-empty')).toBe(true);
+  test('should have class empty', () => {
+    expect(renderEmptyCart().classList.contains('empty-container')).toBe(true);
+  });
+
+  test('should have image', () => {
+    expect(renderEmptyCart().querySelector('img')).toBeTruthy();
+  });
+
+  test('should return this innerHTML', () => {
+    expect(renderEmptyCart().innerHTML).toEqual(`
+  <h1 class="title-empty">Cart is Empty</h1>
+  <img src="./assets/icons/empty-cart.jpg" alt="empty-cart">
+  `);
   });
 });

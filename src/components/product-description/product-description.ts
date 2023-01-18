@@ -4,25 +4,25 @@ import { getLocalData } from '../../utils/get-local-data';
 import { addToCartListener } from '../product-card/add-to-cart';
 import { buyNowListener } from './buy-now';
 
-export function renderDescription(id: number): HTMLElement {
-  const item = watchData[id - 1];
-  const description = document.createElement('div');
-  const { name, price, brand, clockFace, mount } = item;
-  const local = getLocalData();
-  const buttonText = local.localCart.some((element) => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
+export function renderDescription(id: number): HTMLDivElement {
+  const descriptionEl = document.createElement('div');
+  const watch = watchData[id - 1];
+  const { name, price, brand, clockFace, mount, description } = watch;
+  const { localCart } = getLocalData();
+  const buttonText = localCart.some((watchInCart) => watchInCart.id === id) ? 'Remove from Cart' : 'Add to Cart';
 
   //change view of item-description for this page
-  const text = item.description
-    .slice(0, item.description.length - 1)
+  const text = description
+    .slice(0, description.length - 1)
     .split('; ')
-    .map((el) => {
-      const arr = el.split(' - ');
-      return `${arr[0].toUpperCase()} - [ ${arr[1]} ]`;
+    .map((option) => {
+      const splitOption = option.split(' - ');
+      return `${splitOption[0].toUpperCase()} - [ ${splitOption[1]} ]`;
     })
     .join(`<br>`);
 
-  description.classList.add('description');
-  description.innerHTML = `
+  descriptionEl.classList.add('description');
+  descriptionEl.innerHTML = `
   <p class="description__crumbs">STORE > ${clockFace.toUpperCase()} > ${mount.toUpperCase()} > ${brand.toUpperCase()} > ${name.toUpperCase()}</p>
   <div class="description__wrapper">
     <div class="description__images">
@@ -43,10 +43,10 @@ export function renderDescription(id: number): HTMLElement {
   </div>
   `;
 
-  imagesListener(description);
-  addToCartListener(description, item);
-  buyNowListener(description, item);
+  imagesListener(descriptionEl);
+  addToCartListener(descriptionEl, watch);
+  buyNowListener(descriptionEl, watch);
   location.hash = `products/${brand.toLowerCase()}/${id}`;
 
-  return description;
+  return descriptionEl;
 }

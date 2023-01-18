@@ -5,4 +5,8 @@ describe('Check filters element:', () => {
     expect(renderFilters).toBeDefined();
     expect(renderFilters).not.toBeUndefined();
   });
+
+  test('should be function', () => {
+    expect(renderFilters).toBeInstanceOf(Function);
+  });
 });

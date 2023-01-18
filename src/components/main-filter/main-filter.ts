@@ -13,13 +13,13 @@ import { setMultirange } from './multirange';
 import { resetFiltersListener } from './reset-filters';
 import { sortProductsListener } from './sort-products';
 
-export function renderFilters(): HTMLElement {
+export function renderFilters(): HTMLDivElement {
   const filters = document.createElement('div');
   const itemsArray = isBrandChecked ? chosenBrands : filteredArray;
 
   filters.classList.add('filters');
   filters.innerHTML = `
-  <div class="search-bar">
+<div class="search-bar">
   <input class="search-bar__input" type="search" placeholder="Search product">
   <p class="search-bar__found">Found: <span class="search_bar__result">0</span></p>
 </div>

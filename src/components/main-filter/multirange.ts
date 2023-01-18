@@ -1,6 +1,6 @@
 import { setLimitValue } from './set-limit-value';
 
-export function setMultirange(component: HTMLElement): void {
+export function setMultirange(component: HTMLDivElement): void {
   const fromPrice = component.querySelector('.slider__from-data__input-price') as HTMLInputElement;
   const toPrice = component.querySelector('.slider__to-data__input-price') as HTMLInputElement;
   const fromStock = component.querySelector('.slider__from-data__input-stock') as HTMLInputElement;

@@ -4,22 +4,21 @@ import { getLocalData } from '../../utils/get-local-data';
 import { openDetailsListener } from './open-details';
 
 export class Card {
-  item: IWatch;
+  watch: IWatch;
 
-  constructor(item: IWatch) {
-    this.item = item;
+  constructor(watch: IWatch) {
+    this.watch = watch;
   }
 
-  renderCard(): HTMLElement {
+  renderCard(): HTMLDivElement {
     const card = document.createElement('div');
-
-    const { id, name, description, price, stock } = this.item;
-    const local = getLocalData();
-    const buttonText = local.localCart.some((element) => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
+    const { id, name, description, price, stock } = this.watch;
+    const { localCart, localFilters } = getLocalData();
+    const buttonText = localCart.some((watchInCart) => watchInCart.id === id) ? 'Remove from Cart' : 'Add to Cart';
 
     card.classList.add('card');
 
-    if (local.localFilters.view === 'small') {
+    if (localFilters.view === 'small') {
       card.classList.add('card-small');
     }
 
@@ -39,7 +38,7 @@ export class Card {
     </div>
     `;
 
-    addToCartListener(card, this.item);
+    addToCartListener(card, this.watch);
     openDetailsListener(card);
 
     return card;

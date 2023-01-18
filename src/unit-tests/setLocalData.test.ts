@@ -5,4 +5,8 @@ describe('Check local data setter:', () => {
     expect(setLocalData).toBeDefined();
     expect(setLocalData).not.toBeUndefined();
   });
+
+  test('should be function', () => {
+    expect(setLocalData).toBeInstanceOf(Function);
+  });
 });
