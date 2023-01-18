@@ -34,10 +34,6 @@ export function changePage(cart: HTMLDivElement): void {
       local.localLimit = +limitInput.value;
       setLocalData(local);
       renderCart();
-    } else if (+limitInput.value < local.localLimit) {
-      local.localLimit = +limitInput.value;
-      setLocalData(local);
-      renderCart();
     } else {
       limitInput.value = `${local.localLimit}`;
     }
