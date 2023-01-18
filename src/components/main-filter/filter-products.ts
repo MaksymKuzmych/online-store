@@ -6,7 +6,7 @@ import { sortProducts } from './sort-products';
 import { setLocalData } from '../../utils/set-local-data';
 import { getLocalData } from '../../utils/get-local-data';
 import { findLimitValue } from '../../utils/find-limit-value';
-import { setMultirange } from './multirange';
+import { updateMultirangePosition } from './multirange';
 import { setRouting } from '../../utils/set-routing';
 
 export let filteredArray = [...watchData];
@@ -15,7 +15,7 @@ export let isBrandChecked = false;
 export let isMultirange = true;
 export let finalArray: IWatch[] = [];
 
-function filterOptions(filtersEl: HTMLElement): void {
+function filterOptions(filtersEl: HTMLDivElement): void {
   const local = getLocalData();
   const pointerOption = filtersEl.querySelector('#clockface-pointer') as HTMLInputElement;
   const digitalOption = filtersEl.querySelector('#clockface-digital') as HTMLInputElement;
@@ -64,7 +64,7 @@ function filterOptions(filtersEl: HTMLElement): void {
   setLocalData(local);
 }
 
-function filterBrands(filtersEl: HTMLElement): void {
+function filterBrands(filtersEl: HTMLDivElement): void {
   const local = getLocalData();
   const casioCheckbox = filtersEl.querySelector('#casio') as HTMLInputElement;
   const citizenCheckbox = filtersEl.querySelector('#citizen') as HTMLInputElement;
@@ -101,7 +101,7 @@ function filterBrands(filtersEl: HTMLElement): void {
   setLocalData(local);
 }
 
-function filterRanges(filtersEl: HTMLElement): void {
+function filterRanges(filtersEl: HTMLDivElement): void {
   const local = getLocalData();
   const priceFrom = filtersEl.querySelector('.slider__from-data__input-price') as HTMLInputElement;
   const priceTo = filtersEl.querySelector('.slider__to-data__input-price') as HTMLInputElement;
@@ -125,7 +125,7 @@ function filterRanges(filtersEl: HTMLElement): void {
   setLocalData(local);
 }
 
-export function applyAllFilters(filtersEl: HTMLElement): void {
+export function applyAllFilters(filtersEl: HTMLDivElement): void {
   filterOptions(filtersEl);
   filterRanges(filtersEl);
   filterBrands(filtersEl);
@@ -138,17 +138,17 @@ export function applyAllFilters(filtersEl: HTMLElement): void {
   fillQuantity(filtersEl, itemsArray);
 }
 
-export function setInputValues(filtersEl: HTMLElement): void {
+export function setInputValues(filtersEl: HTMLDivElement): void {
   const local = getLocalData();
   local.localFilters.priceMin = local.localFilters.priceFrom = findLimitValue(finalArray, 'price', 'min');
   local.localFilters.priceMax = local.localFilters.priceTo = findLimitValue(finalArray, 'price', 'max');
   local.localFilters.stockMin = local.localFilters.stockFrom = findLimitValue(finalArray, 'stock', 'min');
   local.localFilters.stockMax = local.localFilters.stockTo = findLimitValue(finalArray, 'stock', 'max');
   setLocalData(local);
-  setMultirange(filtersEl);
+  updateMultirangePosition(filtersEl);
 }
 
-export function filterProductsListener(filtersEl: HTMLElement): void {
+export function filterProductsListener(filtersEl: HTMLDivElement): void {
   const allInputs = filtersEl.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
 
   allInputs.forEach((el) => {
@@ -178,15 +178,30 @@ export function filterProductsListener(filtersEl: HTMLElement): void {
     }
   });
 
+  function applyMultirange(target: HTMLElement) {
+    isMultirange = true;
+    applyAllFilters(filtersEl);
+    setRouting(false, target);
+  }
+
   filtersEl.addEventListener('mousedown', (event) => {
     const target = event.target as HTMLElement;
 
     if (target.classList.contains('multi-range__btn')) {
       document.addEventListener('mouseup', function applyFiltersListener() {
-        isMultirange = true;
-        applyAllFilters(filtersEl);
-        setRouting(false, target);
+        applyMultirange(target);
         document.removeEventListener('mouseup', applyFiltersListener);
+      });
+    }
+  });
+
+  filtersEl.addEventListener('touchstart', (event) => {
+    const target = event.target as HTMLElement;
+
+    if (target.classList.contains('multi-range__btn')) {
+      document.addEventListener('touchend', function applyFiltersListener() {
+        applyMultirange(target);
+        document.removeEventListener('touchend', applyFiltersListener);
       });
     }
   });
