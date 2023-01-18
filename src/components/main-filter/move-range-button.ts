@@ -1,4 +1,4 @@
-import { connectButtonToInput, findOppositeButton } from './multirange';
+import { connectButtonToInput, findOpposite } from './multirange';
 
 export function moveButtonMouse(eventMousedown: MouseEvent): void {
   const target = eventMousedown.target as HTMLButtonElement;
@@ -80,7 +80,7 @@ function moveButton(
 
     if (target.classList.contains('left')) {
       connectButtonToInput(target).value = `${Math.round(
-        ((+connectButtonToInput(findOppositeButton(target)).max - +connectButtonToInput(target).min) *
+        ((+connectButtonToInput(findOpposite(target) as HTMLButtonElement).max - +connectButtonToInput(target).min) *
           (offset + buttonPosition)) /
           100 +
           +connectButtonToInput(target).min,
@@ -89,10 +89,10 @@ function moveButton(
       rangeBackground.style.marginLeft = `${buttonPosition + offset}%`;
     } else {
       connectButtonToInput(target).value = `${Math.round(
-        ((+connectButtonToInput(target).max - +connectButtonToInput(findOppositeButton(target)).min) *
+        ((+connectButtonToInput(target).max - +connectButtonToInput(findOpposite(target) as HTMLButtonElement).min) *
           (offset + buttonPosition)) /
           100 +
-          +connectButtonToInput(findOppositeButton(target)).min,
+          +connectButtonToInput(findOpposite(target) as HTMLButtonElement).min,
       )}`;
       rangeBackground.style.width = `${buttonPosition + offset - minPosition}%`;
       rangeBackground.style.marginLeft = `${minPosition}%`;
@@ -105,9 +105,9 @@ function setLimitPosition(target: HTMLButtonElement): number[] {
   let maxPosition = 100;
 
   if (target.classList.contains('left')) {
-    maxPosition = +findOppositeButton(target).style.left.slice(0, -1);
+    maxPosition = +findOpposite(target).style.left.slice(0, -1);
   } else {
-    minPosition = +findOppositeButton(target).style.left.slice(0, -1);
+    minPosition = +findOpposite(target).style.left.slice(0, -1);
   }
 
   return [minPosition, maxPosition];

@@ -1,12 +1,11 @@
 import { getLocalData } from './get-local-data';
-import { FlatArray } from '../interfaces';
 
 export function setRouting(view?: boolean, target?: HTMLElement): void {
   const oldHash = location.hash;
   const local = getLocalData();
-  const hash: FlatArray<string> = [];
-  const options: FlatArray<string> = [];
-  const brands: FlatArray<string> = [];
+  const hash: string[] = [];
+  const options: string[] = [];
+  const brands: string[] = [];
 
   if (local.localFilters.search) {
     hash.push(`search=${local.localFilters.search}`);

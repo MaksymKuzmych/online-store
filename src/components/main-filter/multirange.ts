@@ -19,11 +19,21 @@ export function updateMultirangePosition(filtersContainer: HTMLDivElement) {
   rangeInputs.forEach((input) => changeRange(input));
 }
 
-export function findOppositeButton(currentButton: HTMLButtonElement): HTMLButtonElement {
-  const rangeButtons = [
-    ...(currentButton.parentElement?.querySelectorAll('.multi-range__btn') as NodeListOf<HTMLButtonElement>),
+export function findOpposite<Type>(current: Type): Type {
+  if ((current as HTMLButtonElement).tagName === 'BUTTON') {
+    const rangeButtons = [
+      ...((current as HTMLButtonElement).parentElement?.querySelectorAll(
+        '.multi-range__btn',
+      ) as NodeListOf<HTMLButtonElement>),
+    ];
+    return rangeButtons.find((buttonToFind) => buttonToFind !== current) as Type;
+  }
+  const rangeInputs = [
+    ...((current as HTMLInputElement).parentElement?.parentElement?.querySelectorAll(
+      '.input-number',
+    ) as NodeListOf<HTMLInputElement>),
   ];
-  return rangeButtons.find((buttonToFind) => buttonToFind !== currentButton) as HTMLButtonElement;
+  return rangeInputs.find((inputToFind) => inputToFind !== current) as Type;
 }
 
 function changeInput(eventChange: Event): void {
@@ -76,7 +86,7 @@ function connectInputToButton(currentInput: HTMLInputElement): HTMLButtonElement
 
 export function changeRange(targetInput: HTMLInputElement): void {
   const buttonInput = connectInputToButton(targetInput);
-  const oppositeInput = connectButtonToInput(findOppositeButton(buttonInput));
+  const oppositeInput = findOpposite(targetInput) as HTMLInputElement;
   const rangeBackground = targetInput.parentElement?.parentElement?.parentElement?.querySelector(
     '.multi-range__background-color',
   ) as HTMLDivElement;
