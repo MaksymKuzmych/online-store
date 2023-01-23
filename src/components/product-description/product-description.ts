@@ -8,8 +8,8 @@ export function renderDescription(id: number): HTMLElement {
   const item = watchData[id - 1];
   const description = document.createElement('div');
   const { name, price, brand, clockFace, mount } = item;
-  const local = getLocalData();
-  const buttonText = local.localCart.some((element) => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
+  const { localCart } = getLocalData();
+  const buttonText = localCart.some((element) => element.id === id) ? 'Remove from Cart' : 'Add to Cart';
 
   //change view of item-description for this page
   const text = item.description

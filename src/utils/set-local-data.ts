@@ -1,25 +1,27 @@
 import { ILocalData } from '../interfaces';
 
 export function setLocalData(data: ILocalData): void {
-  if (data.localAmount || data.localAmount === 0) {
-    localStorage.setItem('amount-os', JSON.stringify(data.localAmount));
+  const { localAmount, localCart, localCounter, localLimit, localPage, localFilters, localPromo } = data;
+
+  if (localAmount || localAmount === 0) {
+    localStorage.setItem('amount-os', JSON.stringify(localAmount));
   }
-  if (data.localCart) {
-    localStorage.setItem('cart-os', JSON.stringify(data.localCart));
+  if (localCart) {
+    localStorage.setItem('cart-os', JSON.stringify(localCart));
   }
-  if (data.localCounter || data.localCounter === 0) {
-    localStorage.setItem('counter-os', JSON.stringify(data.localCounter));
+  if (localCounter || localCounter === 0) {
+    localStorage.setItem('counter-os', JSON.stringify(localCounter));
   }
-  if (data.localLimit) {
-    localStorage.setItem('limit-os', JSON.stringify(data.localLimit));
+  if (localLimit) {
+    localStorage.setItem('limit-os', JSON.stringify(localLimit));
   }
-  if (data.localPage) {
-    localStorage.setItem('page-os', JSON.stringify(data.localPage));
+  if (localPage) {
+    localStorage.setItem('page-os', JSON.stringify(localPage));
   }
-  if (data.localFilters) {
-    localStorage.setItem('filters-os', JSON.stringify(data.localFilters));
+  if (localFilters) {
+    localStorage.setItem('filters-os', JSON.stringify(localFilters));
   }
-  if (data.localPromo) {
-    localStorage.setItem('promo-os', JSON.stringify(data.localPromo));
+  if (localPromo) {
+    localStorage.setItem('promo-os', JSON.stringify(localPromo));
   }
 }

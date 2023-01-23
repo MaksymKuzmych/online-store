@@ -1,8 +1,8 @@
 import { IWatch } from '../../interfaces';
 import { renderDescription } from '../product-description/product-description';
 
-export function setItemListener(item: HTMLDivElement, watch: IWatch): void {
-  item.addEventListener('click', (event: MouseEvent) => {
+export function setItemListener(cartItem: HTMLDivElement, watch: IWatch): void {
+  cartItem.addEventListener('click', (event) => {
     const main = document.querySelector('.main') as HTMLElement;
     const target = event.target as HTMLElement;
 

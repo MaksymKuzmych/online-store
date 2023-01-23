@@ -53,5 +53,3 @@ export interface ILocalFilters {
   stockTo: number;
   stockMax: number;
 }
-
-export type FlatArray<T> = Array<T>;
