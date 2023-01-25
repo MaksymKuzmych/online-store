@@ -38,6 +38,11 @@ describe('Find limit value:', () => {
     },
   ];
 
+  const priceMin = 573;
+  const priceMax = 934;
+  const stockMin = 44;
+  const stockMax = 55;
+
   test('should be defined', () => {
     expect(findLimitValue).toBeDefined();
     expect(findLimitValue).not.toBeUndefined();
@@ -50,23 +55,13 @@ describe('Find limit value:', () => {
     expect(findLimitValue(data, 'stock', 'min')).not.toBeNaN();
   });
 
-  test('should be higher than value', () => {
-    expect(findLimitValue(data, 'price', 'min')).toBeGreaterThan(500);
-    expect(findLimitValue(data, 'stock', 'min')).toBeGreaterThan(40);
-  });
-
-  test('should be lower than value', () => {
-    expect(findLimitValue(data, 'price', 'min')).toBeLessThan(1000);
-    expect(findLimitValue(data, 'stock', 'min')).toBeLessThan(100);
-  });
-
   test('should find min and max price in array of watches', () => {
-    expect(findLimitValue(data, 'price', 'min')).toBe(573);
-    expect(findLimitValue(data, 'price', 'max')).toBe(934);
+    expect(findLimitValue(data, 'price', 'min')).toBe(priceMin);
+    expect(findLimitValue(data, 'price', 'max')).toBe(priceMax);
   });
 
   test('should find min and max stock in array of watches', () => {
-    expect(findLimitValue(data, 'stock', 'min')).toBe(44);
-    expect(findLimitValue(data, 'stock', 'max')).toBe(55);
+    expect(findLimitValue(data, 'stock', 'min')).toBe(stockMin);
+    expect(findLimitValue(data, 'stock', 'max')).toBe(stockMax);
   });
 });
