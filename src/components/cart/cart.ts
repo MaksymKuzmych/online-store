@@ -6,7 +6,7 @@ import { openSumbitFormListener } from './checkout';
 
 export function renderEmptyCart(): HTMLElement {
   const emptyContainer = document.createElement('div');
-  emptyContainer.classList.add('empty');
+  emptyContainer.classList.add('empty-container');
 
   emptyContainer.innerHTML = `
   <h1 class="title-empty">Cart is Empty</h1>

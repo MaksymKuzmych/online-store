@@ -1,7 +1,7 @@
 import { IWatch } from '../../interfaces';
 import { watchData } from '../../watch-data/watch-data';
 
-export function fillQuantity(filtersEl: HTMLElement, filteredArray: Array<IWatch>): void {
+export function fillQuantity(filtersEl: HTMLDivElement, filteredArray: Array<IWatch>): void {
   const foundItems = filtersEl.querySelector('.search_bar__result') as HTMLSpanElement;
 
   const pointerSpan = filtersEl.querySelector('.clockface-pointer__result') as HTMLSpanElement;
@@ -19,36 +19,34 @@ export function fillQuantity(filtersEl: HTMLElement, filteredArray: Array<IWatch
 
   foundItems.innerText = String(filteredArray.length);
 
-  pointerSpan.innerText = `${filteredArray.filter((el) => el.clockFace === 'pointer').length}/${
-    watchData.filter((el) => el.clockFace === 'pointer').length
-  }`;
-  digitalSpan.innerText = `${filteredArray.filter((el) => el.clockFace === 'digital').length}/${
-    watchData.filter((el) => el.clockFace === 'digital').length
-  }`;
+  pointerSpan.innerText = writeclockFaceQuantity(filteredArray, 'pointer');
+  digitalSpan.innerText = writeclockFaceQuantity(filteredArray, 'digital');
 
-  strapSpan.innerText = `${filteredArray.filter((el) => el.mount === 'strap').length}/${
-    watchData.filter((el) => el.mount === 'strap').length
-  }`;
-  braceletSpan.innerText = `${filteredArray.filter((el) => el.mount === 'bracelet').length}/${
-    watchData.filter((el) => el.mount === 'bracelet').length
-  }`;
+  strapSpan.innerText = writeMountQuantity(filteredArray, 'strap');
+  braceletSpan.innerText = writeMountQuantity(filteredArray, 'bracelet');
 
-  casioSpan.innerText = `${filteredArray.filter((el) => el.brand === 'Casio').length}/${
-    watchData.filter((el) => el.brand === 'Casio').length
+  casioSpan.innerText = writeBrandQuantity(filteredArray, 'Casio');
+  citizenSpan.innerText = writeBrandQuantity(filteredArray, 'Citizen');
+  northEdgeSpan.innerText = writeBrandQuantity(filteredArray, 'North Edge');
+  seikoSpan.innerText = writeBrandQuantity(filteredArray, 'Seiko');
+  tagHeuerSpan.innerText = writeBrandQuantity(filteredArray, 'TAG HEUER');
+  fossilSpan.innerText = writeBrandQuantity(filteredArray, 'Fossil');
+}
+
+function writeclockFaceQuantity(filteredArray: Array<IWatch>, option: string) {
+  return `${filteredArray.filter((watch) => watch.clockFace === option).length}/${
+    watchData.filter((watch) => watch.clockFace === option).length
   }`;
-  citizenSpan.innerText = `${filteredArray.filter((el) => el.brand === 'Citizen').length}/${
-    watchData.filter((el) => el.brand === 'Citizen').length
+}
+
+function writeMountQuantity(filteredArray: Array<IWatch>, option: string) {
+  return `${filteredArray.filter((watch) => watch.mount === option).length}/${
+    watchData.filter((watch) => watch.mount === option).length
   }`;
-  northEdgeSpan.innerText = `${filteredArray.filter((el) => el.brand === 'North Edge').length}/${
-    watchData.filter((el) => el.brand === 'North Edge').length
-  }`;
-  seikoSpan.innerText = `${filteredArray.filter((el) => el.brand === 'Seiko').length}/${
-    watchData.filter((el) => el.brand === 'Seiko').length
-  }`;
-  tagHeuerSpan.innerText = `${filteredArray.filter((el) => el.brand === 'TAG HEUER').length}/${
-    watchData.filter((el) => el.brand === 'TAG HEUER').length
-  }`;
-  fossilSpan.innerText = `${filteredArray.filter((el) => el.brand === 'Fossil').length}/${
-    watchData.filter((el) => el.brand === 'Fossil').length
+}
+
+function writeBrandQuantity(filteredArray: Array<IWatch>, option: string) {
+  return `${filteredArray.filter((watch) => watch.brand === option).length}/${
+    watchData.filter((watch) => watch.brand === option).length
   }`;
 }

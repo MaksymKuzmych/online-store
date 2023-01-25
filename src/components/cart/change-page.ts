@@ -2,7 +2,6 @@ import { renderCart } from '../cart/cart';
 import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
 
-
 export function changePage(cart: HTMLDivElement): void {
   const pageDown = cart.querySelector('.decrese') as HTMLButtonElement;
   const pageUp = cart.querySelector('.increse') as HTMLButtonElement;

@@ -3,21 +3,22 @@ import { renderOrderForm } from './order-submit';
 import { getLocalData } from '../../utils/get-local-data';
 import { setLocalData } from '../../utils/set-local-data';
 
-export function orderValidation(orderBackgroundDiv: HTMLElement): void {
+export function orderValidation(orderBackgroundDiv: HTMLDivElement): void {
   const inputs = orderBackgroundDiv.querySelectorAll('.order__input') as NodeListOf<HTMLInputElement>;
   const submit = orderBackgroundDiv.querySelector('.order__submit') as HTMLButtonElement;
 
   submit.addEventListener('click', (event) => {
-    const processedMessage = orderBackgroundDiv.querySelector('.order__processed-message') as HTMLElement;
-    const body = document.querySelector('body') as HTMLElement;
+    const body = document.querySelector('body') as HTMLBodyElement;
+    const processedMessage = orderBackgroundDiv.querySelector('.order__processed-message') as HTMLParagraphElement;
+
     let invalidElements = 0;
 
     event.preventDefault();
 
-    inputs.forEach((el) => {
-      const errorMessage = el.nextElementSibling as HTMLElement;
+    inputs.forEach((inputEl) => {
+      const errorMessage = inputEl.nextElementSibling as HTMLDivElement;
 
-      if (el.value !== '' && el.checkValidity()) {
+      if (inputEl.value !== '' && inputEl.checkValidity()) {
         errorMessage.style.visibility = 'hidden';
       } else {
         errorMessage.style.visibility = 'visible';
@@ -31,7 +32,7 @@ export function orderValidation(orderBackgroundDiv: HTMLElement): void {
       processedMessage.classList.remove('hide');
 
       setTimeout(() => {
-        const orderForm = document.querySelector('.order-background') as HTMLElement;
+        const orderForm = document.querySelector('.order-background') as HTMLDivElement;
         const headerCounter = document.querySelector('.purchases__counter') as HTMLParagraphElement;
         const headerAmount = document.querySelector('.purchases__amount_number') as HTMLSpanElement;
 
@@ -46,6 +47,7 @@ export function orderValidation(orderBackgroundDiv: HTMLElement): void {
 
         body.removeChild(orderForm);
         body.appendChild(renderOrderForm());
+
         resetFilters();
       }, 3000);
     }

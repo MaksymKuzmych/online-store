@@ -1,4 +1,4 @@
-export function checkPayment(orderBackgroundDiv: HTMLElement): void {
+export function checkPaymentListener(orderBackgroundDiv: HTMLDivElement): void {
   const cardNumberField = orderBackgroundDiv.querySelector('#card-number') as HTMLInputElement;
   const paymentSystemImg = orderBackgroundDiv.querySelector('.card-details__img') as HTMLImageElement;
 
