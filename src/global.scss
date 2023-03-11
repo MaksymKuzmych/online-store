@@ -1,0 +1,82 @@
+@import './styles/normalize.scss';
+@import './styles/variables.scss';
+@import './components/header/header.scss';
+@import './components/footer/footer.scss';
+@import './components/main-filter/main-filter.scss';
+@import './components/product-description/product-description.scss';
+@import './components/product-card/product-card.scss';
+@import './components/cart/cart.scss';
+@import './components/order-submit/order-submit.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Roboto Slab', serif;
+}
+
+a {
+  display: inline-block;
+}
+
+html,
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main {
+  flex-grow: 1;
+  background-color: $gray;
+  display: flex;
+}
+
+.cards-wrapper {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(auto-fill, 250px);
+  justify-content: space-around;
+  grid-gap: 10px;
+  flex: 1 1 auto;
+  align-self: flex-start;
+}
+
+.cards-wrapper-small {
+  grid-template-columns: repeat(auto-fill, 170px);
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 890px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .filters {
+    width: 95%;
+    max-width: 750px;
+    margin: 5px auto;
+  }
+
+  .cards-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .cards-wrapper {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+  .cards-wrapper-small {
+    grid-template-columns: repeat(auto-fill, 170px);
+  }
+}
